@@ -5,6 +5,7 @@
 }
 
 
+
 .bg-register-image {
   background: url("https://res.cloudinary.com/teepublic/image/private/s--KsnQCQ0M--/t_Preview/b_rgb:ffffff,c_limit,f_jpg,h_630,q_90,w_630/v1565240807/production/designs/5545240_0.jpg");
   background-position: center;
@@ -76,17 +77,16 @@ display: inline-block;
 .listHorizontal li {
   display: inline-block;
   font-size: 20px;
-  padding-left: 0px;
 }
 
 
 .cropImg {
-
     width: 100%;
 }
 
-.10padleft{
-	padding-left: 10px;
+.listHorizontal label {
+	padding-left: 2rem;
+	
 }
 
 
@@ -124,5 +124,10 @@ colour picker https://www.cssmatic.com/box-shadow*/
 	
 	
 .cardMarginBottom{
-	margin-bottom: 4px;}
+	margin-bottom: 4px;
+}
+
+.personal-small-container{
+	padding-left: 8rem;
+	padding-right: 8rem;
 }

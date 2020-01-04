@@ -178,7 +178,7 @@
               </div>
             </li>
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+            
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -209,14 +209,13 @@
 
         </nav>
         <!-- End of Topbar -->
-
-				<h1 class="">You are on the Event page</h1>
-				<div class="container-fluid">
+			<div class="personal-small-container">
+				<h1 class = "padding">You are on the Event page</h1>
 				
 				<div class="row">
-					<ul class="listHorizontal card mb-4 py-3 border-left-primary col-lg-12 10padleft">
+					<ul class="listHorizontal card mb-4 py-3 border-left-primary col-lg-12">
 						<li><form action="getEventsServlet" method="POST">
-								<label for="location">Location:</label></li>
+								<label class = "10PadLeft" for="location">Location:</label></li>
 						<!--  <input type="text" required="required" class="form-control" id="location" name = "location"> -->
 						
 						<li><select name="location" class="form-control 10padleft">
@@ -317,7 +316,7 @@
 								<div class="card shadow mb-4 broder-left-primary ">
 								<div class = "box">
 									<img
-										src="${tempEvent.img }" style = "width:100%; height: 200px">
+										src="${tempEvent.img }" style = "width:100%; height: 20rem">
 									<div class="card-body ">
 										<h6 class="m-0 font-weight-bold text-primary">${tempEvent.name }</h6>
 
@@ -349,6 +348,8 @@
 
 				</div>
 			</div>
+			
+			
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
