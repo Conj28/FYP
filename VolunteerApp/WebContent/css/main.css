@@ -131,3 +131,20 @@ colour picker https://www.cssmatic.com/box-shadow*/
 	padding-left: 8rem;
 	padding-right: 8rem;
 }
+
+.img-main-page{
+	width:100%;
+	height: 20rem;
+}
+
+
+.img-details-page{
+	width:100%;
+	height: 100%;
+}
+
+
+.header-inline{
+	display:inline;
+}
+
