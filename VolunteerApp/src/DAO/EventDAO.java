@@ -90,6 +90,8 @@ public class EventDAO {
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
+		//conveting date
+		//https://www.mssqltips.com/sqlservertip/1145/date-and-time-conversions-using-sql-server/
 		String query = "Select Distinct(E.Event_Det_ID), E.Name, E.Created_By, CONVERT(VARCHAR(10), E.Event_Date, 103), LEFT(E.Start_Time,5), LEFT(E.End_Time,5), E.Number_Days, E.img, E.Details From Event_Det E \r\n"
 				+ "Inner join Event_Loc L on E.Event_Det_ID = L.Event_Det_ID\r\n" + "where L.County = '" + loc + "' ";
 
@@ -187,6 +189,7 @@ public class EventDAO {
 	}
 
 	public Vector<Event> getSpecificEventLocation(int id) throws Exception {
+		int eventLocID = 0;
 		String county = "";
 		String location = "";
 
@@ -195,17 +198,19 @@ public class EventDAO {
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
-		String query = "Select County, Location from Event_Loc where Event_Det_Id = '" + id + "' ";
+		String query = "Select Event_Loc_ID, County, Location from Event_Loc where Event_Det_Id = '" + id + "' ";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				System.out.println("it got here !!!");
-				county = (rs.getString(1));
-				location = (rs.getString(2));
+				eventLocID = (rs.getInt(1));
+				county = (rs.getString(2));
+				location = (rs.getString(3));
 
 				Event tempEvent = new Event();
+				tempEvent.setEventLocID(eventLocID);
 				tempEvent.setCounty(county);
 				tempEvent.setLocation(location);
 

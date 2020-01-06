@@ -136,7 +136,7 @@
 						<!--***************************** Put Code Here **************************** -->
 
 						<div class="row">
-							<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+							<div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
 								<div class="card">
 
 									<div class="card-body">
@@ -145,10 +145,67 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="col-xl-6 col-sm-12">
-								<div class="card">
+							
+							<div class="col-xl-7 col-sm-12">
+								<div class="card mb-4">
 									<div class="card-body">
+										<h2 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h2>
+										<hr>
+										<div class="mb-2">
+											<h4 class="font-weight-bold text-primary header-inline">Event Date: </h4>
+											<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.eventDate}</h4>
+										</div>
+										
+										<div class="mb-2">
+											<h4 class="font-weight-bold text-primary header-inline">Start Time: </h4>
+											<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
+										</div>
+										
+										<div class="mb-2">
+											<h4 class="font-weight-bold text-primary header-inline">End Time: </h4>
+											<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
+										</div>
+										<hr>
+										<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
+										
+										<!--  Signup part -->
+										
+										<hr>
+										<h2 class ="font-weight-bold text-primary">Get Involved</h2>
+										
+										
+										<form class="user">
+										<div class = "row mb-4">
+										
+										<div class = "col-sm-12 col-lg-4">
+											<h4 class = "font-weight-bold text-primary"> Select Location</h4>
+											</div>
+											<div class = "col-sm-12 col-lg-8">											
+											<select name="location" class="form-control selectPadHeight">
+											
+											<c:forEach items="${specificEventLocation}" var="tempLoc" >
+												<option value = "${tempLoc.eventLocID}">${tempLoc.location} (${tempLoc.county})</option>
+											    
+											</c:forEach>	
+											</select>
+											</div>
+											
+											</div>
+											
+										<div class = "mb-4">
+										<button type = "submit" class = "mb-4 btn btn-primary btn-user btn-block">Sign Up</button>
+										</div>
+										</form>
+									</div>
+								</div>
+									<!-- end of card main text column -->
+							</div>
+								
+								<!--
+								------------------------Experimental second card ------------------------------------
+								<div class = "col-xl-6 col-sm-12">
+								<div class="card mb-4">
+									<div class="card-body" >
 										<h1 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h1>
 										<hr>
 										<div class="mb-4">
@@ -169,9 +226,11 @@
 										<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
 									</div>
 								</div>
-							</div>
+								
+								</div> -->
+							
 
-
+						
 
 						</div>
 
@@ -189,7 +248,7 @@
 
 								<div class="card shadow mb-4 broder-left-primary">
 								
-
+										<p>County: ${tempLoc.eventLocID}</p>
 										<p>County: ${tempLoc.county}</p>
 										<p>location Time: ${tempLoc.location}</p>
 										
@@ -201,8 +260,12 @@
 						
 						</c:forEach>
 						
-						-->
+						
+						
+						
 
+
+<!--  -->
 						<!--  end of Row div -->
 					</div>
 

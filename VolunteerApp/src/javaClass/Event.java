@@ -10,6 +10,7 @@ public class Event {
 	private int numberDays;
 	private String img;
 	private String details;
+	private int eventLocID;
 	private String county;
 	private String location;
 	private String userStart;
@@ -101,6 +102,14 @@ public class Event {
 	}
 	public void setEventID(int eventID) {
 		this.eventID = eventID;
+	}
+	
+	public int getEventLocID() {
+		return eventLocID;
+	}
+	
+	public void setEventLocID(int eventLocID) {
+		this.eventLocID = eventLocID;
 	}
 	
 	
