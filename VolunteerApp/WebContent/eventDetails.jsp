@@ -178,7 +178,7 @@
 										<h2 class="font-weight-bold text-primary">Get Involved</h2>
 
 
-										<form class="user">
+										<form class="user" id = "submitForm">
 											<div class="row mb-4">
 
 												<div class="col-sm-12 col-lg-4">
@@ -206,11 +206,11 @@
 														</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select name="startTime"
+													<select id = "optionStartTime" name="startTime" onChange="onItemChanged()"
 														class="form-control selectPadHeight">
-
+														<!--  https://stackoverflow.com/questions/2947417/issue-of-jstl-foreach-iterate-from-arraylist -->
 														<c:forEach items="${listStartTimes}" var="time">
-															<option value="${time}">${time}</option>
+															<option  value="${time}">${time}</option>
 
 														</c:forEach>
 													</select>
@@ -225,25 +225,30 @@
 														</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select name="startTime"
+													<select id ="optionEndTime" name="endTime" onChange="onItemChanged()"
 														class="form-control selectPadHeight">
 
 														<c:forEach items="${listEndTimes}" var="time">
-															<option value="${time}">${time}</option>
+															<option  value="${time}">${time}</option>
 
 														</c:forEach>
 													</select>
 												</div>
 
 											</div>
+											
+											<div class="  text-center">
+											<p  class="hiddenText dangerText" id="errorMessage">Hidden Text</p>
+											</div>
+											</form>
 											<!--  Check if the user is logged in  otherwise prompt them to -->
 
 											<c:if test="${not empty sessionScope.User}">
 
 												<div class="mb-4">
-													<a href="login.jsp"
-														class="mb-4 btn btn-primary btn-user btn-block">Volunteer
-													</a>
+													<button type = "button" id = "submitButton"class="mb-4 btn btn-primary btn-user btn-block">
+													Volunteer
+													</button>
 												</div>
 
 											</c:if>
@@ -261,7 +266,7 @@
 
 
 
-										</form>
+										
 									</div>
 								</div>
 								<!-- end of card main text column -->
@@ -371,7 +376,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-
+	<script src="js/timeCheck.js"></script>
 
 
 
