@@ -135,6 +135,8 @@ public class EventDAO {
 	// get the specific events
 	public Event getSpecificEvent(int id) throws Exception {
 
+		//keep start ans end time in place add to end of list only vector used 
+		
 		int eventDetID = 0;
 		String name = "";
 		int createdBy = 0;
