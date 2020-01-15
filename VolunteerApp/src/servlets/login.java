@@ -45,6 +45,9 @@ public class login extends HttpServlet {
 		} else {
 			System.out.println("User is not Null!!!!");
 			request.getSession(true).setAttribute("User", user);
+			
+			//System.out.println("Duser ID IS ********" + user.getUserID());
+			
 			RequestDispatcher rd = request.getRequestDispatcher("getEventsServlet");
 	        rd.forward(request, response);
 		}

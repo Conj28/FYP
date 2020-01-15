@@ -68,6 +68,7 @@ public class UserDAO {
 			if(tempUser.getFirstName() == null) {
 				return null;
 			} else {
+				
 			return tempUser;}
 			
 	}

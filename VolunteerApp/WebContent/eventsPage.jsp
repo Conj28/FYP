@@ -204,6 +204,7 @@
 					
 						<c:if test="${not empty sessionScope.User}">
 						<h5>Logged In As: ${sessionScope.User.firstName}</h5>
+						<h5>Logged In As: ${sessionScope.User.userID}</h5>
 					</c:if>
 					</div>
 					<div class = "row">

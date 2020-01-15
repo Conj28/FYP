@@ -178,7 +178,7 @@
 										<h2 class="font-weight-bold text-primary">Get Involved</h2>
 
 
-										<form class="user" id = "submitForm">
+										<form class="user" id = "submitForm" action ="eventSignUpServlet" method = "POST">
 											<div class="row mb-4">
 
 												<div class="col-sm-12 col-lg-4">
@@ -186,7 +186,7 @@
 														Location</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select name="location"
+													<select id ="optionLocation" name="optionLocation"
 														class="form-control selectPadHeight">
 
 														<c:forEach items="${specificEventLocation}" var="tempLoc">
@@ -206,7 +206,7 @@
 														</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select id = "optionStartTime" name="startTime" onChange="onItemChanged()"
+													<select id = "optionStartTime" name="optionStartTime" onChange="onItemChanged()"
 														class="form-control selectPadHeight">
 														<!--  https://stackoverflow.com/questions/2947417/issue-of-jstl-foreach-iterate-from-arraylist -->
 														<c:forEach items="${listStartTimes}" var="time">
@@ -225,7 +225,7 @@
 														</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select id ="optionEndTime" name="endTime" onChange="onItemChanged()"
+													<select id ="optionEndTime" name="optionEndTime" onChange="onItemChanged()"
 														class="form-control selectPadHeight">
 
 														<c:forEach items="${listEndTimes}" var="time">
@@ -240,11 +240,15 @@
 											<div class="  text-center">
 											<p  class="hiddenText dangerText" id="errorMessage">Hidden Text</p>
 											</div>
-											</form>
+											
 											<!--  Check if the user is logged in  otherwise prompt them to -->
 
 											<c:if test="${not empty sessionScope.User}">
-
+												<input type = "hidden" id = "userId" name = "userId" value = "${sessionScope.User.userID }" />
+												<input type = "hidden" id = "eventId" name = "eventId" value = "${sessionScope.specificEvent.eventDetID}" />
+												
+												
+												
 												<div class="mb-4">
 													<button type = "button" id = "submitButton"class="mb-4 btn btn-primary btn-user btn-block">
 													Volunteer
@@ -252,7 +256,7 @@
 												</div>
 
 											</c:if>
-
+											</form>
 											<c:if test="${empty sessionScope.User}">
 
 												<div class="mb-4">
@@ -264,9 +268,6 @@
 											</c:if>
 
 
-
-
-										
 									</div>
 								</div>
 								<!-- end of card main text column -->

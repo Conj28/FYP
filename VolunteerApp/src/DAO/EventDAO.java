@@ -331,5 +331,26 @@ public class EventDAO {
 		return eventData;
 
 	}
+	
+	public void eventSignUp(int eventDetId, int userId, String startTime,String endTime,int locId) throws Exception{
+		
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		
+		//logic taken from 3rd year project
+		String query = "Insert into Event(Event_Det_ID, Users_ID, Available_Start, Available_End, Event_Loc_ID)\r\n" + 
+				"Values(" + eventDetId + ", " + userId + " , '"+ startTime +"' , '"+ endTime +"' , "+ locId +" )";
+		
+		 try {
+	            PreparedStatement stmt = conn.prepareStatement(query);
+	            stmt.execute();
+	        }catch(SQLException e){
+	            System.out.println("Error - Not able to sigup for event");
+	             e.printStackTrace();
+	        }
+	        
+		
+		
+	}
 
 }

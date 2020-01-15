@@ -2,7 +2,7 @@ package javaClass;
 
 public class User {
 	
-	private int UserID;
+	private int userID;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -14,11 +14,13 @@ public class User {
 	private String password;
 	private String role;
 	
+	
+	
 	public int getUserID() {
-		return UserID;
+		return userID;
 	}
 	public void setUserID(int userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
 	public String getFirstName() {
 		return firstName;

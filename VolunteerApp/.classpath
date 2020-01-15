@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/Conor/Downloads/jstl.jar/jstl.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Conor/Desktop/Sql_server_Drivers/sqljdbc_7.4.1.0_enu.tar/sqljdbc_7.4.1.0_enu/sqljdbc_7.4/enu/mssql-jdbc-7.4.1.jre8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Conor/Downloads/JavaMail_JAR/javax.mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

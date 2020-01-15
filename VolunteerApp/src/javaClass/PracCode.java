@@ -1,14 +1,7 @@
 package javaClass;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-public class PracCode {
-    public static void main(String[] args) throws ParseException {
+	public class PracCode {
+    public static void main(String[] args) throws Exception {
       
         //https://howtodoinjava.com/java/date-time/java8-datetimeformatter-example/
          
@@ -42,44 +35,45 @@ public class PracCode {
     	//https://stackoverflow.com/questions/4927856/how-to-calculate-time-difference-in-java
     	
     	
-    	
-    	 	String startTime = "10:00";
-    	    String endTime = "17:00";
-    	    
-    	    
-    	    
-    	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-    	    Date d1 = sdf.parse(startTime);
-    	    Date d2 = sdf.parse(endTime);
-    	    long elapsed = d2.getTime() - d1.getTime();
-    	    //1800 seconds in half hour 
-    	    //3600 seconds in hour
-    	    long halfHours = (elapsed/1000)/1800;
-    	    
-    	    
-    	    Calendar cal1 = Calendar.getInstance();
-        	cal1.setTime(d1);
-    	    
-        	List<String> timeList = new ArrayList<>();	
-        	
-        	
-        	//Event eventTime = new Event();
-    	    
-    	    for(int i = 0; i < halfHours; i++) {;
-    	    	
-    	    timeList.add(sdf.format(cal1.getTime()));
-    	    	cal1.add(Calendar.MINUTE, 30);
-    	    	//System.out.println(sdf.format(cal1.getTime()));
-    	    	
-    	    	
-    	    }
-    	    
-    	    System.out.println(timeList);
-    	    
+//    	
+//    	 	String startTime = "10:00";
+//    	    String endTime = "17:00";
+//    	    
+//    	    
+//    	    
+//    	    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//    	    Date d1 = sdf.parse(startTime);
+//    	    Date d2 = sdf.parse(endTime);
+//    	    long elapsed = d2.getTime() - d1.getTime();
+//    	    //1800 seconds in half hour 
+//    	    //3600 seconds in hour
+//    	    long halfHours = (elapsed/1000)/1800;
+//    	    
+//    	    
+//    	    Calendar cal1 = Calendar.getInstance();
+//        	cal1.setTime(d1);
+//    	    
+//        	List<String> timeList = new ArrayList<>();	
+//        	
+//        	
+//        	//Event eventTime = new Event();
+//    	    
+//    	    for(int i = 0; i < halfHours; i++) {;
+//    	    	
+//    	    timeList.add(sdf.format(cal1.getTime()));
+//    	    	cal1.add(Calendar.MINUTE, 30);
+//    	    	//System.out.println(sdf.format(cal1.getTime()));
+//    	    	
+//    	    	
+//    	    }
+//    	    
+//    	    System.out.println(timeList);
+//    	    
     	 
     	    
     	    
-    	     
+    	Email email = new Email();
+		email.emailConfirmSignUp("116376836@umail.ucc.ie", "Cork Place", "12:00", "14:30");
     	    
     	    
     	    

@@ -24,12 +24,11 @@ function onItemChanged(){
 button.addEventListener("click", function(){
 
 if(time1 >= time2){
-	errorMessage.textContent ="End Time can not be before the start time" +  time1+ " " + time2;
+	errorMessage.textContent ="End Time must be after the start time";
 	errorMessage.style.display= "block";
 	
 }else {
-	errorMessage.textContent ="blaaaa " + time1 + " " + time2;
-	errorMessage.style.display= "block";
+	form.submit();
 }
 });
 
