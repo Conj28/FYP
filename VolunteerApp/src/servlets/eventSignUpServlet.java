@@ -38,11 +38,21 @@ public class eventSignUpServlet extends HttpServlet {
 		//System.out.println(strUserId);
 		//System.out.println(strEventDetId);
 		
+		//get some info for for confirmation email
+		
+		
+		String userEmail = request.getParameter("userEmail");
+		String eventName = request.getParameter("eventName");
+		String setLocation = request.getParameter("setLocation");
+		String firstName  = request.getParameter("firstName");
+		
+		//System.out.println(userEmail + " || " + eventName + " || " + setLocation + " || "  + firstName);
+		
 		EventDAO eventDAO = new EventDAO();
 		eventDAO.eventSignUp(eventDetId, userId, startTime, endTime, location);
 		
 		Email email = new Email();
-		email.emailConfirmSignUp("116376836@umail.ucc.ie", "Cork Place", "12:00", "14:30");
+		email.emailConfirmSignUp(userEmail, setLocation, startTime, endTime, firstName );
 		
 	}
 

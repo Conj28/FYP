@@ -10,6 +10,9 @@ var form = document.getElementById("submitForm");
 var errorMessage = document.getElementById("errorMessage");
 
 
+
+
+
 var time1 = ST;
 var time2 = ET;
 
@@ -30,5 +33,45 @@ if(time1 >= time2){
 }else {
 	form.submit();
 }
+
+
+
+//function onLocationChanged(){
+//	
+//	var loc = document.getElementById("optionLocation");
+//	var Location = loc.options[loc.selectedIndex].value;
+//
+//	setLocation.value = Location;
+//}
+
+
+
 });
+
+$(document).ready(function() {
+	   
+	var setLocation = document.getElementById("setLocation");
+	var location = document.getElementById("optionLocation");
+	var Location = location.options[location.selectedIndex].text;
+
+	setLocation.value = Location;
+	//alert(Location);
+	
+	 $("select.selectedLocation").change(function(){
+	        var selectedCountry = $(this).children("option:selected").text();
+	        
+	       $('input[name="setLocation"]').val(selectedCountry);
+	    });
+	 
+	 
+	
+	 
+	});
+	
+
+
+
+
+
+
 

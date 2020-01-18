@@ -150,7 +150,7 @@
 							<div class="col-xl-7 col-sm-12">
 								<div class="card mb-4">
 									<div class="card-body">
-										<h2 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h2>
+										<h2 class="font-weight-bold text-primary" >${sessionScope.specificEvent.name}</h2>
 										<hr>
 										<div class="mb-2">
 											<h4 class="font-weight-bold text-primary header-inline">Event
@@ -187,11 +187,12 @@
 												</div>
 												<div class="col-sm-12 col-lg-8">
 													<select id ="optionLocation" name="optionLocation"
-														class="form-control selectPadHeight">
+														class="form-control selectPadHeight selectedLocation" >
 
 														<c:forEach items="${specificEventLocation}" var="tempLoc">
-															<option value="${tempLoc.eventLocID}">${tempLoc.location}
-																(${tempLoc.county})</option>
+															<!--  make sure that the is only one space between two varibales  -->
+															<option value="${tempLoc.eventLocID}">${tempLoc.location} (${tempLoc.county})
+															</option>
 
 														</c:forEach>
 													</select>
@@ -246,6 +247,11 @@
 											<c:if test="${not empty sessionScope.User}">
 												<input type = "hidden" id = "userId" name = "userId" value = "${sessionScope.User.userID }" />
 												<input type = "hidden" id = "eventId" name = "eventId" value = "${sessionScope.specificEvent.eventDetID}" />
+												<input type = "hidden" id = "userEmail" name = "userEmail" value = "${sessionScope.User.email}" />
+												<input type = "hidden" id = "setLocation" name = "setLocation" />
+												<input type = "hidden" id = "eventName" name = "eventName" value = "${sessionScope.specificEvent.name}" />
+												<input type = "hidden" id = "firstName" name = "firstName" value = "${sessionScope.User.firstName}" />
+												
 												
 												
 												

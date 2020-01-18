@@ -13,7 +13,7 @@ public class Email {
 	//CODE FROM - https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-using-smtp-java.html
 	
     
-    static final String FROM = "murphy97@live.ie";
+    static final String FROM = "116376836@umail.ucc.ie";
     static final String FROMNAME = "Conor Murphy";
 	
    
@@ -26,7 +26,7 @@ public class Email {
     
    
 
-    public void emailConfirmSignUp(String TO, String location, String startTime, String endTime) throws Exception {
+    public void emailConfirmSignUp(String TO, String location, String startTime, String endTime, String firstName) throws Exception {
     	 
     	//String TO = "116376836@umail.ucc.ie";
     	
@@ -35,9 +35,10 @@ public class Email {
     	 String BODY = String.join(
     	    	    System.getProperty("line.separator"),
     	    	    "<h1>Volunteering Confirmation</h1>",
+    	    	    "<h3>Hi " + firstName +"</h3>",
     	    	    "<p>Thnak you for siginging up to volunteer at" + location + " ", 
     	    	    " from " + startTime + " to " + endTime + "",
-    	    	    "you can view details for the event here"
+    	    	    "you can log in to view and edit your availability here"
     	    	);
 
         // Create a Properties object to contain connection configuration information.
