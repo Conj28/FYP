@@ -44,7 +44,8 @@ if(time1 >= time2){
 //	setLocation.value = Location;
 //}
 
-
+//https://learn.jquery.com/using-jquery-core/faq/how-do-i-get-the-text-value-of-a-selected-option/
+//https://stackoverflow.com/questions/11277117/selecting-a-select-option-by-a-value-passed-through-a-variable
 
 });
 
