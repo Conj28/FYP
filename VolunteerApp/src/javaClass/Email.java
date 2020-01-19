@@ -24,7 +24,7 @@ public class Email {
     static final String HOST = "email-smtp.eu-west-1.amazonaws.com";
     static final int PORT = 587;
     
-   
+   //Possibe - add to calander 
 
     public void emailConfirmSignUp(String TO, String location, String startTime, String endTime, String firstName) throws Exception {
     	 
