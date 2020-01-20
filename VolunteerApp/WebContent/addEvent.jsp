@@ -363,7 +363,7 @@
 												<h2 class="text-gray-900 mb-4">Create Event</h2>
 												<hr class="mb-4">
 											</div>
-											<form action="AddEventServlet" method="POST"
+											<form action="addEventServlet" method="POST"
 												class="user mb-4" id="addEventForm">
 
 
@@ -565,9 +565,7 @@
 									</div>
 										
 										
-										<div id = "locSpace">
 										
-										</div>
 
 										<div class="form-group row">
 											
@@ -577,7 +575,7 @@
 
 												<!-- padding not working -  https://stackoverflow.com/questions/22681141/select-option-padding-not-working-in-chrome?lq=1 -->
 
-												<select name="location" class="form-control selectPadHeight">
+												<select name="locationN" class="form-control selectPadHeight">
 
 													<option value="antrim">Antrim</option>
 													<option value="armagh">Armagh</option>
@@ -621,27 +619,26 @@
 											
 											<div class="col-sm-6 mb-3 mb-sm-0">
 												<input type="text" class="form-control form-control-user"
-													name="location" id="location" placeholder="Location">
+													name="locationN" id="locationN" placeholder="Location">
 											</div>
 
 										</div>
 
+										<div id = "locSpace">
 										
-										<button type="button" id="checkPassword"
-											class="btn btn-primary btn-user btn-block">Register
-											Account</button>
-										<hr>
-
-										</form>
-
+										</div>
+										
+										<input type="hidden" name = "numLocs"/>
+										
 										<div class="  text-center">
 											<p class="hiddenText dangerText" id="warningText">Hidden
 												Text</p>
 										</div>
-										<div class="text-center">
-											<a class="small" href="login.jsp">Already have an
-												account? Login!</a>
-										</div>
+										
+										<button type="submit" id="checkPassword"
+											class="btn btn-primary btn-user btn-block">Add Event</button>
+										<hr>
+							
 									</div>
 
 								</div>
@@ -650,6 +647,9 @@
 
 					</div>
 				</div>
+
+
+</form>
 
 			</div>
 			<!-- /.container-fluid -->

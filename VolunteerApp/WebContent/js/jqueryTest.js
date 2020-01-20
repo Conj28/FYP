@@ -4,6 +4,10 @@
 	 //https://www.encodedna.com/2013/07/dynamically-add-remove-textbox-control-using-jquery.htm
 	 
         var iCnt = 0;
+        
+       $('input[name="numLocs"]').val(+iCnt);
+        
+        
         // CREATE A "DIV" ELEMENT AND DESIGN IT USING jQuery ".css()" CLASS.
         //var container = $(document.createElement('div')).css({
         //    padding: '5px', margin: '20px', width: '170px', border: '1px dashed',
@@ -62,32 +66,36 @@
 						</div>\
 					</div>')
 					
-					
+					 $('input[name="numLocs"]').val(iCnt);
 					
                 // SHOW SUBMIT BUTTON IF ATLEAST "1" ELEMENT HAS BEEN CREATED.
-                if (iCnt == 1) {
-                    var divSubmit = $(document.createElement('div'));
-                    $(divSubmit).append('<input type=button class="bt"' + 
-                        'onclick="GetTextValue()"' + 
-                            'id=btSubmit value=Submit />');
-                }
+//                if (iCnt == 1) {
+//                    var divSubmit = $(document.createElement('div'));
+//                    $(divSubmit).append('<input type=button class="bt"' + 
+//                        'onclick="GetTextValue()"' + 
+//                            'id=btSubmit value=Submit />');
+//                }
 
                 // ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
               //  $('#locSpace').after(container, divSubmit);
             }
             // AFTER REACHING THE SPECIFIED LIMIT, DISABLE THE "ADD" BUTTON.
             // (20 IS THE LIMIT WE HAVE SET)
-            else {      
-                $(container).append('<label>Reached the limit</label>'); 
-                $('#btAdd').attr('class', 'bt-disable'); 
-                $('#btAdd').attr('disabled', 'disabled');
-            }
+            
+            
+//            else {      
+//                $(container).append('<label>Reached the limit</label>'); 
+//                $('#btAdd').attr('class', 'bt-disable'); 
+//                $('#btAdd').attr('disabled', 'disabled');
+//            }
         });
 
         // REMOVE ONE ELEMENT PER CLICK.
         $('#btRemove').click(function() {
             if (iCnt != 0) { $('#loc' + iCnt).remove(); iCnt = iCnt - 1; }
         
+            $('input[name="numLocs"]').val(iCnt);
+            
         });
 
         // REMOVE ALL THE ELEMENTS IN THE CONTAINER.
