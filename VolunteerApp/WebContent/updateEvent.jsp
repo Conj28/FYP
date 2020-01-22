@@ -380,7 +380,7 @@
 													</div>
 													<div class="col-sm-6">
 														<input type="text" class="form-control form-control-user"
-															name="eventName" id="eventName" placeholder="Event Name">
+															name="eventName" id="eventName" placeholder="Event Name"/>
 													</div>
 				
 												</div>
@@ -569,12 +569,21 @@
 												<!-- end of Top Half-->
 												</div>
 												
-													<!--  Sb admin -->
+												
 													
 													</div>
 												</div>
+												
+												
+												<!-- ****************Start of the right side************************************************* -->
 												<div class = "col-lg-6 col-sm-6">
 												<div class="p-5">
+												
+												<div class="text-center">
+												<h2 class="text-gray-900 mb-4">Add Locations</h2>
+												<hr class="mb-4">
+												
+											</div>
 													
 													<div class="row" style = "display: inline-block; text-align: right; width: 100%">
 														
@@ -668,7 +677,8 @@
 
 												<div id="locSpace"></div>
 
-												<input type="hidden" name="numLocs" /> <input type="hidden"
+												<input type="hidden" name="numLocs" /> 
+												<input type="hidden"
 													name="loggedInUser" value="${sessionScope.User.userID }" />
 
 												<!-- <div class="  text-center">
@@ -677,21 +687,20 @@
 												</div> -->
 
 												<button type="submit" id="checkPassword"
-													class="btn btn-primary btn-user btn-block"><b>Add
-													Event</b></button>
+													class="btn btn-primary btn-user btn-block">Add
+													Event</button>
 												<hr>
 										</div>
+										
 										</form>
 
 									</div>
 									
-									</div>
+									
 									</div>
 									<!-- end of form Group -->
 								</div>
-							</div>
-
-						</div>
+							
 					
 
 
