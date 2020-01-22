@@ -472,7 +472,7 @@
 												
 													<div class="col-sm-6">
 													<!--  start time -->
-													<select name="startTime" class="form-control selectPadHeight" placeholder = "Start time">
+													<select name="endTime" class="form-control selectPadHeight" placeholder = "end time">
 						
 											
 											<option value="00:30">00:30</option>
@@ -558,9 +558,17 @@
 										<!--  Testing the jquery to add locations -->
 									<div class="form-group row mb-4"> 
 									
-									<input type="button" id="btAdd" value="Add Element" class="bt" />
-        <input type="button" id="btRemove" value="Remove Element" class="bt" />
-        <input type="button" id="btRemoveAll" value="Remove All" class="bt" />
+								
+									
+									<a id="btAdd" value="Add Element" class="btn btn-info btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-info-circle"></i>
+                    </span>
+                    <span class="text">Split Button Info</span>
+                  </a>
+									<!-- input type="button" id="btAdd" value="Add Element" class="bt" /> -->
+        							<input type="button" id="btRemove" value="Remove Element" class="bt" />
+        							<input type="button" id="btRemoveAll" value="Remove All" class="bt" />
 									
 									</div>
 										
@@ -575,7 +583,7 @@
 
 												<!-- padding not working -  https://stackoverflow.com/questions/22681141/select-option-padding-not-working-in-chrome?lq=1 -->
 
-												<select name="locationN" class="form-control selectPadHeight">
+												<select name="countyN" class="form-control selectPadHeight">
 
 													<option value="antrim">Antrim</option>
 													<option value="armagh">Armagh</option>
@@ -610,10 +618,7 @@
 													<option value="wexford">Wexford</option>
 													<option value="wicklow">Wicklow</option>
 
-
 												</select>
-
-
 
 											</div>
 											
@@ -629,6 +634,7 @@
 										</div>
 										
 										<input type="hidden" name = "numLocs"/>
+										<input type = "hidden" name = "loggedInUser" value = "${sessionScope.User.userID }" />
 										
 										<div class="  text-center">
 											<p class="hiddenText dangerText" id="warningText">Hidden

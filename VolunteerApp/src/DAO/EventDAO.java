@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javaClass.Event;
@@ -348,9 +350,72 @@ public class EventDAO {
 	            System.out.println("Error - Not able to sigup for event");
 	             e.printStackTrace();
 	        }
-	        
 		
 		
 	}
+	
+	 public int addEventDets(String name, int createdBy, String date, String startTime, String endTime, String img, String description) throws Exception {
+		 
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		 
+		int primaryKey = 0;
+ 
+		 String query = " INSERT INTO Event_Det (Name, Created_By, Event_Date, Start_Time, End_Time, img, Details) Output Inserted.Event_Det_ID "
+				+ "Values('"+ name+"', "+ createdBy +" , '"+ date  +"', '"+ startTime +"', '"+endTime+"', '"+ img +"', '"+ description+"' )";
+		 
+		 try {
+				PreparedStatement stmt = conn.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					System.out.println("getting Specific User Events");
+					primaryKey = (rs.getInt(1));
+				}
+		 } catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("ading Event Broken :( ");
+				
+			
+			}
+		 
+		 return primaryKey;
+		 
+		 
+		 
+	 }
+	 
+	 public void setEventLocations(int primaryKey, String county, String location, ArrayList<List<String>> aList) throws Exception  {
+		 
+		 StringBuilder sb = new StringBuilder("  Insert Into Event_Loc(Location, County, Event_Det_ID, Location_Manager)\r\n" + 
+		 		"  Values('"+location+"', '"+county+"', "+primaryKey+", 3 )");
+		 
+		 //https://stackoverflow.com/questions/47443404/how-to-iterate-through-an-arraylist-of-an-arraylist-of-strings
+		 for(int i = 0; i < aList.size(); i++){
+				for(int j = 0; j < 1 ; j++){
+					
+				String loc= aList.get(i).get(j);
+				String con = aList.get(i).get(j + 1);
+					
+				sb.append(",('"+loc+"', '"+con+"', "+primaryKey+", 3)");
+				}
+		}
+		 
+		 DBManager dbmgr = new DBManager();
+		 Connection conn = dbmgr.getConnection();
+		 
+		 String query = sb.toString();
+		 
+		 try {
+	            PreparedStatement stmt = conn.prepareStatement(query);
+	            stmt.execute();
+	        }catch(SQLException e){
+	            System.out.println("Error - Not Adding locations for Event");
+	             e.printStackTrace();
+	        }
+		 
+		 
+		 
+		 
+	 }
 
 }
