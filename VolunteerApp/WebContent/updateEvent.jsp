@@ -39,8 +39,7 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
@@ -352,22 +351,28 @@
 
 					
 
-						<div class="card o-hidden border-0 shadow-lg my-5">
-							<div class="card-body p-0  ">
+					
+							
+										
+										
+											<form action="addEventServlet" method="POST"
+												class="user mb-4" id="addEventForm">
+											
+											<div class="card-body p-0  ">
 								<!-- Nested Row within Card Body -->
 								<div class="form-group row">
 
 									<div class="col-lg-6 col-sm-6">
+									<div class = "card o-hidden border-0 shadow-lg my-5">
+									<div class = "card-body">
+									
 										<div class="p-5">
-										
-										<div id = "topHalf">
+											
+											<div id = "topHalf">
 											<div class="text-center">
 												<h2 class="text-gray-900 mb-4">Create Event</h2>
 												<hr class="mb-4">
 											</div>
-											<form action="addEventServlet" method="POST"
-												class="user mb-4" id="addEventForm">
-
 
 												<div class="form-group row mb-4">
 												
@@ -573,10 +578,13 @@
 													
 													</div>
 												</div>
-												
+												</div>
+												</div>
 												
 												<!-- ****************Start of the right side************************************************* -->
 												<div class = "col-lg-6 col-sm-6">
+												<div class = "card o-hidden border-0 shadow-lg my-5">
+												<div class = "card-body">
 												<div class="p-5">
 												
 												<div class="text-center">
@@ -585,7 +593,7 @@
 												
 											</div>
 													
-													<div class="row" style = "display: inline-block; text-align: right; width: 100%">
+													<div class="row form-group" style = "display: inline-block; text-align: right; width: 100%">
 														
 													
 														
@@ -610,12 +618,8 @@
 															</a>
 															<!-- input type="button" id="btAdd" value="Add Element" class="bt" /> -->
 
-
-													
 														
 												</div>
-												
-												
 												
 
 												<div class="form-group row">
@@ -677,31 +681,30 @@
 
 												<div id="locSpace"></div>
 
-												<input type="hidden" name="numLocs" /> 
-												<input type="hidden"
+												<input type="hidden" name="numLocs" /> <input type="hidden"
 													name="loggedInUser" value="${sessionScope.User.userID }" />
 
 												<!-- <div class="  text-center">
 													<p class="hiddenText dangerText" id="warningText">Hidden
 														Text</p>
-												</div> -->
+												</div>-->
 
 												<button type="submit" id="checkPassword"
-													class="btn btn-primary btn-user btn-block">Add
-													Event</button>
+													class="btn btn-primary btn-user btn-block"><b>Add
+													Event</b></button>
 												<hr>
 										</div>
 										
 										</form>
-
 									</div>
-									
-									
+									</div>
+									</div>
+									</div>
 									</div>
 									<!-- end of form Group -->
 								</div>
 							
-					
+					</div>
 
 
 					

@@ -665,8 +665,8 @@
 												</div>
 
 												<button type="submit" id="checkPassword"
-													class="btn btn-primary btn-user btn-block"><b>Add
-													Event</b></button>
+													class="btn btn-primary btn-user btn-block">Add
+													Event</button>
 												<hr>
 										</div>
 
