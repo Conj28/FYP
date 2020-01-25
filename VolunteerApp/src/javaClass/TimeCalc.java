@@ -22,7 +22,6 @@ public class TimeCalc {
     	    //3600 seconds in hour
     	    long halfHours = (elapsed/1000)/1800;
     	    
-    	    
     	    Calendar cal1 = Calendar.getInstance();
         	cal1.setTime(d1);
     	    

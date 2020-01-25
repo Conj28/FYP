@@ -72,8 +72,8 @@ package javaClass;
     	 
     	    
     	    
-    	Email email = new Email();
-		email.emailConfirmSignUp("116376836@umail.ucc.ie", "Cork Place", "12:00", "14:30");
+    	//Email email = new Email();
+		//email.emailConfirmSignUp("116376836@umail.ucc.ie", "Cork Place", "12:00", "14:30");
     	    
     	    
     	    

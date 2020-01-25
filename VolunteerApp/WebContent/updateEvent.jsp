@@ -370,7 +370,7 @@
 											
 											<div id = "topHalf">
 											<div class="text-center">
-												<h2 class="text-gray-900 mb-4">Create Event</h2>
+												<h2 class="text-gray-900 mb-4">Update Event</h2>
 												<hr class="mb-4">
 											</div>
 
@@ -588,10 +588,93 @@
 												<div class="p-5">
 												
 												<div class="text-center">
-												<h2 class="text-gray-900 mb-4">Add Locations</h2>
+												
+												<h2 class="text-gray-900 mb-4">Update Locations</h2>
 												<hr class="mb-4">
 												
 											</div>
+													
+													
+													<!-- For each of event location here-->
+													
+													
+													<!-- ENd of each for each -->
+													<div class="form-group row">
+
+													<div class="col-xs-6 col-sm-6 mb-3 mb-sm-0">
+
+														<!--  Dropdown menu  select-css sideBySideForm -->
+
+														<!-- padding not working -  https://stackoverflow.com/questions/22681141/select-option-padding-not-working-in-chrome?lq=1 -->
+
+														<select name="countyN"
+															class="form-control selectPadHeight">
+
+															<option value="antrim">Antrim</option>
+															<option value="armagh">Armagh</option>
+															<option value="carlow">Carlow</option>
+															<option value="cavan">Cavan</option>
+															<option value="clare">Clare</option>
+															<option value="cork">Cork</option>
+															<option value="derry">Derry</option>
+															<option value="donegal">Donegal</option>
+															<option value="down">Down</option>
+															<option value="dublin">Dublin</option>
+															<option value="fermanagh">Fermanagh</option>
+															<option value="galway">Galway</option>
+															<option value="kerry">Kerry</option>
+															<option value="kildare">Kildare</option>
+															<option value="kilkenny">Kilkenny</option>
+															<option value="laois">Laois</option>
+															<option value="leitrim">Leitrim</option>
+															<option value="limerick">Limerick</option>
+															<option value="longford">Longford</option>
+															<option value="louth">Louth</option>
+															<option value="mayo">Mayo</option>
+															<option value="meath">Meath</option>
+															<option value="monaghan">Monaghan</option>
+															<option value="offaly">Offaly</option>
+															<option value="roscommon">Roscommon</option>
+															<option value="sligo">Sligo</option>
+															<option value="tipperary">Tipperary</option>
+															<option value="tyrone">Tyrone</option>
+															<option value="waterford">Waterford</option>
+															<option value="westmeath">Westmeath</option>
+															<option value="wexford">Wexford</option>
+															<option value="wicklow">Wicklow</option>
+
+														</select>
+
+
+
+													</div>
+
+													<div class="col-sm-6 mb-3 mb-sm-0">
+													
+														<input type="text" class="form-control form-control-user"
+															name="locationN" id="locationN" placeholder="Location">
+													</div>
+													
+													<div class = "col-xs-1 col-sm-1 col-sm-1">
+													<h4>H</h4>
+													</div>
+								
+												</div>
+												
+													<div class="text-center">
+												<hr>
+												
+												
+											</div>
+												
+												<div class="text-center">
+												<hr>
+												<h2 class="text-gray-900 ">Add Locations</h2>
+												
+												
+											</div>
+													
+												
 													
 													<div class="row form-group" style = "display: inline-block; text-align: right; width: 100%">
 														
@@ -605,9 +688,6 @@
 															</a>
 															<!-- input type="button" id="btAdd" value="Add Element" class="bt" /> -->
 															<!-- <input type="button" id="btRemove" value="Remove Element" class="bt" /> -->
-
-														
-
 
 														
 
@@ -697,10 +777,10 @@
 										
 										</form>
 									</div>
+									
+								
 									</div>
-									</div>
-									</div>
-									</div>
+									
 									<!-- end of form Group -->
 								</div>
 							
