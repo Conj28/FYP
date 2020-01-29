@@ -150,7 +150,7 @@
 							<div class="col-xl-7 col-sm-12">
 								<div class="card mb-4">
 									<div class="card-body">
-										<h2 class="font-weight-bold text-primary" >${sessionScope.specificEvent.name}</h2>
+										<h2 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h2>
 										<hr>
 										<div class="mb-2">
 											<h4 class="font-weight-bold text-primary header-inline">Event
@@ -161,13 +161,13 @@
 										<div class="mb-2">
 											<h4 class="font-weight-bold text-primary header-inline">Start
 												Time:</h4>
-											<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
+											<h4 name = "eventStartTime" class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
 										</div>
 
 										<div class="mb-2">
 											<h4 class="font-weight-bold text-primary header-inline">End
 												Time:</h4>
-											<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
+											<h4 name = "eventEndTime"class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
 										</div>
 										<hr>
 										<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
@@ -178,7 +178,8 @@
 										<h2 class="font-weight-bold text-primary">Get Involved</h2>
 
 
-										<form class="user" id = "submitForm" action ="eventSignUpServlet" method = "POST">
+										<form class="user" id="submitForm" action="eventSignUpServlet"
+											method="POST">
 											<div class="row mb-4">
 
 												<div class="col-sm-12 col-lg-4">
@@ -186,13 +187,13 @@
 														Location</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select id ="optionLocation" name="optionLocation"
-														class="form-control selectPadHeight selectedLocation" >
-
+													<select id="optionLocation" name="optionLocation"
+														class="form-control selectPadHeight selectedLocation">
+															<option value= "default" >Select Location</option>
 														<c:forEach items="${specificEventLocation}" var="tempLoc">
 															<!--  make sure that the is only one space between two varibales  -->
-															<option value="${tempLoc.eventLocID}">${tempLoc.location} (${tempLoc.county})
-															</option>
+															<option value="${tempLoc.eventLocID}">${tempLoc.location}
+																(${tempLoc.county})</option>
 
 														</c:forEach>
 													</select>
@@ -200,18 +201,21 @@
 
 											</div>
 											<!-- Second Row -->
+											<!-- Start of signup change 
 											<div class="row mb-4">
 
 												<div class="col-sm-12 col-lg-4">
-													<h4 class="font-weight-bold text-primary">Start Time
-														</h4>
+													<h4 class="font-weight-bold text-primary">Start Time</h4>
 												</div>
 												<div class="col-sm-12 col-lg-8">
-													<select id = "optionStartTime" name="optionStartTime" onChange="onItemChanged()"
+													<select id="optionStartTime" name="optionStartTime"
+														onChange="onItemChanged()"
 														class="form-control selectPadHeight">
-														<!--  https://stackoverflow.com/questions/2947417/issue-of-jstl-foreach-iterate-from-arraylist -->
+														
+														<!--  https://stackoverflow.com/questions/2947417/issue-of-jstl-foreach-iterate-from-arraylist --
+														
 														<c:forEach items="${listStartTimes}" var="time">
-															<option  value="${time}">${time}</option>
+															<option value="${time}">${time}</option>
 
 														</c:forEach>
 													</select>
@@ -220,8 +224,10 @@
 											</div>
 
 											<div class="row mb-4">
+											-->
 
-												<div class="col-sm-12 col-lg-4">
+
+											<!--  <div class="col-sm-12 col-lg-4">
 													<h4 class="font-weight-bold text-primary">End Time
 														</h4>
 												</div>
@@ -234,52 +240,90 @@
 
 														</c:forEach>
 													</select>
-												</div>
+												</div> -->
 
+											<!--  New select list part -->
+											<div class="col-sm-12 col-lg-8 mb-4">
+											<table>
+												<thead>
+													<tr>
+														<th>Time</th>
+														<th>Select</th>
+														<th>Spaces</th>
+													</tr>
+
+												</thead>
+
+												<tbody>
+													<c:forEach items="${locationTimes}" var="time">
+															<tr>
+															<td>This</td>
+															<td>${time.startTime}</td>
+															<td>${time.availableSpaces}</td>
+															</tr>
+															
+													</c:forEach>
+												</tbody>
+											</table>
 											</div>
-											
-											<div class="  text-center">
-											<p  class="hiddenText dangerText" id="errorMessage">Hidden Text</p>
-											</div>
-											
-											<!--  Check if the user is logged in  otherwise prompt them to -->
-
-											<c:if test="${not empty sessionScope.User}">
-												<input type = "hidden" id = "userId" name = "userId" value = "${sessionScope.User.userID }" />
-												<input type = "hidden" id = "eventId" name = "eventId" value = "${sessionScope.specificEvent.eventDetID}" />
-												<input type = "hidden" id = "userEmail" name = "userEmail" value = "${sessionScope.User.email}" />
-												<input type = "hidden" id = "setLocation" name = "setLocation" />
-												<input type = "hidden" id = "eventName" name = "eventName" value = "${sessionScope.specificEvent.name}" />
-												<input type = "hidden" id = "firstName" name = "firstName" value = "${sessionScope.User.firstName}" />
-												
-												
-												
-												
-												<div class="mb-4">
-													<button type = "button" id = "submitButton"class="mb-4 btn btn-primary btn-user btn-block">
-													Volunteer
-													</button>
-												</div>
-
-											</c:if>
-											</form>
-											<c:if test="${empty sessionScope.User}">
-
-												<div class="mb-4">
-
-													<a href="login.jsp"
-														class="mb-4 btn btn-info btn-user btn-block">Log in</a>
-												</div>
-
-											</c:if>
-
-
+									
+									<div class="  text-center">
+										<p class="hiddenText dangerText" id="errorMessage">Hidden
+											Text</p>
 									</div>
-								</div>
-								<!-- end of card main text column -->
-							</div>
 
-							<!--
+									<!--  Check if the user is logged in  otherwise prompt them to -->
+
+									<c:if test="${not empty sessionScope.User}">
+										<input type="hidden" id="userId" name="userId"
+											value="${sessionScope.User.userID }" />
+										<input type="hidden" id="eventId" name="eventId"
+											value="${sessionScope.specificEvent.eventDetID}" />
+										<input type="hidden" id="userEmail" name="userEmail"
+											value="${sessionScope.User.email}" />
+										<input type="hidden" id="setLocation" name="setLocation" />
+										<input type="hidden" id="eventName" name="eventName"
+											value="${sessionScope.specificEvent.name}" />
+										<input type="hidden" id="firstName" name="firstName"
+											value="${sessionScope.User.firstName}" />
+
+
+
+
+										<div class="mb-4">
+											<button type="button" id="submitButton"
+												class="mb-4 btn btn-primary btn-user btn-block">Volunteer</button>
+										</div>
+
+									</c:if>
+									</form>
+									<c:if test="${empty sessionScope.User}">
+
+										<div class="mb-4">
+
+											<a href="login.jsp"
+												class="mb-4 btn btn-info btn-user btn-block">Log in</a>
+										</div>
+
+									</c:if>
+
+									<!--  https://stackoverflow.com/questions/10943635/how-do-i-pass-multiple-parameter-in-url/10943694 -->
+									<form action = "getLocationTimes?LcurrentEventID=${sessionScope.specificEvent.eventDetID}&LeventStartTime=${sessionScope.specificEvent.startTime}&LeventEndTime=${sessionScope.specificEvent.endTime}" method = "POST">
+									
+									<input type="hidden" id="LevetLocation" name="LevetLocation" />
+									
+									<button type = "submit">Submit</button>
+									</form>
+									
+
+								</div>
+							</div>
+							</div>
+							</div>
+							<!-- end of card main text column -->
+						</div>
+
+						<!--
 								------------------------Experimental second card ------------------------------------
 								<div class = "col-xl-6 col-sm-12">
 								<div class="card mb-4">
@@ -310,10 +354,10 @@
 
 
 
-						</div>
+					</div>
 
 
-						<!-- 
+					<!-- 
 	<p>${sessionScope.specificEvent.eventDetID}</p>
 	<p>${sessionScope.specificEvent.name}</p>
 	<p>${sessionScope.specificEvent.eventDate}</p>
@@ -344,32 +388,32 @@
 
 
 <!--  -->
-						<!--  end of Row div -->
-					</div>
-
-
-					<!-- End of personal container -->
+					<!--  end of Row div -->
 				</div>
 
-				<!-- End of content -->
+
+				<!-- End of personal container -->
+			</div>
+
+			<!-- End of content -->
+		</div>
+
+
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Your Website 2019</span>
+				</div>
 			</div>
 
 
+		</footer>
+		<!-- End of Footer -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2019</span>
-					</div>
-				</div>
-
-
-			</footer>
-			<!-- End of Footer -->
-
-		</div>
-		<!-- End of Content Wrapper -->
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->

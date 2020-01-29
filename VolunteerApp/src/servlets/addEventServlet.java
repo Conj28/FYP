@@ -19,6 +19,7 @@ public class addEventServlet extends HttpServlet {
     
     	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
     		
+    		
     	
     		
     	String strNumLocs = request.getParameter("numLocs");

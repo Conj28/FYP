@@ -16,6 +16,7 @@ public class Event {
 	private String userStart;
 	private String userEnd;
 	private int eventID;
+	private int availableSpaces;
 	
 
 	public int getEventDetID() {
@@ -110,6 +111,12 @@ public class Event {
 	
 	public void setEventLocID(int eventLocID) {
 		this.eventLocID = eventLocID;
+	}
+	public int getAvailableSpaces() {
+		return availableSpaces;
+	}
+	public void setAvailableSpaces(int availableSpaces) {
+		this.availableSpaces = availableSpaces;
 	}
 	
 	

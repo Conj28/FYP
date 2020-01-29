@@ -418,4 +418,48 @@ public class EventDAO {
 		 
 	 }
 
+	 
+	 public Vector<Event> getAvailability(int Event_id, List<String> timeList) throws Exception{
+		 
+		 Vector<Event> availList = new Vector();
+		 
+		 DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		
+		
+		 
+		 for(int i = 0; i < timeList.size(); i++) {
+			 
+			 String query = "Select Count(Users_ID) from Event where Event_Loc_Id = "+Event_id+"" +
+					 " and '"+timeList.get(i)+"' between Available_Start and Available_End";
+			 
+			 try {
+				 
+				 Event tempAvail = new Event();
+				 
+					PreparedStatement stmt = conn.prepareStatement(query);
+					ResultSet rs = stmt.executeQuery();
+					while (rs.next()) {
+						
+						tempAvail.setAvailableSpaces(rs.getInt(1));
+						tempAvail.setStartTime(timeList.get(i));
+					
+						System.out.println(rs.getInt(1));
+						System.out.println(timeList.get(i));
+						
+						availList.add(tempAvail);
+					}
+					
+					
+			 } catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("ading Event Broken :( ");
+					 
+		 }
+		 
+			 
+	 }
+		 return availList;
+	 }
+	 
 }
