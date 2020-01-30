@@ -38,18 +38,18 @@ public class GetSpecificEvent extends HttpServlet {
 	       Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
 	        request.getSession(true).setAttribute("specificEventLocation", event2);
 	        
-	        TimeCalc timeCalc = new TimeCalc();
+	        //TimeCalc timeCalc = new TimeCalc();
 	        
 	        //timeCalc.calcStartTimes(event.getStartTime(), event.getEndTime());
 	        //timeCalc.calcEndTimes(event.getStartTime(), event.getEndTime());
 	        
-	        List<String> listStart = timeCalc.calcStartTimes(event.getStartTime(), event.getEndTime()); 	
-	        List<String> listEnd = timeCalc.calcEndTimes(event.getStartTime(), event.getEndTime()); 
+	       // List<String> listStart = timeCalc.calcStartTimes(event.getStartTime(), event.getEndTime()); 	
+	      //  List<String> listEnd = timeCalc.calcEndTimes(event.getStartTime(), event.getEndTime()); 
 	        //System.out.println("Start time is" + listStart);
 	       //System.out.println(" end Times are" +timeCalc.calcEndTimes(event.getStartTime(), event.getEndTime()));
 	        
-	        request.setAttribute("listStartTimes", listStart);
-	        request.setAttribute("listEndTimes", listEnd);
+	       // request.setAttribute("listStartTimes", listStart);
+	      //  request.setAttribute("listEndTimes", listEnd);
 	        
 	        
 	        

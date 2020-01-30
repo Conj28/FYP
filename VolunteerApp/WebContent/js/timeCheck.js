@@ -66,6 +66,9 @@ $(document).ready(function() {
 	        
 	       $('input[name="setLocation"]').val(selectedCountry);
 	       $('input[name="LevetLocation"]').val(selectedCountry1);
+	       
+	       $('#loactionForm').submit();
+	       console.log("Changed!!!!")
 	    });
 	 
 	 

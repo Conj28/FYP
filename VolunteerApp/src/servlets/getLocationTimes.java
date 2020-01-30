@@ -26,14 +26,21 @@ public class getLocationTimes extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		
-		//Get the necessary Variables 
-		//Event_det_ID
-		//Event_loc_ID
-		//Start & End Times
+			String strId = request.getParameter("currentEventID");
+			int id = Integer.parseInt(strId);
+		  
+	        EventDAO eventDAO = new EventDAO();
+	        
+	       Event event = eventDAO.getSpecificEvent(id);
+	       System.out.println("Getting Specific Event");
+	       request.getSession(true).setAttribute("specificEvent", event);
+	       
+	       Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
+	        request.getSession(true).setAttribute("specificEventLocation", event2);
 		
 		//Event_ID
-		String strId = request.getParameter("LcurrentEventID");
-		int id = Integer.parseInt(strId);
+		//String strId = request.getParameter("LcurrentEventID");
+		//int id = Integer.parseInt(strId);
 
 		//Event_Loaction
 		String strLocation = request.getParameter("LevetLocation");
@@ -52,16 +59,16 @@ public class getLocationTimes extends HttpServlet {
 
 		List<String> listStart = timeCalc.calcStartTimes(startTime, endTime);
 		
-		EventDAO eventDAO = new EventDAO();
+		EventDAO eventDAO1 = new EventDAO();
 		
-		Vector<Event> allLocationVect =	eventDAO.getAvailability(location, listStart);	
+		Vector<Event> allLocationVect =	eventDAO1.getAvailability(location, listStart);	
 
 		//request.setAttribute("listStartTimes", listStart);
 		// request.setAttribute("listEndTimes", listEnd);
 
 		System.out.println("it got all of the location timeslots successfully");
 		
-		 request.getSession(true).setAttribute("locationTimes", allLocationVect);
+		 request.setAttribute("locationTimes", allLocationVect);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/eventDetails.jsp");
 		rd.forward(request, response);

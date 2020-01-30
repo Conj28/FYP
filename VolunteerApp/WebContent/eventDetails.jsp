@@ -257,8 +257,8 @@
 												<tbody>
 													<c:forEach items="${locationTimes}" var="time">
 															<tr>
-															<td>This</td>
 															<td>${time.startTime}</td>
+															<td><input type = "checkbox" class="regular-checkbox big-checkbox"></td>
 															<td>${time.availableSpaces}</td>
 															</tr>
 															
@@ -274,16 +274,19 @@
 
 									<!--  Check if the user is logged in  otherwise prompt them to -->
 
+									<input type="hidden" id="eventId" name="eventId"
+											value="${sessionScope.specificEvent.eventDetID}" />
+											<input type="hidden" id="setLocation" name="setLocation" />
+										<input type="hidden" id="eventName" name="eventName"
+											value="${sessionScope.specificEvent.name}" />
+							
 									<c:if test="${not empty sessionScope.User}">
 										<input type="hidden" id="userId" name="userId"
 											value="${sessionScope.User.userID }" />
-										<input type="hidden" id="eventId" name="eventId"
-											value="${sessionScope.specificEvent.eventDetID}" />
+										
 										<input type="hidden" id="userEmail" name="userEmail"
 											value="${sessionScope.User.email}" />
-										<input type="hidden" id="setLocation" name="setLocation" />
-										<input type="hidden" id="eventName" name="eventName"
-											value="${sessionScope.specificEvent.name}" />
+										
 										<input type="hidden" id="firstName" name="firstName"
 											value="${sessionScope.User.firstName}" />
 
@@ -296,26 +299,29 @@
 										</div>
 
 									</c:if>
+									
+									
 									</form>
 									<c:if test="${empty sessionScope.User}">
 
 										<div class="mb-4">
 
 											<a href="login.jsp"
-												class="mb-4 btn btn-info btn-user btn-block">Log in</a>
+												class="mb-4 btn btn-danger btn-user btn-block">Log in to Volunteer</a>
 										</div>
 
 									</c:if>
 
 									<!--  https://stackoverflow.com/questions/10943635/how-do-i-pass-multiple-parameter-in-url/10943694 -->
-									<form action = "getLocationTimes?LcurrentEventID=${sessionScope.specificEvent.eventDetID}&LeventStartTime=${sessionScope.specificEvent.startTime}&LeventEndTime=${sessionScope.specificEvent.endTime}" method = "POST">
+									<form action = "getLocationTimes?LcurrentEventID=${sessionScope.specificEvent.eventDetID}&LeventStartTime=${sessionScope.specificEvent.startTime}&LeventEndTime=${sessionScope.specificEvent.endTime}" name = "loactionForm" id ="loactionForm" method = "POST">
 									
 									<input type="hidden" id="LevetLocation" name="LevetLocation" />
-									
+									<input type="hidden" id="currentEventID" name="currentEventID"
+											value="${sessionScope.specificEvent.eventDetID}" />
 									<button type = "submit">Submit</button>
 									</form>
 									
-
+									
 								</div>
 							</div>
 							</div>
