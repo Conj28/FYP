@@ -191,9 +191,13 @@
 														class="form-control selectPadHeight selectedLocation">
 															<option value= "default" >Select Location</option>
 														<c:forEach items="${specificEventLocation}" var="tempLoc">
+															
+															
 															<!--  make sure that the is only one space between two varibales  -->
 															<option value="${tempLoc.eventLocID}">${tempLoc.location}
 																(${tempLoc.county})</option>
+																
+																
 
 														</c:forEach>
 													</select>
@@ -258,8 +262,9 @@
 													<c:forEach items="${locationTimes}" var="time">
 															<tr>
 															<td>${time.startTime}</td>
-															<td><input type = "checkbox" class="regular-checkbox big-checkbox"></td>
+															<td><input type = "checkbox" value = "${time.startTime}" name = "checkedTime"></td>
 															<td>${time.availableSpaces}</td>
+															<td>${time.numberSpaces}</td>
 															</tr>
 															
 													</c:forEach>
@@ -279,7 +284,13 @@
 											<input type="hidden" id="setLocation" name="setLocation" />
 										<input type="hidden" id="eventName" name="eventName"
 											value="${sessionScope.specificEvent.name}" />
+											
+											
+											<input type="hidden" id="optionStartTime" name="optionStartTime" />
+											<input type="hidden" id="optionEndTime" name="optionEndTime" />
 							
+							
+							<!-- values relating to the session -->
 									<c:if test="${not empty sessionScope.User}">
 										<input type="hidden" id="userId" name="userId"
 											value="${sessionScope.User.userID }" />

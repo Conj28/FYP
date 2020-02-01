@@ -72,7 +72,39 @@ $(document).ready(function() {
 	    });
 	 
 	 
-	
+	//https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-get-values-of-selected-checboxes
+	 $("#submitButton").click(function(){
+		 
+		 var times = [];
+		 $.each($("input[name='checkedTime']:checked"), function(){            
+             times.push($(this).val());
+         });
+
+			var timeCheck = true;
+			 
+			 for(var i=0; i< times.length-1; i++){
+	     
+		//https://stackoverflow.com/questions/11883768/jquery-time-difference-in-hours-from-two-fields		 
+	     var diff = ( new Date("1970-1-1 " + times[i+1]) - new Date("1970-1-1 " + times[i]) ) / 1000 / 60 ; 
+	     
+	     console.log(diff);
+	     
+	       if(diff != 30){
+	        timeCheck = false;
+	       } 
+				
+			 }
+	     
+	     if(timeCheck == true){
+	    	  $('input[name="optionStartTime"]').val(times[0]);
+	    	  $('input[name="optionEndTime"]').val(times[times.Length-1]);
+
+	    	  $('#submitForm').submit();
+	    	 
+	     }
+		 
+		 
+	 });
 	 
 	});
 	

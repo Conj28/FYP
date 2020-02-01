@@ -430,8 +430,10 @@ public class EventDAO {
 		 
 		 for(int i = 0; i < timeList.size(); i++) {
 			 
-			 String query = "Select Count(Users_ID) from Event where Event_Loc_Id = "+Event_id+"" +
-					 " and '"+timeList.get(i)+"' between Available_Start and Available_End";
+			// String query = "Select Count(e.Users_ID) as Volunteers, l.Available_Spaces from Event e inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID where e.Event_Loc_Id = "+Event_id+" and '"+timeList.get(i)+"' between e.Available_Start and e.Available_End group by l.Available_Spaces";
+			 
+			 
+			String query ="Select (Select Count(Users_ID) from Event where event_Loc_ID = "+Event_id+" and '"+timeList.get(i)+"' between Available_Start and Available_End), Available_Spaces From Event_Loc where event_Loc_ID = "+Event_id+" ";
 			 
 			 try {
 				 
@@ -442,6 +444,7 @@ public class EventDAO {
 					while (rs.next()) {
 						
 						tempAvail.setAvailableSpaces(rs.getInt(1));
+						tempAvail.setNumberSpaces(rs.getInt(2));
 						tempAvail.setStartTime(timeList.get(i));
 					
 						System.out.println(rs.getInt(1));

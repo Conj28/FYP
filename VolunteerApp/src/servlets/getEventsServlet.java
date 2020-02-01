@@ -28,7 +28,7 @@ public class getEventsServlet extends HttpServlet {
 	        EventDAO eventDAO = new EventDAO();
 	        
 	        if(location == null) {
-	        	System.out.println("Its Nulll!!");
+	        	System.out.println("No Loaction session");
 	       
 	        	location = null;
 	        	 request.getSession(true).setAttribute("location", location);
