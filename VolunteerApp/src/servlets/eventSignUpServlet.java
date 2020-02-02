@@ -32,7 +32,7 @@ public class eventSignUpServlet extends HttpServlet {
 		String endTime = request.getParameter("optionEndTime");	
 		
 		//System.out.println(startTime);		
-		//System.out.println("ending at" + endTime);
+		System.out.println("*****************************************888 ending at" + endTime);
 		//System.out.println("Loc is" + location);
 		
 		//System.out.println(strUserId);

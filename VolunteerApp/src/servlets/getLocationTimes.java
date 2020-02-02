@@ -58,10 +58,11 @@ public class getLocationTimes extends HttpServlet {
 		
 
 		List<String> listStart = timeCalc.calcStartTimes(startTime, endTime);
+		List<String> listEnd = timeCalc.calcEndTimes(startTime, endTime);
 		
 		EventDAO eventDAO1 = new EventDAO();
 		
-		Vector<Event> allLocationVect =	eventDAO1.getAvailability(location, listStart);	
+		Vector<Event> allLocationVect =	eventDAO1.getAvailability(location, listStart, listEnd);	
 
 		//request.setAttribute("listStartTimes", listStart);
 		// request.setAttribute("listEndTimes", listEnd);
@@ -70,6 +71,9 @@ public class getLocationTimes extends HttpServlet {
 		
 		 request.setAttribute("locationTimes", allLocationVect);
 		
+		 //request to make list stay the same 
+		 request.setAttribute("selectedLocation", location);
+		 
 		RequestDispatcher rd = request.getRequestDispatcher("/eventDetails.jsp");
 		rd.forward(request, response);
 

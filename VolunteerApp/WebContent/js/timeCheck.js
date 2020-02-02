@@ -96,14 +96,33 @@ $(document).ready(function() {
 			 }
 	     
 	     if(timeCheck == true){
+	    	 var len = times.length - 1;
+	    	 var lastTime = times[len];
+	    	 
+	    	 //https://stackoverflow.com/questions/44181296/add-hour-and-minutes-to-a-string-with-hhmm
+	    	 //http://plnkr.co/edit/V7AVdRZ15Ra8omi1J4hl?p=preview
+	    	 var totalInMinutes = (parseInt(lastTime.split(":")[0]) * 60) + parseInt(lastTime.split(":")[1]);
+
+	    	 var otherMinutes = 30;
+
+	    	 var grandTotal = otherMinutes + totalInMinutes;
+
+	    	 //Now using your own code
+
+	    	 var bookH = Math.floor(grandTotal / 60);
+	    	 var bookM = grandTotal % 60;
+	    	 var endTime = bookH + ':' + bookM;
+	    	 
+	    	 
 	    	  $('input[name="optionStartTime"]').val(times[0]);
-	    	  $('input[name="optionEndTime"]').val(times[times.Length-1]);
+	    	  $('input[name="optionEndTime"]').val(endTime);
 
 	    	  $('#submitForm').submit();
-	    	 
+	    	  
+	    	  
 	     }
 		 
-		 
+		 	
 	 });
 	 
 	});

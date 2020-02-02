@@ -419,7 +419,7 @@ public class EventDAO {
 	 }
 
 	 
-	 public Vector<Event> getAvailability(int Event_id, List<String> timeList) throws Exception{
+	 public Vector<Event> getAvailability(int Event_id, List<String> timeList, List<String> endList) throws Exception{
 		 
 		 Vector<Event> availList = new Vector();
 		 
@@ -446,6 +446,7 @@ public class EventDAO {
 						tempAvail.setAvailableSpaces(rs.getInt(1));
 						tempAvail.setNumberSpaces(rs.getInt(2));
 						tempAvail.setStartTime(timeList.get(i));
+						tempAvail.setEndTime(endList.get(i));
 					
 						System.out.println(rs.getInt(1));
 						System.out.println(timeList.get(i));

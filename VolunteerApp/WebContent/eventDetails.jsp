@@ -194,7 +194,7 @@
 															
 															
 															<!--  make sure that the is only one space between two varibales  -->
-															<option value="${tempLoc.eventLocID}">${tempLoc.location}
+															<option value="${tempLoc.eventLocID}"   ${tempLoc.eventLocID == selectedLocation ? 'selected="selected"' : ''}>${tempLoc.location}
 																(${tempLoc.county})</option>
 																
 																
@@ -261,7 +261,7 @@
 												<tbody>
 													<c:forEach items="${locationTimes}" var="time">
 															<tr>
-															<td>${time.startTime}</td>
+															<td>${time.startTime} - ${time.endTime}</td>
 															<td><input type = "checkbox" value = "${time.startTime}" name = "checkedTime"></td>
 															<td>${time.availableSpaces}</td>
 															<td>${time.numberSpaces}</td>
