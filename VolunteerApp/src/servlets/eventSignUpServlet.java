@@ -22,11 +22,20 @@ public class eventSignUpServlet extends HttpServlet {
 		String strUserId =  request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);
 		
+	
+		
+System.out.println(strUserId);
+
+		
 		String strEventDetId = request.getParameter("eventId");
 		int eventDetId = Integer.parseInt(strEventDetId);
 		
+		System.out.println("id is *********" + strEventDetId);
+		
 		String strLocation = request.getParameter("optionLocation");
 		int location = Integer.parseInt(strLocation);
+		
+		System.out.println("Loc is "+ strLocation);
 		
 		String startTime = request.getParameter("optionStartTime");
 		String endTime = request.getParameter("optionEndTime");	

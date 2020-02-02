@@ -161,13 +161,15 @@
 										<div class="mb-2">
 											<h4 class="font-weight-bold text-primary header-inline">Start
 												Time:</h4>
-											<h4 name = "eventStartTime" class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
+											<h4 name="eventStartTime"
+												class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
 										</div>
 
 										<div class="mb-2">
 											<h4 class="font-weight-bold text-primary header-inline">End
 												Time:</h4>
-											<h4 name = "eventEndTime"class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
+											<h4 name="eventEndTime"
+												class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
 										</div>
 										<hr>
 										<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
@@ -189,15 +191,16 @@
 												<div class="col-sm-12 col-lg-8">
 													<select id="optionLocation" name="optionLocation"
 														class="form-control selectPadHeight selectedLocation">
-															<option value= "default" >Select Location</option>
+														<option value="default">Select Location</option>
 														<c:forEach items="${specificEventLocation}" var="tempLoc">
-															
-															
+
+
 															<!--  make sure that the is only one space between two varibales  -->
-															<option value="${tempLoc.eventLocID}"   ${tempLoc.eventLocID == selectedLocation ? 'selected="selected"' : ''}>${tempLoc.location}
+															<option value="${tempLoc.eventLocID}"
+																${tempLoc.eventLocID == selectedLocation ? 'selected="selected"' : ''}>${tempLoc.location}
 																(${tempLoc.county})</option>
-																
-																
+
+
 
 														</c:forEach>
 													</select>
@@ -247,100 +250,153 @@
 												</div> -->
 
 											<!--  New select list part -->
-											<div class="col-sm-12 col-lg-8 mb-4">
-											<table>
-												<thead>
-													<tr>
-														<th>Time</th>
-														<th>Select</th>
-														<th>Spaces</th>
-													</tr>
-
-												</thead>
-
-												<tbody>
-													<c:forEach items="${locationTimes}" var="time">
-															<tr>
-															<td>${time.startTime} - ${time.endTime}</td>
-															<td><input type = "checkbox" value = "${time.startTime}" name = "checkedTime"></td>
-															<td>${time.availableSpaces}</td>
-															<td>${time.numberSpaces}</td>
-															</tr>
-															
-													</c:forEach>
-												</tbody>
-											</table>
+											
+											<!-- <div class = "container-fluid margin40percent mb-4">
+											<c:forEach items="${locationTimes}" var="time">
+											<div class = "row">
+											
+												<div class = "col-lg-2 col-md-3">
+												<p>${time.startTime} - ${time.endTime}</p>
+												</div>
+												<div class = "col-lg-1 col-md-2">
+												<label class = "b-contain">
+																<input type="checkbox" value="${time.startTime}" name="checkedTime">
+																<div class="b-input"></div>
+																</label>
+												</div>
+												<div class = "col-lg-1 col-md-1">
+												<p>${time.availableSpaces}</p>
+												</div>
+											
 											</div>
-									
-									<div class="  text-center">
-										<p class="hiddenText dangerText" id="errorMessage">Hidden
-											Text</p>
-									</div>
-
-									<!--  Check if the user is logged in  otherwise prompt them to -->
-
-									<input type="hidden" id="eventId" name="eventId"
-											value="${sessionScope.specificEvent.eventDetID}" />
-											<input type="hidden" id="setLocation" name="setLocation" />
-										<input type="hidden" id="eventName" name="eventName"
-											value="${sessionScope.specificEvent.name}" />
+											</c:forEach>
+											</div> -->
 											
-											
-											<input type="hidden" id="optionStartTime" name="optionStartTime" />
+											<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+											<div class = "row">
+											<div class = "col-sm-12">
+											 	<table class = "table table-bordered dataTable" >
+													<thead>
+														<tr>
+															<th>Time</th>
+															<th>Select</th>
+															<th>Spaces Available</th>
+														</tr>
+
+
+													</thead>
+
+													<tbody>
+														<c:forEach items="${locationTimes}" var="time">
+															<tr>
+																<td>${time.startTime}- ${time.endTime}</td>
+																<td class = "tdNoPadding">
+																<label class = "b-contain">
+																<c:if test="${time.availableSpaces ge time.numberSpaces}">
+																<input type="checkbox" value="${time.startTime}" name="checkedTime" disabled>
+																</c:if>
+																<c:if test="${time.availableSpaces lt time.numberSpaces}">
+																<input type="checkbox" value="${time.startTime}" name="checkedTime" >
+																</c:if>
+																<div class="b-input"></div>
+																</label>
+																
+															
+																<c:if test="${time.availableSpaces ge time.numberSpaces}">
+																<td>0</td>
+																</c:if>
+																<c:if test="${time.availableSpaces lt time.numberSpaces}">
+																<td>${time.numberSpaces - time.availableSpaces}</td>
+																</c:if>
+																</td>
+																	
+																	<!--  available spaces  = num signed up -->
+																	<!-- number spaces = numer of people per event -->
+
+														 		<!-- <td>${time.availableSpaces}</td>
+																<td>${time.numberSpaces}</td> -->
+															</tr>
+
+														</c:forEach>
+													</tbody>
+												</table> 
+												</div>
+												</div>
+												</div>
+												
+												
+										
+											<div class="  text-center">
+												<p class="hiddenText dangerText" id="errorMessage">Hidden
+													Text</p>
+											</div>
+
+											<!--  Check if the user is logged in  otherwise prompt them to -->
+
+											<input type="hidden" id="eventId" name="eventId"
+												value="${sessionScope.specificEvent.eventDetID}" /> <input
+												type="hidden" id="setLocation" name="setLocation" /> <input
+												type="hidden" id="eventName" name="eventName"
+												value="${sessionScope.specificEvent.name}" /> <input
+												type="hidden" id="optionStartTime" name="optionStartTime" />
 											<input type="hidden" id="optionEndTime" name="optionEndTime" />
-							
-							
-							<!-- values relating to the session -->
-									<c:if test="${not empty sessionScope.User}">
-										<input type="hidden" id="userId" name="userId"
-											value="${sessionScope.User.userID }" />
-										
-										<input type="hidden" id="userEmail" name="userEmail"
-											value="${sessionScope.User.email}" />
-										
-										<input type="hidden" id="firstName" name="firstName"
-											value="${sessionScope.User.firstName}" />
+
+
+											<!-- values relating to the session -->
+											<c:if test="${not empty sessionScope.User}">
+												<input type="hidden" id="userId" name="userId"
+													value="${sessionScope.User.userID }" />
+
+												<input type="hidden" id="userEmail" name="userEmail"
+													value="${sessionScope.User.email}" />
+
+												<input type="hidden" id="firstName" name="firstName"
+													value="${sessionScope.User.firstName}" />
 
 
 
 
-										<div class="mb-4">
-											<button type="button" id="submitButton"
-												class="mb-4 btn btn-primary btn-user btn-block">Volunteer</button>
-										</div>
+												<div class="mb-4">
+													<button type="button" id="submitButton"
+														class="mb-4 btn btn-primary btn-user btn-block">Volunteer</button>
+												</div>
 
-									</c:if>
-									
-									
-									</form>
-									<c:if test="${empty sessionScope.User}">
+											</c:if>
 
-										<div class="mb-4">
 
-											<a href="login.jsp"
-												class="mb-4 btn btn-danger btn-user btn-block">Log in to Volunteer</a>
-										</div>
+										</form>
+										<c:if test="${empty sessionScope.User}">
 
-									</c:if>
+											<div class="mb-4">
 
-									<!--  https://stackoverflow.com/questions/10943635/how-do-i-pass-multiple-parameter-in-url/10943694 -->
-									<form action = "getLocationTimes?LcurrentEventID=${sessionScope.specificEvent.eventDetID}&LeventStartTime=${sessionScope.specificEvent.startTime}&LeventEndTime=${sessionScope.specificEvent.endTime}" name = "loactionForm" id ="loactionForm" method = "POST">
-									
-									<input type="hidden" id="LevetLocation" name="LevetLocation" />
-									<input type="hidden" id="currentEventID" name="currentEventID"
-											value="${sessionScope.specificEvent.eventDetID}" />
-									<button type = "submit">Submit</button>
-									</form>
-									
-									
+												<a href="login.jsp"
+													class="mb-4 btn btn-danger btn-user btn-block">Log in
+													to Volunteer</a>
+											</div>
+
+										</c:if>
+
+										<!--  https://stackoverflow.com/questions/10943635/how-do-i-pass-multiple-parameter-in-url/10943694 -->
+										<form
+											action="getLocationTimes?LcurrentEventID=${sessionScope.specificEvent.eventDetID}&LeventStartTime=${sessionScope.specificEvent.startTime}&LeventEndTime=${sessionScope.specificEvent.endTime}"
+											name="loactionForm" id="loactionForm" method="POST">
+
+											<input type="hidden" id="LevetLocation" name="LevetLocation" />
+											<input type="hidden" id="currentEventID"
+												name="currentEventID"
+												value="${sessionScope.specificEvent.eventDetID}" />
+
+										</form>
+
+
+									</div>
 								</div>
 							</div>
-							</div>
-							</div>
-							<!-- end of card main text column -->
 						</div>
+						<!-- end of card main text column -->
+					</div>
 
-						<!--
+					<!--
 								------------------------Experimental second card ------------------------------------
 								<div class = "col-xl-6 col-sm-12">
 								<div class="card mb-4">
@@ -371,10 +427,10 @@
 
 
 
-					</div>
+				</div>
 
 
-					<!-- 
+				<!-- 
 	<p>${sessionScope.specificEvent.eventDetID}</p>
 	<p>${sessionScope.specificEvent.name}</p>
 	<p>${sessionScope.specificEvent.eventDate}</p>
@@ -405,29 +461,29 @@
 
 
 <!--  -->
-					<!--  end of Row div -->
-				</div>
-
-
-				<!-- End of personal container -->
+				<!--  end of Row div -->
 			</div>
 
-			<!-- End of content -->
+
+			<!-- End of personal container -->
+		</div>
+
+		<!-- End of content -->
+	</div>
+
+
+
+	<!-- Footer -->
+	<footer class="sticky-footer bg-white">
+		<div class="container my-auto">
+			<div class="copyright text-center my-auto">
+				<span>Copyright &copy; Your Website 2019</span>
+			</div>
 		</div>
 
 
-
-		<!-- Footer -->
-		<footer class="sticky-footer bg-white">
-			<div class="container my-auto">
-				<div class="copyright text-center my-auto">
-					<span>Copyright &copy; Your Website 2019</span>
-				</div>
-			</div>
-
-
-		</footer>
-		<!-- End of Footer -->
+	</footer>
+	<!-- End of Footer -->
 
 	</div>
 	<!-- End of Content Wrapper -->

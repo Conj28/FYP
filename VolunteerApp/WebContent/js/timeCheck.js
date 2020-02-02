@@ -7,7 +7,7 @@
 //var button = document.getElementById("submitButton");
 //var form = document.getElementById("submitForm");
 //
-//var errorMessage = document.getElementById("errorMessage");
+
 //
 //
 //
@@ -52,6 +52,8 @@
 
 $(document).ready(function() {
 	   
+	var errorMessage = document.getElementById("errorMessage");
+	
 	var setLocation = document.getElementById("setLocation");
 	var location = document.getElementById("optionLocation");
 	var Location = location.options[location.selectedIndex].text;
@@ -81,6 +83,14 @@ $(document).ready(function() {
          });
 
 			var timeCheck = true;
+			
+			if ($("input[name='checkedTime']:checked").length == 0){
+				timeCheck = false;
+				
+				errorMessage.textContent ="Please select a time";
+				errorMessage.style.display= "block";
+			
+			}
 			 
 			 for(var i=0; i< times.length-1; i++){
 	     

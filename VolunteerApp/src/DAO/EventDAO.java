@@ -433,7 +433,7 @@ public class EventDAO {
 			// String query = "Select Count(e.Users_ID) as Volunteers, l.Available_Spaces from Event e inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID where e.Event_Loc_Id = "+Event_id+" and '"+timeList.get(i)+"' between e.Available_Start and e.Available_End group by l.Available_Spaces";
 			 
 			 
-			String query ="Select (Select Count(Users_ID) from Event where event_Loc_ID = "+Event_id+" and '"+timeList.get(i)+"' between Available_Start and Available_End), Available_Spaces From Event_Loc where event_Loc_ID = "+Event_id+" ";
+			String query ="Select (Select Count(Users_ID) from Event where event_Loc_ID = "+Event_id+" and Available_Start <= '"+timeList.get(i)+"' and '"+timeList.get(i)+"' < Available_End), Available_Spaces From Event_Loc where event_Loc_ID = "+Event_id+" ";
 			 
 			 try {
 				 
