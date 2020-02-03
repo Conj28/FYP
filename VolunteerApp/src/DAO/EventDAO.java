@@ -467,4 +467,75 @@ public class EventDAO {
 		 return availList;
 	 }
 	 
+	 
+	 public Event getUpdateEventInfo(int id) throws Exception {
+		 
+		 Event tempEvent = new Event();
+		 
+		 DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+			
+		String query = "Select Name, Created_By, Event_Date, LEFT(Start_Time,5), LEFT(End_Time,5), img, Details from Event_Det where Event_Det_Id = "+ id +" ";
+
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			tempEvent.setName(rs.getString(1));
+			tempEvent.setCreatedBy(rs.getInt(2));
+			tempEvent.setEventDate(rs.getString(3));
+			tempEvent.setStartTime(rs.getString(4));
+			tempEvent.setEndTime(rs.getString(5));
+			tempEvent.setImg(rs.getString(6));
+			tempEvent.setDetails(rs.getString(7));
+		
+		}
+		
+		return tempEvent; 
+	 }
+	 
+	 public Vector<Event> getUpdateLocaitons(int id) throws Exception{
+		 
+		 Vector<Event> eventData = new Vector();
+
+			DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+			
+		
+			
+			
+			String county = "";
+			String loc = "";
+			int avail = 0;
+			
+			
+			int i = 0;
+			
+			String query = "Select lower(County), Location, Available_Spaces from Event_Loc where Event_Det_Id = " +id+ " ";
+			
+
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				county = rs.getString(1);
+				loc = rs.getString(2);
+				avail = rs.getInt(3);
+				
+				Event tempEvent = new Event();
+				
+				tempEvent.setCounty(county);
+				tempEvent.setLocation(loc);
+				tempEvent.setAvailableSpaces(avail);
+				tempEvent.setNumberDays(i);
+				
+				i++;
+				
+				System.out.println(county);
+				System.out.println(loc);
+				System.out.println(avail);
+				
+				eventData.add(tempEvent);
+			}
+		 return eventData;
+	 }
 }

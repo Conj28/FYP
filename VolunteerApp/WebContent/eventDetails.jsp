@@ -194,12 +194,13 @@
 														<option value="default">Select Location</option>
 														<c:forEach items="${specificEventLocation}" var="tempLoc">
 
-
+															<!-- https://stackoverflow.com/questions/15657367/selected-value-for-jsp-drop-down-using-jstl  -->
 															<!--  make sure that the is only one space between two varibales  -->
 															<option value="${tempLoc.eventLocID}"
 																${tempLoc.eventLocID == selectedLocation ? 'selected="selected"' : ''}>${tempLoc.location}
 																(${tempLoc.county})</option>
 
+																
 
 
 														</c:forEach>

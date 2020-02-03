@@ -36,7 +36,7 @@ public class GetSpecificEvent extends HttpServlet {
 	       request.getSession(true).setAttribute("specificEvent", event);
 	       
 	       Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
-	        request.getSession(true).setAttribute("specificEventLocation", event2);
+	        request.setAttribute("specificEventLocation", event2);
 	        
 	        //TimeCalc timeCalc = new TimeCalc();
 	        
