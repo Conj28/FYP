@@ -384,10 +384,10 @@ public class EventDAO {
 		 
 	 }
 	 
-	 public void setEventLocations(int primaryKey, String county, String location, ArrayList<List<String>> aList) throws Exception  {
+	 public void setEventLocations(int primaryKey, String county, String location,int spaces, ArrayList<List<String>> aList) throws Exception  {
 		 
-		 StringBuilder sb = new StringBuilder("  Insert Into Event_Loc(Location, County, Event_Det_ID, Location_Manager)\r\n" + 
-		 		"  Values('"+location+"', '"+county+"', "+primaryKey+", 3 )");
+		 StringBuilder sb = new StringBuilder("  Insert Into Event_Loc(Location, County, Event_Det_ID, Location_Manager, Available_Spaces)\r\n" + 
+		 		"  Values('"+location+"', '"+county+"', "+primaryKey+", 3, "+spaces+" )");
 		 
 		 //https://stackoverflow.com/questions/47443404/how-to-iterate-through-an-arraylist-of-an-arraylist-of-strings
 		 for(int i = 0; i < aList.size(); i++){
@@ -395,8 +395,9 @@ public class EventDAO {
 					
 				String loc= aList.get(i).get(j);
 				String con = aList.get(i).get(j + 1);
+				String space = aList.get(i).get(j+2);
 					
-				sb.append(",('"+loc+"', '"+con+"', "+primaryKey+", 3)");
+				sb.append(",('"+loc+"', '"+con+"', "+primaryKey+", 3, "+space+")");
 				}
 		}
 		 

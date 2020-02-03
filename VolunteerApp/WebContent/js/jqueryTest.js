@@ -22,7 +22,7 @@
 
                 // ADD TEXTBOX.
                 $('#locSpace').append('<div class="form-group row" id = "loc'+ iCnt +'">\
-						<div class="col-sm-6 mb-3 mb-sm-0">\
+						<div class="col-sm-5 mb-3 mb-sm-0">\
 							<!--  Dropdown menu  select-css sideBySideForm -->\
 							<!-- padding not working -  https://stackoverflow.com/questions/22681141/select-option-padding-not-working-in-chrome?lq=1 -->\
 							<select id = "locSelect'+ iCnt +'"  name = "locSelect'+ iCnt +'" class="form-control selectPadHeight">\
@@ -60,10 +60,14 @@
 								<option value="wicklow">Wicklow</option>\
 							</select>\
 						</div>\
-						<div class="col-sm-6 mb-3 mb-sm-0">\
+						<div class="col-sm-5 mb-3 mb-sm-0">\
 							<input type="text" class="form-control form-control-user"\
 							id = "locTxt'+ iCnt +'" name = "locTxt'+ iCnt +'" placeholder="Location">\
 						</div>\
+						<div class="col-sm-2 mb-3 mb-sm-0">\
+						<input type="number" class="form-control form-control-user"\
+							name="locSpaces'+ iCnt +'" id = "locSpaces'+ iCnt +'" placeholder="Available Spaces">\
+					</div>\
 					</div>')
 					
 					 $('input[name="numLocs"]').val(iCnt);

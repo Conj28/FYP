@@ -624,7 +624,7 @@
 
 												<div class="form-group row">
 
-													<div class="col-sm-6 mb-3 mb-sm-0">
+													<div class="col-sm-5 mb-3 mb-sm-0">
 
 														<!--  Dropdown menu  select-css sideBySideForm -->
 
@@ -670,11 +670,15 @@
 
 													</div>
 
-													<div class="col-sm-6 mb-3 mb-sm-0">
+													<div class="col-sm-5 mb-3 mb-sm-0">
 														<input type="text" class="form-control form-control-user"
 															name="locationN" id="locationN" placeholder="Location">
 													</div>
 
+												<div class="col-sm-2 mb-3 mb-sm-0">
+														<input type="number" class="form-control form-control-user"
+															name="spacesN" id="spacesN" placeholder="Available Spaces">
+													</div>
 												</div>
 												
 												

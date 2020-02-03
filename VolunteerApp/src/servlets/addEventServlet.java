@@ -44,9 +44,11 @@ public class addEventServlet extends HttpServlet {
     	
     	String county = request.getParameter("locSelect" + i);
     	String location = request.getParameter("locTxt" + i);
+    	String spaces = request.getParameter("locSpaces" + i);
     		
     	arr.add(location);
     	arr.add(county);
+    	arr.add(spaces);
     	
     	aList.add(arr);
     		
@@ -82,7 +84,8 @@ public class addEventServlet extends HttpServlet {
     
  		String countyN = request.getParameter("countyN");
 		String locN = request.getParameter("locationN");
-		
+		String strSpacesN = request.getParameter("spacesN");
+ 		int spacesN = Integer.parseInt(strSpacesN);
  		
  		EventDAO eventDAO = new EventDAO();
  	
@@ -96,7 +99,7 @@ public class addEventServlet extends HttpServlet {
  	//System.out.println("Primary Key is " + primaryKey);
  	//int primaryKey, String county, String location, ArrayList<List<String>> aList
  	
- 	eventDAO.setEventLocations(primaryKey,countyN, locN, aList);
+ 	eventDAO.setEventLocations(primaryKey,countyN, locN, spacesN, aList);
 // 		
 // 		System.out.println(eventName);	
 // 		System.out.println(eventDate);
