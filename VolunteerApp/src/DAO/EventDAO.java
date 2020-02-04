@@ -475,7 +475,7 @@ public class EventDAO {
 		 DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 			
-		String query = "Select Name, Created_By, Event_Date, LEFT(Start_Time,5), LEFT(End_Time,5), img, Details from Event_Det where Event_Det_Id = "+ id +" ";
+		String query = "Select Name, Created_By, Event_Date, LEFT(Start_Time,5), LEFT(End_Time,5), img, Details, Event_Det_ID from Event_Det where Event_Det_Id = "+ id +" ";
 
 		PreparedStatement stmt = conn.prepareStatement(query);
 		ResultSet rs = stmt.executeQuery();
@@ -487,6 +487,7 @@ public class EventDAO {
 			tempEvent.setEndTime(rs.getString(5));
 			tempEvent.setImg(rs.getString(6));
 			tempEvent.setDetails(rs.getString(7));
+			tempEvent.setEventDetID(rs.getInt(8));
 		
 		}
 		
@@ -506,11 +507,12 @@ public class EventDAO {
 			String county = "";
 			String loc = "";
 			int avail = 0;
+			int lid = 0;
 			
 			
 			int i = 0;
 			
-			String query = "Select lower(County), Location, Available_Spaces from Event_Loc where Event_Det_Id = " +id+ " ";
+			String query = "Select lower(County), Location, Available_Spaces, Event_Loc_ID from Event_Loc where Event_Det_Id = " +id+ " ";
 			
 
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -520,12 +522,14 @@ public class EventDAO {
 				county = rs.getString(1);
 				loc = rs.getString(2);
 				avail = rs.getInt(3);
+				lid = rs.getInt(4);
 				
 				Event tempEvent = new Event();
 				
 				tempEvent.setCounty(county);
 				tempEvent.setLocation(loc);
 				tempEvent.setAvailableSpaces(avail);
+				tempEvent.setEventLocID(lid);
 				tempEvent.setNumberDays(i);
 				
 				i++;
@@ -538,4 +542,105 @@ public class EventDAO {
 			}
 		 return eventData;
 	 }
+	 
+	 public void deleteLocation(int id) throws Exception{
+		 
+		 	DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+			
+			String query = "Delete from Event_Loc where event_Loc_ID = "+id+" ";
+			
+			try{PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.execute();
+			}catch(SQLException e) {
+					e.printStackTrace();
+					System.out.println("Delete event Failed ");
+			}
+	 }
+	 
+	 public void updateEventInfo(String eventName,String eventDate,String startTime, String endTime, String img, String description, int id) throws Exception {
+		 
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		 
+		String query =  "Update Event_Det set Name = '"+eventName+"', Event_Date = '"+eventDate+"', Start_Time = '"+startTime+"',	End_Time = '"+endTime+"', img = '"+img+"' , Details = '"+description+"' where Event_Det_ID = "+id+" ";
+		
+		try{PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.execute();
+		}catch(SQLException e) {
+				e.printStackTrace();
+				System.out.println("update event Failed ");
+		}
+		
+	 }
+	 
+	 public void updateLoactionInfo(ArrayList<List<String>> upList) throws Exception {
+		 
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		
+		StringBuilder sb = new StringBuilder("");
+		
+		 for(int i = 0; i < upList.size(); i++){
+				for(int j = 0; j < 1 ; j++){
+					
+				String loc= upList.get(i).get(j);
+				String con = upList.get(i).get(j + 1);
+				String space = upList.get(i).get(j+2);
+				int id = Integer.parseInt(upList.get(i).get(j+3));
+					
+				sb.append("Update Event_Loc set Location = '"+loc+"' , County = '"+con+"' , Available_Spaces = "+space+" Where Event_Loc_ID = "+id+" ");
+				}
+				
+				
+		}
+		 
+		 String query = sb.toString();
+		 System.out.println(sb);
+		 try{PreparedStatement stmt = conn.prepareStatement(query);
+	        stmt.execute();
+			}catch(SQLException e) {
+					e.printStackTrace();
+					System.out.println("update event Failed ");
+			}
+		 
+	 }
+	 
+	 public void addNewUpdateEvent(int id, ArrayList<List<String>> aList) throws Exception {
+		 
+		 	DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+			
+			 StringBuilder sb = new StringBuilder("Insert Into Event_Loc(Location, County, Event_Det_ID, Location_Manager, Available_Spaces) Values");
+			
+			 for(int i = 0; i < aList.size(); i++){
+					for(int j = 0; j < 1 ; j++){
+						
+					String loc= aList.get(i).get(j);
+					String con = aList.get(i).get(j + 1);
+					String space = aList.get(i).get(j+2);
+					
+						
+					sb.append("('"+loc+"', '"+con+"', "+id+", 3, "+space+")");
+					
+					if(i < aList.size() - 1) {
+						sb.append(",");
+					}
+					
+					
+					}
+	
+			}
+			//System.out.println(sb);
+			 String query = sb.toString();
+			 try{PreparedStatement stmt = conn.prepareStatement(query);
+		        stmt.execute();
+				}catch(SQLException e) {
+						e.printStackTrace();
+						System.out.println("adding new update event failed");
+				}
+			
+		 
+	 }
+	 
 }

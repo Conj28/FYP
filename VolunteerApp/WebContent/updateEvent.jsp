@@ -356,7 +356,7 @@
 
 
 
-					<form action="addEventServlet" method="POST" class="user mb-4"
+					<form action="updateEventServlet" method="POST" class="user mb-4"
 						id="addEventForm">
 
 						<div class="card-body p-0  ">
@@ -674,6 +674,9 @@
 																rows="25" cols="50">${specificEvent.details}</textarea>
 														</div>
 													</div>
+													
+													 <input type="hidden"
+													name="EventID" value="${specificEvent.eventDetID}" />
 
 													<!--  Testing the jquery to add locations -->
 
@@ -709,7 +712,7 @@
 												<c:forEach items="${eventLocations}" var="locs">
 													<div class="form-group row">
 
-														<div class="col-sm-5 mb-3 mb-sm-0">
+														<div class="col-sm-4 mb-3 mb-sm-0">
 
 
 
@@ -717,7 +720,7 @@
 
 															<!-- padding not working -  https://stackoverflow.com/questions/22681141/select-option-padding-not-working-in-chrome?lq=1 -->
 
-															<select name="countyN"
+															<select name="county${locs.numberDays}"
 																class="form-control selectPadHeight">
 
 																<option value='antrim'
@@ -792,19 +795,32 @@
 
 														<div class="col-sm-5 mb-3 mb-sm-0">
 															<input type="text" class="form-control form-control-user"
-																name="locationN" id="locationN" placeholder="Location" value = ${locs.numberDays}>
+																name="location${locs.numberDays}" id="locationN" placeholder="Location"
+																value="${locs.location}">
 														</div>
 
+														<!--  update button -->
 														<div class="col-sm-2 mb-3 mb-sm-0">
 															<input type="number"
-																class="form-control form-control-user" name="spacesN"
-																id="spacesN" placeholder="Available Spaces" value = ${locs.availableSpaces}>
+																class="form-control form-control-user" name="spaces${locs.numberDays}"
+																id="spaces${locs.numberDays}" placeholder="Available Spaces"
+																value=${locs.availableSpaces}>
 														</div>
+														<div class="col-sm-1 mb-3 mb-sm-0">
+															<a href="deleteLocation?id=${locs.eventLocID}"
+																class="btn btn-large btn-danger btn-circle"> <i
+																class="fas fa-trash"></i>
+															</a>
+														</div>
+														
+														<input type = "hidden" name = "locID${locs.numberDays}" value = "${locs.eventLocID}"/>
+
+
 													</div>
 												</c:forEach>
 
 
-
+												
 
 												<div class="text-center">
 													<hr>
@@ -850,6 +866,8 @@
 
 												<input type="hidden" name="numLocs" /> <input type="hidden"
 													name="loggedInUser" value="${sessionScope.User.userID }" />
+													
+													
 
 												<!-- <div class="  text-center">
 													<p class="hiddenText dangerText" id="warningText">Hidden
