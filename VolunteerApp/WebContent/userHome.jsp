@@ -121,50 +121,120 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				<!-- Start of main content -->
-				<div class="container">
+				<div class="personal-small-container">
 
 
-					<!--<h1 class = "padding">You are on the Event page</h1> -->
-
-					<h2>My Profile</h2>
-
-<p>${sessionScope.User.firstName}</p>
-<p>${sessionScope.User.lastName}</p>
-<p>${sessionScope.User.email}</p>
-<p>${sessionScope.User.phone}</p>
-<p>${sessionScope.User.address}</p>
-<p>${sessionScope.User.town}</p>
-<p>${sessionScope.User.county}</p>
 
 
-<h4>My Events</h4>
-<h5>You are currently signed up for the following events</h5>
-<div style="overflow-y: auto; height:50vh;">
-	<c:forEach items="${UserEvents}" var="tempEvent">
-								<div class="card shadow mb-4 broder-left-primary">
-										<p>Event : ${tempEvent.name}</p>
-										<p>Location: ${tempEvent.location}</p>
-										<p>County: ${tempEvent.county}</p>
-										<p>Event Data: ${tempEvent.eventDate}</p>
-										<p>Start Time: ${tempEvent.userStart}</p>
-										<p>End Time: ${tempEvent.userEnd}</p>
-										
+
+
+
+					<form action="addEventServlet" method="POST" class="user mb-4"
+						id="addEventForm">
+
+						<div class="card-body p-0  ">
+							<!-- Nested Row within Card Body -->
+							<div class="form-group row">
+
+								<div class="col-lg-6 col-sm-6">
+									<div class="card o-hidden border-0 shadow-lg my-5">
+										<div class="card-body">
+
+											<div class="p-5">
+
+												<div id="topHalf">
+													<div class="text-center">
+														<h2 class="text-gray-900 mb-4">Upcoming Events</h2>
+														<hr class="mb-4">
+													</div>
+
+													<div class="form-group row">
+															<h4>My Events</h4>
+															<h5>You are currently signed up for the following
+																events</h5>
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-12 mb-3 mb-sm-0">
+
+															
+															<div style="overflow-y: auto; height: 60vh;">
+																<c:forEach items="${UserEvents}" var="tempEvent">
+																	<div class="card border-left-primary mb-4 broder-left-primary">
+																		<div class = "card-body">
+																		<h3>Event : ${tempEvent.name}</h3>
+																		<p>Location: ${tempEvent.location}</p>
+																		<p>County: ${tempEvent.county}</p>
+																		<p>Event Data: ${tempEvent.eventDate}</p>
+																		<p>Start Time: ${tempEvent.userStart}</p>
+																		<p>End Time: ${tempEvent.userEnd}</p>
+
+																	</div>
+</div>
+
+																</c:forEach>
+
+
+															</div>
+														</div>
+
+
+												
+
+												</div>
+
+
+											</div>
+
+
+
+										</div>
 									</div>
+								</div>
+							</div>
 
-						
-						</c:forEach>
-					
 
-</div>
+
+
+							<!-- ****************Start of the right side************************************************* -->
+							<div class="col-lg-6 col-sm-6">
+								<div class="card o-hidden border-0 shadow-lg my-5">
+									<div class="card-body">
+										<div class="p-5">
+
+											<div class="text-center">
+												<h2 class="text-gray-900 mb-4">Add Locations</h2>
+												<hr class="mb-4">
+
+											</div>
+
+
+
+
+											<div class="form-group row">
+
+												<div class="col-sm-5 mb-3 mb-sm-0"></div>
+
+											</div>
+
+
+
+
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+				</form>
 			</div>
-</div>
-
-			<!-- End of personal container -->
 		</div>
-
-		<!-- End of content -->
 	</div>
+	</div>
+
+
+
 
 
 
