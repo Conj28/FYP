@@ -287,7 +287,7 @@ public class EventDAO {
 		// https://stackoverflow.com/questions/9126246/date-conversion-issue-yyyy-mm-dd-to-dd-mm-yyyy/9126277
 		String query = "Select d.Event_Det_ID, d.Name, d.Event_Date, d.Start_Time, d.End_Time, d.Img, d.Details, l.Location, l.County, e.Available_Start, e.Available_END, e.Event_ID"
 				+ " from Event e " + " inner join Event_Det d on e.Event_Det_ID = d.Event_Det_ID"
-				+ " inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID";
+				+ " inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID where e.Users_ID = "+id+" order by d.Event_Date asc";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);

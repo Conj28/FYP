@@ -32,11 +32,11 @@ public class getUserEventsServlet extends HttpServlet {
 		int userID = 1;
 		
 		EventDAO eventDAO = new EventDAO();
-		 Vector<Event> allUserEventVect = eventDAO.getUserEvents(userID);
+		Vector<Event> allUserEventVect = eventDAO.getUserEvents(userID);
 		 
-		 request.getSession(true).setAttribute("UserEvents", allUserEventVect);
-	        RequestDispatcher rd = request.getRequestDispatcher("/userHome.jsp");
-	        rd.forward(request, response);
+		request.getSession(true).setAttribute("UserEvents", allUserEventVect);
+	    RequestDispatcher rd = request.getRequestDispatcher("/userHome.jsp");
+	    rd.forward(request, response);
 		 
 	}
       
