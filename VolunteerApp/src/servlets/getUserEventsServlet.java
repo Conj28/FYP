@@ -35,9 +35,15 @@ public class getUserEventsServlet extends HttpServlet {
 		Vector<Event> allUserEventVect = eventDAO.getUserEvents(userID);
 		
 		
-		int hoursVol = eventDAO.calcUserVolunteerHours(userID);
+		int hourVol = eventDAO.calcUserVolunteerHours(userID);
+		int hoursVol = (hourVol/60);
 		
-		System.out.println("**********NUM***********" + hoursVol);
+		int numVolEvents = eventDAO.calculateNumberUserPastEvents(userID);
+		
+		request.setAttribute("volHours", hoursVol);
+		request.setAttribute("volNum", numVolEvents);
+		
+		//System.out.println("**********NUM***********" + hoursVol);
 		 
 		request.getSession(true).setAttribute("UserEvents", allUserEventVect);
 	    RequestDispatcher rd = request.getRequestDispatcher("/userHome.jsp");

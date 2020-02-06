@@ -651,9 +651,16 @@ public class EventDAO {
 			
 			int num = 0;
 			
-			String query = "Select SUM(DATEDIFF(Second,Available_Start, Available_End)/60) As difference\r\n" + 
-					"      from Event\r\n" + 
-					"	  where Users_ID = "+userid+" ";
+			//--https://stackoverflow.com/questions/35916492/how-to-get-the-difference-between-two-times-with-sql-server
+			//--https://forums.asp.net/t/2071616.aspx?Calculate+the+time+difference+between+two+times+in+SQL+Server
+			
+			String query = " Select SUM(DATEDIFF(Second,Available_Start, e.Available_End)/60) As difference\r\n" + 
+					"      from Event e\r\n" + 
+					"	  inner join Event_det d on e.Event_Det_ID = d.Event_Det_ID\r\n" + 
+					"	  where e.Users_ID = "+userid+"\r\n" + 
+					"	  and d.Event_Date < getdate() ";
+			
+			
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -666,4 +673,28 @@ public class EventDAO {
 			
 	 }
 	 
+	 
+	 public int calculateNumberUserPastEvents(int userid) throws Exception {
+		 
+		 DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+			
+			int num = 0;
+			
+			String query = "Select Count(Distinct e.Event_Det_ID) \r\n" + 
+					"from Event e\r\n" + 
+					"inner join Event_det d on e.Event_Det_ID = d.Event_Det_ID\r\n" + 
+					"where e.Users_ID = "+userid+" \r\n" + 
+					"and d.Event_Date < getdate()";
+			
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				num = rs.getInt(1);
+				
+	 }
+			return num;
+	 
+}
 }

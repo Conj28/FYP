@@ -129,103 +129,107 @@
 
 
 
-					
-
-						<div class="card-body p-0  ">
-							<!-- Nested Row within Card Body -->
-							<div class="form-group row">
-
-								<div class="col-lg-6 col-sm-12">
-									<div class="card o-hidden border-left-primary shadow-lg my-5">
-										<div class="card-body">
-
-											<div class="p-4">
-
-												<div id="topHalf">
-													<div class="text-center">
-														<h2 class="text-gray-900 mb-4">Upcoming Events <i class="far fa-calendar-alt iconColour" ></i></h2>
-														<hr class="mb-4">
-													</div>
-
-													<div class="form-group row">
-														
-														<h5>You are currently signed up for the following
-															events</h5>
-													</div>
-													<div class="form-group row">
-														<div class="col-sm-12 col-md-12 mb-3 mb-sm-0">
 
 
-															<div style="overflow-y: auto; height: 60vh;">
-																<c:forEach items="${UserEvents}" var="tempEvent">
-																	<div class="card mb-4 broder-left-primary ">
-																		<div class="card-body">
-																		
-																		<div class = "row">
-																		<div class="col-sm-4">
-																			<img  style = "height:20vh; width:25vh" src = "${tempEvent.img}"/>
-																		</div>
-																		<div class = "col-sm-8 pl-4">
-																		
-																		
-																			<h3>Event : ${tempEvent.name}</h3>
-																			
-																			
-																			<p class = "mb-0">Location: ${tempEvent.location}</p>
-																			<p class = "mb-0">County: ${tempEvent.county}</p>
-																			<p>Event Data: ${tempEvent.eventDate}</p>
-																			<p>Start Time: ${tempEvent.userStart}</p>
-																			<p>End Time: ${tempEvent.userEnd}</p>
-																			
-</div>
-																		</div>
+					<div class="card-body p-0  ">
+						<!-- Nested Row within Card Body -->
+						<div class="form-group row">
+
+							<div class="col-lg-6 col-sm-12">
+								<div class="card o-hidden border-left-primary shadow-lg my-5">
+									<div class="card-body">
+
+										<div class="p-4">
+
+											<div id="topHalf">
+												<div class="text-center">
+													<h2 class="text-gray-900 mb-4">
+														Upcoming Events <i class="far fa-calendar-alt iconColour"></i>
+													</h2>
+													<hr class="mb-4">
+												</div>
+
+												<div class="form-group row">
+
+													<h5>You are currently signed up for the following
+														events</h5>
+												</div>
+												<div class="form-group row">
+													<div class="col-sm-12 col-md-12 mb-3 mb-sm-0">
+
+
+														<div style="overflow-y: auto; height: 60vh;">
+															<c:forEach items="${UserEvents}" var="tempEvent">
+																<div class="card mb-4 broder-left-primary ">
+																	<div class="card-body">
+
+																		<div class="row">
+																			<div class="col-sm-4">
+																				<img style="height: 20vh; width: 25vh"
+																					src="${tempEvent.img}" />
+																			</div>
+																			<div class="col-sm-8 pl-4">
+
+
+																				<h3>Event : ${tempEvent.name}</h3>
+
+
+																				<p class="mb-0">Location: ${tempEvent.location}</p>
+																				<p class="mb-0">County: ${tempEvent.county}</p>
+																				<p>Event Data: ${tempEvent.eventDate}</p>
+																				<p>Start Time: ${tempEvent.userStart}</p>
+																				<p>End Time: ${tempEvent.userEnd}</p>
+
+																			</div>
 																		</div>
 																	</div>
+																</div>
 
-																</c:forEach>
+															</c:forEach>
 
 
-															</div>
 														</div>
-
-
-
-
 													</div>
+
+
 
 
 												</div>
-
 
 
 											</div>
+
+
+
 										</div>
 									</div>
 								</div>
+							</div>
 
 
 
 
-								<!-- ****************Start of the right side************************************************* -->
-								<div class="col-lg-6 col-sm-12">
-									<div class="card o-hidden border-left-primary  shadow-lg my-5">
-										<div class="card-body">
-											<div class="p-5">
+							<!-- ****************Start of the right side************************************************* -->
+							<div class="col-lg-6 col-sm-12">
+								<div class="card o-hidden border-left-primary  shadow-lg my-5">
+									<div class="card-body">
+										<div class="p-5">
 
 
 
-												<div class="text-center">
-													<h2 class="text-gray-900 mb-4">
-														My profile <i  class="fas fa-user iconColour"></i>
-													</h2>
+											<div class="text-center">
+												<h2 class="text-gray-900 mb-4">
+													My profile <i class="fas fa-user iconColour"></i>
+												</h2>
 
-													<hr class="mb-4">
+												<hr class="mb-4">
 
-												</div>
+											</div>
 
 
 
-											<form action ="getUserUpdateDetails" method = "POST" id = "getUserUpdateDetails">
+											<form action="getUserUpdateDetails" method="POST"
+												id="getUserUpdateDetails">
 												<div class="form-group row">
 
 													<div class=col-sm-12>
@@ -297,22 +301,24 @@
 
 																<h4 style="display: inline" class="text-gray-800">${sessionScope.User.county}</h4>
 															</div>
-															
-															
-															<input type = "hidden" name ="userCounty" value = "${sessionScope.User.county}"/>
-															
+
+
+															<input type="hidden" name="userCounty"
+																value="${sessionScope.User.county}" />
+
 															<div class="col-sm-6 col-mb-3 ">
-															
-																<a  class="btn btn-primary btn-lg btn-icon-split"
-																 href="javascript:{}"
-										onclick="document.getElementById('getUserUpdateDetails').submit();">
-																	<span class="icon text-white-50"> <i class="fas fa-users-cog"></i>
+
+																<a class="btn btn-primary btn-lg btn-icon-split"
+																	href="javascript:{}"
+																	onclick="document.getElementById('getUserUpdateDetails').submit();">
+																	<span class="icon text-white-50"> <i
+																		class="fas fa-users-cog"></i>
 																</span> <span class="text">Update details</span>
 																</a>
-															
+
 															</div>
-														
-															
+
+
 
 
 
@@ -324,63 +330,97 @@
 													</div>
 
 												</div>
-											
 
 
-	</form>
 
-											</div>
-											
+											</form>
+
 										</div>
+
 									</div>
-
-
-									<div class="card border-left-primary shadow-lg my-5">
-										<div class="card-body">
-											<div class="p-5">
-
-												<div class="text-center">
-													<h2 class="text-gray-900 mb-4">Volunteering metrics</h2>
-
-												</div>
-												<hr class="mb-4" style="border: 1px solid rgba(0, 0, 0, .1)">
-
-
-
-
-												<div class="form-group row">
-
-													<div class=col-sm-12>
-
-														<div class="row mb-4">
-															<!--  metrics go here -->
-															
-															
-															
-														</div>
-
-													</div>
-
-												</div>
-
-
-
-
-											</div>
-										</div>
-									</div>
-
-
 								</div>
 
 
+								<div class="card border-left-primary shadow-lg my-5">
+									<div class="card-body">
+										<div class="p-5">
+
+											<div class="text-center">
+												<h2 class="text-gray-900 mb-4">Volunteering metrics <i class="fas fa-clipboard-check"></i></h2>
+
+											</div>
+											<hr class="mb-4" style="border: 1px solid rgba(0, 0, 0, .1)">
 
 
+
+
+											<div class="form-group row">
+
+												<div class=col-sm-12>
+													<p>Thank you, we really appreciate every hour you spend volunteering with us, keep up the good work. You can track your progress below</p>
+													<div class="row mb-4">
+
+														<div class="col-sm-6 ">
+															<div class="card border-left-success shadow h-100 py-2">
+																<div class="card-body">
+																	<div class="row no-gutters align-items-center">
+																		<div class="col mr-2">
+																			<div
+																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Hours Volunteered</div>
+																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volHours} Hours</div>
+																		</div>
+																		<div class="col-auto">
+																			<i class="fas fa-hourglass fa-2x text-gray-300"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-6 ">
+															
+															<div class="card border-left-success shadow h-100 py-2">
+																<div class="card-body">
+																	<div class="row no-gutters align-items-center">
+																		<div class="col mr-2">
+																			<div
+																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed Events</div>
+																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volNum}</div>
+																		</div>
+																		<div class="col-auto">
+																			<i class="fas fa-hands-helping fa-2x text-gray-300"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+														
+
+													</div>
+													
+
+												</div>
+
+											</div>
+
+
+
+
+										</div>
+									</div>
+								</div>
 
 
 							</div>
+
+
+
+
+
+
 						</div>
-				
+					</div>
+
 				</div>
 			</div>
 
