@@ -633,6 +633,8 @@ public class EventDAO {
 			}
 			//System.out.println(sb);
 			 String query = sb.toString();
+			 
+			 System.out.println("%%%%%%%%%%%%%%PRINTINg" + query);
 			 try{PreparedStatement stmt = conn.prepareStatement(query);
 		        stmt.execute();
 				}catch(SQLException e) {
@@ -641,6 +643,27 @@ public class EventDAO {
 				}
 			
 		 
+	 }
+	 
+	 public int calcUserVolunteerHours(int userid) throws Exception {
+		 DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+			
+			int num = 0;
+			
+			String query = "Select SUM(DATEDIFF(Second,Available_Start, Available_End)/60) As difference\r\n" + 
+					"      from Event\r\n" + 
+					"	  where Users_ID = "+userid+" ";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				num = rs.getInt(1);
+				
+			}
+			
+			return num;
+			
 	 }
 	 
 }

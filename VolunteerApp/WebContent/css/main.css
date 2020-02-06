@@ -376,3 +376,7 @@ table.timesTable {
 table.timesTable .tdNoPadding{
 	padding-top: 2;
 }
+
+.iconColour{
+	color: #4e73df;
+}

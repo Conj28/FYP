@@ -417,8 +417,7 @@
 														<div class="col-sm-6">
 															<!--  start time -->
 															<select name="startTime"
-																class="form-control selectPadHeight"
-																placeholder="Start time">
+																class="form-control selectPadHeight">
 
 																<option value="00:00"
 																	${specificEvent.startTime == '00:00'? "selected" : ""}>00:00</option>

@@ -101,7 +101,7 @@ public class updateEventServlet extends HttpServlet {
 			System.out.println(arr);
 		}
 
-		if(numLocs > 1) {
+		if(numLocs >= 1) {
 			eventDAO.addNewUpdateEvent(eventID, aList);
 		}
 		
