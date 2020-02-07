@@ -21,7 +21,7 @@
 </head>
 <body>
 	<!-- Page Wrapper -->
-	<div id="wrapper" class = "bg-warning">
+	<div id="wrapper">
 
 
 		<!-- Content Wrapper -->
