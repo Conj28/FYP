@@ -180,6 +180,12 @@
 																				<p>Start Time: ${tempEvent.userStart}</p>
 																				<p>End Time: ${tempEvent.userEnd}</p>
 
+																				<a href="#" class="btn btn-primary btn-icon-split">
+																					<span class="icon"> <i
+																						class="fas fa-arrow-right"></i>
+																				</span> <span class="text">View Event</span>
+																				</a>
+
 																			</div>
 																		</div>
 																	</div>
@@ -346,7 +352,9 @@
 										<div class="p-5">
 
 											<div class="text-center">
-												<h2 class="text-gray-900 mb-4">Volunteering metrics <i class="fas fa-clipboard-check"></i></h2>
+												<h2 class="text-gray-900 mb-4">
+													Volunteering metrics <i class="fas fa-clipboard-check iconColour"></i>
+												</h2>
 
 											</div>
 											<hr class="mb-4" style="border: 1px solid rgba(0, 0, 0, .1)">
@@ -357,7 +365,9 @@
 											<div class="form-group row">
 
 												<div class=col-sm-12>
-													<p>Thank you, we really appreciate every hour you spend volunteering with us, keep up the good work. You can track your progress below</p>
+													<p>Thank you, we really appreciate every hour you spend
+														volunteering with us, keep up the good work. You can track
+														your progress below</p>
 													<div class="row mb-4">
 
 														<div class="col-sm-6 ">
@@ -366,8 +376,10 @@
 																	<div class="row no-gutters align-items-center">
 																		<div class="col mr-2">
 																			<div
-																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Hours Volunteered</div>
-																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volHours} Hours</div>
+																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Hours
+																				Volunteered</div>
+																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volHours}
+																				Hours</div>
 																		</div>
 																		<div class="col-auto">
 																			<i class="fas fa-hourglass fa-2x text-gray-300"></i>
@@ -377,13 +389,14 @@
 															</div>
 														</div>
 														<div class="col-sm-6 ">
-															
+
 															<div class="card border-left-success shadow h-100 py-2">
 																<div class="card-body">
 																	<div class="row no-gutters align-items-center">
 																		<div class="col mr-2">
 																			<div
-																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed Events</div>
+																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed
+																				Events</div>
 																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volNum}</div>
 																		</div>
 																		<div class="col-auto">
@@ -393,11 +406,11 @@
 																</div>
 															</div>
 														</div>
-														
-														
+
+
 
 													</div>
-													
+
 
 												</div>
 
