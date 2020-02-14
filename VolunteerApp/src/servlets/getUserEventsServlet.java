@@ -46,6 +46,7 @@ public class getUserEventsServlet extends HttpServlet {
 		//System.out.println("**********NUM***********" + hoursVol);
 		 
 		request.getSession(true).setAttribute("UserEvents", allUserEventVect);
+		
 	    RequestDispatcher rd = request.getRequestDispatcher("/userHome.jsp");
 	    rd.forward(request, response);
 		 
