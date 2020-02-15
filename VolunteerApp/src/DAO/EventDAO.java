@@ -278,6 +278,7 @@ public class EventDAO {
 		String userStart = "";
 		String userEnd = "";
 		int eventID = 0;
+		int eventLocID =0;
 
 		Vector<Event> eventData = new Vector();
 
@@ -285,7 +286,7 @@ public class EventDAO {
 		Connection conn = dbmgr.getConnection();
 
 		// https://stackoverflow.com/questions/9126246/date-conversion-issue-yyyy-mm-dd-to-dd-mm-yyyy/9126277
-		String query = "Select d.Event_Det_ID, d.Name, d.Event_Date, d.Start_Time, d.End_Time, d.Img, d.Details, l.Location, l.County, e.Available_Start, e.Available_END, e.Event_ID"
+		String query = "Select d.Event_Det_ID, d.Name, d.Event_Date, d.Start_Time, d.End_Time, d.Img, d.Details, l.Location, l.County, e.Available_Start, e.Available_END, e.Event_ID, l.Event_Loc_ID"
 				+ " from Event e " + " inner join Event_Det d on e.Event_Det_ID = d.Event_Det_ID"
 				+ " inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID where e.Users_ID = "+id+" order by d.Event_Date asc";
 
@@ -306,6 +307,7 @@ public class EventDAO {
 				userStart = (rs.getString(10));
 				userEnd = (rs.getString(11));
 				eventID = (rs.getInt(12));
+				eventLocID = (rs.getInt(13));
 
 				Event tempEvent = new Event();
 				tempEvent.setEventDetID(eventDetID);
@@ -320,6 +322,7 @@ public class EventDAO {
 				tempEvent.setUserStart(userStart);
 				tempEvent.setUserEnd(userEnd);
 				tempEvent.setEventID(eventID);
+				tempEvent.setEventLocID(eventLocID);
 
 				// tempEvent.setDetails(details);
 
@@ -697,4 +700,71 @@ public class EventDAO {
 			return num;
 	 
 }
+	 
+	 public Event getUpdateAvailability(int Event_id, List<String> timeList, List<String> endList) throws Exception{
+		 
+		 Vector<Event> availList = new Vector();
+		 
+		 DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		
+		 Event tempAvail = new Event();
+		 
+		 for(int i = 0; i < timeList.size(); i++) {
+			 
+			// String query = "Select Count(e.Users_ID) as Volunteers, l.Available_Spaces from Event e inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID where e.Event_Loc_Id = "+Event_id+" and '"+timeList.get(i)+"' between e.Available_Start and e.Available_End group by l.Available_Spaces";
+			 
+			 
+			String query ="Select (Select Count(Users_ID) from Event where event_Loc_ID = "+Event_id+" and Available_Start <= '"+timeList.get(i)+"' and '"+timeList.get(i)+"' < Available_End), Available_Spaces From Event_Loc where event_Loc_ID = "+Event_id+" ";
+			 
+			 try {
+				 
+				
+				 
+					PreparedStatement stmt = conn.prepareStatement(query);
+					ResultSet rs = stmt.executeQuery();
+					while (rs.next()) {
+						
+						tempAvail.setAvailableSpaces(rs.getInt(1));
+						tempAvail.setNumberSpaces(rs.getInt(2));
+						tempAvail.setStartTime(timeList.get(i));
+						tempAvail.setEndTime(endList.get(i));
+					
+						
+						
+						
+					}
+					
+					
+			 } catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("ading Event Broken :( ");
+					 
+		 }
+		 
+			 
+	 }
+		 return tempAvail;
+	 }
+	 
+	 public static void updateUserVolunteerHours(int id, String start, String end) throws Exception {
+		 
+		 
+		 DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+		 
+		String query = "Update event set Available_Start = '"+start+"', Available_End = '"+end+"' where Event_ID = "+id+" ";
+		
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//giving error but still works ??
+			System.out.println("updateing user times broken ");
+			 
+ }
+	 }
+	 
 }

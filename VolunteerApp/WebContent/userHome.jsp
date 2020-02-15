@@ -179,8 +179,12 @@
 																				<p>Event Data: ${tempEvent.eventDate}</p>
 																				<p>Start Time: ${tempEvent.userStart}</p>
 																				<p>End Time: ${tempEvent.userEnd}</p>
+																				
+																			
+																				
+																				
 
-																				<a href="#" class="btn btn-primary btn-icon-split">
+																				<a href="UserVolunteerEventDetails?currentEventID=${tempEvent.eventDetID}&LevetLocation=${tempEvent.eventLocID}&LeventEndTime=${tempEvent.endTime}&LeventStartTime=${tempEvent.startTime}&userStart=${tempEvent.userStart}&userEnd=${tempEvent.userEnd}&selLocation=${tempEvent.location}&eventID=${tempEvent.eventID}" class="btn btn-primary btn-icon-split">
 																					<span class="icon"> <i
 																						class="fas fa-arrow-right"></i>
 																				</span> <span class="text">View Event</span>

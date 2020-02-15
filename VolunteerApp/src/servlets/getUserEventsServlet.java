@@ -29,7 +29,7 @@ public class getUserEventsServlet extends HttpServlet {
 		//String strUserID = request.getParameter("userID");
 		//int userID = Integer.parseInt(strUserID);
 		
-		int userID = 1;
+		int userID = 9;
 		
 		EventDAO eventDAO = new EventDAO();
 		Vector<Event> allUserEventVect = eventDAO.getUserEvents(userID);
