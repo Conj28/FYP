@@ -23,12 +23,18 @@ public class AdminHome extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 	
+		
+		
 		//Live Events 
 		EventDAO eventDAO = new EventDAO();
 		Vector<Event> GetLiveEvents = eventDAO.getAdminLiveEvents();
 		request.setAttribute("liveEvents", GetLiveEvents);
 		
 		//upcoming Events
+		Vector<Event> GetUpcomingEvents = eventDAO.getAdminUpcomingEvents();
+		request.setAttribute("upcomingEvents", GetUpcomingEvents);
+		
+		
 		
 		
 	    RequestDispatcher rd = request.getRequestDispatcher("/adminHome.jsp");

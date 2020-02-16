@@ -14,33 +14,32 @@ import DAO.EventDAO;
 import javaClass.Event;
 
 /**
- * Servlet implementation class ViewUpdateEvents
+ * Servlet implementation class LiveEvent
  */
-@WebServlet("/ViewUpdateEvents")
-public class ViewUpdateEvents extends HttpServlet {
+@WebServlet("/LiveEvent")
+public class LiveEvent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 	 
-	//get event id from menu
-        
-        String seventID = request.getParameter("updateEventID");
-        int eventID = Integer.parseInt(seventID);
-        
-        //get the first bit of info 
-        Event event = new Event();
+	String strId = request.getParameter("currentEventID");
+	 int id = Integer.parseInt(strId);
+	  
         EventDAO eventDAO = new EventDAO();
         
-        event = eventDAO.getUpdateEventInfo(eventID);
-        request.setAttribute("specificEvent", event);
+       Event event = eventDAO.getSpecificEvent(id);
+       System.out.println("Getting Specific Event");
+       request.setAttribute("specificEvent", event);
+       
+       Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
+        request.setAttribute("specificEventLocation", event2);
         
-        Vector<Event> event2 = eventDAO.getUpdateLocaitons(eventID);
-        request.setAttribute("eventLocations", event2);
+        Vector<Event> GetAllVolunteersforEvent = eventDAO.getAdminUpcomingEvents();
+		request.setAttribute("upcomingEvents", GetAllVolunteersforEvent);
         
-        RequestDispatcher rd = request.getRequestDispatcher("/updateEvent.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/AdminLiveEvent.jsp");
         rd.forward(request, response);
-        
         
  }
 
