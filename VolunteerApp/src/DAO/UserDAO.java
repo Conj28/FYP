@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javaClass.Event;
 import javaClass.User;
@@ -167,7 +168,63 @@ public User getUpdateInfo(String emailInput) throws Exception {
 			if(tempUser.getFirstName() == null) {
 				return null;
 			} else {
-				
-			return tempUser;}
+			return tempUser;
+			}
+			
 }
+
+
+public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
+
+	String firstName = "";
+	String lastName = "";
+	String email = "";
+	String phone = "";
+	String start = "";
+	String end = "";
+	 
+		Vector<User> eventData = new Vector();
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, LEFT(e.Available_start,5), LEFT(e.Available_End,5)\r\n" + 
+				"FROM Users u\r\n" + 
+				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+				"where e.Event_Det_ID = "+id+" ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				firstName = rs.getString(1);
+				lastName = rs.getString(2);
+				email = rs.getString(3);
+				phone = rs.getString(4);
+				start = rs.getString(5);
+				end = rs.getString(6);
+				
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setStart(start);
+				tempUser.setEnd(end);
+				
+
+				eventData.add(tempUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+		return eventData;
+ 
+ }
+
 }

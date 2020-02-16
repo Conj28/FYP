@@ -882,63 +882,7 @@ public class EventDAO {
 			return eventData;
 	 
 	 }
-	 public Vector<Event> GetAllVolunteersforEvent(int id) throws Exception {
-
-			int eventDetID = 0;
-			String name = "";
-			int createdBy = 0;
-			String eventDate = "";
-			String startTime = "";
-			String endTime = "";
-			int numberDays = 0;
-			String img = "";
-			String details = "";
-
-			Vector<Event> eventData = new Vector();
-
-			DBManager dbmgr = new DBManager();
-			Connection conn = dbmgr.getConnection();
-
-			//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-			String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, e.Available_start, e.Available_End\r\n" + 
-					"FROM Users u\r\n" + 
-					"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
-					"where e.Event_Det_ID = 4";
-
-			try {
-				PreparedStatement stmt = conn.prepareStatement(query);
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					eventDetID = (rs.getInt(1));
-					name = (rs.getString(2));
-					createdBy = (rs.getInt(3));
-					eventDate = (rs.getString(4));
-					startTime = (rs.getString(5));
-					endTime = (rs.getString(6));
-					img = (rs.getString(7));
-					
-
-					Event tempEvent = new Event();
-					tempEvent.setEventDetID(eventDetID);
-					tempEvent.setName(name);
-					tempEvent.setCreatedBy(createdBy);
-					tempEvent.setEventDate(eventDate);
-					tempEvent.setStartTime(startTime);
-					tempEvent.setEndTime(endTime);
-					tempEvent.setNumberDays(numberDays);
-					tempEvent.setImg(img);
-					
-
-					eventData.add(tempEvent);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("gettig Event not working :( ");
-			}
-			return eventData;
 	 
-	 }
 	 
 	
 	 

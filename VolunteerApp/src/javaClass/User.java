@@ -13,7 +13,8 @@ public class User {
 	private String vetted;
 	private String password;
 	private String role;
-	
+	private String start;
+	private String end;
 	
 	
 	public int getUserID() {
@@ -81,6 +82,18 @@ public class User {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
 	}
 	
 	

@@ -486,8 +486,7 @@
 												<p class=" mb-2 font-weight-bold text-gray-800">End
 													Time: ${tempEvent.endTime}</p>
 
-												<a
-													href="UserVolunteerEventDetails?currentEventID=${tempEvent.eventDetID}&LevetLocation=${tempEvent.eventLocID}&LeventEndTime=${tempEvent.endTime}&LeventStartTime=${tempEvent.startTime}&userStart=${tempEvent.userStart}&userEnd=${tempEvent.userEnd}&selLocation=${tempEvent.location}&eventID=${tempEvent.eventID}"
+												<a href="LiveEvent?currentEventID=${tempEvent.eventDetID}"
 													class="btn btn-primary btn-icon-split"> <span
 													class="icon"> <i class="fas fa-arrow-right"></i>
 												</span> <span class="text">View Event</span>

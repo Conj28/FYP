@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.EventDAO;
+import DAO.UserDAO;
 import javaClass.Event;
+import javaClass.User;
 
 /**
  * Servlet implementation class LiveEvent
@@ -27,6 +29,7 @@ public class LiveEvent extends HttpServlet {
 	 int id = Integer.parseInt(strId);
 	  
         EventDAO eventDAO = new EventDAO();
+        UserDAO userDAO = new UserDAO();
         
        Event event = eventDAO.getSpecificEvent(id);
        System.out.println("Getting Specific Event");
@@ -35,8 +38,8 @@ public class LiveEvent extends HttpServlet {
        Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
         request.setAttribute("specificEventLocation", event2);
         
-        Vector<Event> GetAllVolunteersforEvent = eventDAO.getAdminUpcomingEvents();
-		request.setAttribute("upcomingEvents", GetAllVolunteersforEvent);
+        Vector<User> GetAllVolunteersforEvent = userDAO.GetAllVolunteersforEvent(id);
+		request.setAttribute("volunteers", GetAllVolunteersforEvent);
         
         RequestDispatcher rd = request.getRequestDispatcher("/AdminLiveEvent.jsp");
         rd.forward(request, response);

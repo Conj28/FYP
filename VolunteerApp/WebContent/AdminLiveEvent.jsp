@@ -14,6 +14,8 @@
 
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 
 
@@ -188,7 +190,7 @@
 															${tempLoc.eventLocID == selectedLocation ? 'selected="selected"' : ''}>${tempLoc.location}
 															(${tempLoc.county})</option>
 
-																
+
 
 
 													</c:forEach>
@@ -198,14 +200,88 @@
 										</div>
 
 
-										
+
+										<!-- Table from sb admin 2 table page -->
+										<div class="card shadow mb-4">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">DataTables
+													Example</h6>
+											</div>
+											<div class="card-body">
+												<div class="table-responsive">
+													<div id="dataTable_wrapper"
+														class="dataTables_wrapper dt-bootstrap4">
+														
+														<div class="row">
+															<div class="col-sm-12">
+																<table class="table table-bordered dataTable"
+																	id="dataTable" width="100%" cellspacing="0" role="grid"
+																	aria-describedby="dataTable_info" style="width: 100%;">
+																	<thead>
+																		<tr role="row">
+																			<th class="sorting_asc" tabindex="0"
+																				aria-controls="dataTable" rowspan="1" colspan="1"
+																				aria-sort="ascending"
+																				aria-label="Name: activate to sort column descending"
+																				style="width: 64px;">Name</th>
+																			<th class="sorting" tabindex="0"
+																				aria-controls="dataTable" rowspan="1" colspan="1"
+																				aria-label="Position: activate to sort column ascending"
+																				style="width: 81px;">Position</th>
+																			<th class="sorting" tabindex="0"
+																				aria-controls="dataTable" rowspan="1" colspan="1"
+																				aria-label="Office: activate to sort column ascending"
+																				style="width: 56px;">Office</th>
+																			<th class="sorting" tabindex="0"
+																				aria-controls="dataTable" rowspan="1" colspan="1"
+																				aria-label="Age: activate to sort column ascending"
+																				style="width: 31px;">Age</th>
+																			<th class="sorting" tabindex="0"
+																				aria-controls="dataTable" rowspan="1" colspan="1"
+																				aria-label="Start date: activate to sort column ascending"
+																				style="width: 68px;">Start date</th>
+																			<th class="sorting" tabindex="0"
+																				aria-controls="dataTable" rowspan="1" colspan="1"
+																				aria-label="Salary: activate to sort column ascending"
+																				style="width: 67px;">Salary</th>
+																		</tr>
+																	</thead>
+																	<tfoot>
+																		<tr>
+																			<th rowspan="1" colspan="1">Name</th>
+																			<th rowspan="1" colspan="1">Position</th>
+																			<th rowspan="1" colspan="1">Office</th>
+																			<th rowspan="1" colspan="1">Age</th>
+																			<th rowspan="1" colspan="1">Start date</th>
+																			<th rowspan="1" colspan="1">Salary</th>
+																		</tr>
+																	</tfoot>
+																	<tbody>
 
 
+																		<c:forEach items="${volunteers}" var="tempUser">
+																			<tr role="row" class="odd">
+																				<td class="sorting_1">${tempUser.firstName}</td>
+																				<td>${tempUser.lastName}</td>
+																				<td>${tempUser.email}</td>
+																				<td>${tempUser.phone}</td>
+																				<td>${tempUser.start}</td>
+																				<td>${tempUser.end}</td>
+																			</tr>
 
-										<div class="  text-center">
-											<p class="hiddenText dangerText" id="errorMessage">Hidden
-												Text</p>
+																		</c:forEach>
+
+
+																	</tbody>
+																</table>
+															</div>
+														</div>
+														
+													</div>
+												</div>
+											</div>
 										</div>
+
 
 										<!--  Check if the user is logged in  otherwise prompt them to -->
 
@@ -301,7 +377,10 @@
 	<script src="js/sb-admin-2.min.js"></script>
 	<script src="js/liveEvent.js"></script>
 
+	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+	<script src="js/dataTablesDemo.js"></script>
 
 
 
