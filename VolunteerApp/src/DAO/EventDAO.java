@@ -35,7 +35,7 @@ public class EventDAO {
 		String query = "SELECT [Event_Det_ID]\r\n" + "      ,[Name]\r\n" + "      ,[Created_By]\r\n"
 				+ "      ,CONVERT(VARCHAR(10), [Event_Date], 103)\r\n" + "      ,LEFT([Start_Time],5)\r\n"
 				+ "      ,LEFT([End_Time],5)\r\n" + "      ,[Number_Days]\r\n" + "      ,[img]\r\n"
-				+ "      ,[Details]\r\n" + "  FROM [app].[dbo].[Event_Det]";
+				+ "      ,[Details]\r\n" + "  FROM [app].[dbo].[Event_Det] where Event_Date > getdate()";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -767,4 +767,62 @@ public class EventDAO {
  }
 	 }
 	 
+	 
+	 public Vector<Event> getAdminLiveEvents() throws Exception {
+
+			int eventDetID = 0;
+			String name = "";
+			int createdBy = 0;
+			String eventDate = "";
+			String startTime = "";
+			String endTime = "";
+			int numberDays = 0;
+			String img = "";
+			String details = "";
+
+			Vector<Event> eventData = new Vector();
+
+			DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+
+			//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+			String query = "Select d.Event_Det_ID, d.Name,d.Created_By, CONVERT(VARCHAR(10), d.Event_Date, 103), LEFT(d.Start_Time,5), LEFT(d.End_Time,5), d.Img, d.Details\r\n" + 
+					"				from Event_Det d\r\n" + 
+					"				where d.Event_Date = cast(getDate() as Date)\r\n" + 
+					"				and Convert(time, getDate()) between Start_Time and End_Time";
+
+			try {
+				PreparedStatement stmt = conn.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					eventDetID = (rs.getInt(1));
+					name = (rs.getString(2));
+					createdBy = (rs.getInt(3));
+					eventDate = (rs.getString(4));
+					startTime = (rs.getString(5));
+					endTime = (rs.getString(6));
+					img = (rs.getString(7));
+					
+
+					Event tempEvent = new Event();
+					tempEvent.setEventDetID(eventDetID);
+					tempEvent.setName(name);
+					tempEvent.setCreatedBy(createdBy);
+					tempEvent.setEventDate(eventDate);
+					tempEvent.setStartTime(startTime);
+					tempEvent.setEndTime(endTime);
+					tempEvent.setNumberDays(numberDays);
+					tempEvent.setImg(img);
+					
+
+					eventData.add(tempEvent);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("gettig Event not working :( ");
+			}
+			return eventData;
+	 
+	 }
 }

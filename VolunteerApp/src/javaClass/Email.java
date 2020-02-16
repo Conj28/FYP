@@ -13,8 +13,8 @@ public class Email {
 	//CODE FROM - https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-using-smtp-java.html
 	
     
-    static final String FROM = "116376836@umail.ucc.ie";
-    static final String FROMNAME = "Conor Murphy";
+    static final String FROM = "alzinvolved@gmail.com";
+    static final String FROMNAME = "Alz Volunteering";
 	
    
     //static final String TO = "116376836@umail.ucc.ie";
