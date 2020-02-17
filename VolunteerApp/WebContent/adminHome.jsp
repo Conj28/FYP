@@ -1,11 +1,22 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Register</title>
+
+<!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
@@ -16,16 +27,13 @@
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 
-
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
 </head>
-<body id="page-top">
+
+<body>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- Sidebar -->
 		<!-- Sidebar -->
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -100,7 +108,7 @@
 				aria-expanded="true" aria-controls="collapsePages"> <i
 					class="fas fa-fw fa-folder"></i> <span>Pages</span>
 			</a>
-				<div id="collapsePages" class="collapse show"
+				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Login Screens:</h6>
@@ -342,16 +350,6 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-					</div>
-
-					<!-- Content Row -->
 					<div class="row">
 
 
@@ -504,14 +502,25 @@
 
 
 					</div>
+					
+
+					
+							
+										
+										
+											
+									</div>
+									</div>
+									</div>
+									</div>
+									</div>
+									<!-- end of form Group -->
+								</div>
+							
+					</div>
 
 
-					<!-- Content Row -->
-
-
-
-					<!-- Content Row -->
-
+					
 
 				</div>
 				<!-- /.container-fluid -->
@@ -523,7 +532,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright © Your Website 2019</span>
+						<span>Copyright &copy; Your Website 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -536,8 +545,8 @@
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"
-		style="display: none;"> <i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- Logout Modal-->
@@ -563,6 +572,11 @@
 		</div>
 	</div>
 
+
+	<!--  ***************************Start of second part ********************************************* -->
+
+
+
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -572,16 +586,14 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="vendor/chart.js/Chart.min.js"></script>
+	<script src="js/jqueryTest.js"></script>
+	<script src="js/autoToggleOff.js"></script>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-
-
 </body>
+
 </html>

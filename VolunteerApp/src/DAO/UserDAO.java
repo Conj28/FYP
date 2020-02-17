@@ -182,6 +182,7 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 	String phone = "";
 	String start = "";
 	String end = "";
+	String location = "";
 	 
 		Vector<User> eventData = new Vector();
 
@@ -189,9 +190,10 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 		Connection conn = dbmgr.getConnection();
 
 		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, LEFT(e.Available_start,5), LEFT(e.Available_End,5)\r\n" + 
-				"FROM Users u\r\n" + 
-				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+				"FROM Users u \r\n" + 
+				"inner join Event e on u.Users_ID = e.Users_ID \r\n" + 
+				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n"+ 
 				"where e.Event_Det_ID = "+id+" ";
 
 		try {
@@ -205,7 +207,7 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 				phone = rs.getString(4);
 				start = rs.getString(5);
 				end = rs.getString(6);
-				
+				location = rs.getString(7);
 
 				User tempUser = new User();
 				tempUser.setFirstName(firstName);
@@ -214,6 +216,64 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 				tempUser.setPhone(phone);
 				tempUser.setStart(start);
 				tempUser.setEnd(end);
+				tempUser.setLocation(location);
+				
+
+				eventData.add(tempUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("GetAllVolunteersforEvent broken :( ");
+		}
+		return eventData;
+ 
+ }
+
+public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exception {
+
+	String firstName = "";
+	String lastName = "";
+	String email = "";
+	String phone = "";
+	String start = "";
+	String end = "";
+	String location = "";
+	 
+		Vector<User> eventData = new Vector();
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+				"FROM Users u\r\n" + 
+				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
+				"where e.Event_Det_ID = "+id+"\r\n" + 
+				"and Available_Start <= '"+time+"' and '"+time+"' < Available_End  ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				firstName = rs.getString(1);
+				lastName = rs.getString(2);
+				email = rs.getString(3);
+				phone = rs.getString(4);
+				start = rs.getString(5);
+				end = rs.getString(6);
+				location = rs.getString(7);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setStart(start);
+				tempUser.setEnd(end);
+				tempUser.setLocation(location);
 				
 
 				eventData.add(tempUser);
@@ -226,5 +286,122 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 		return eventData;
  
  }
+
+public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exception {
+
+	String firstName = "";
+	String lastName = "";
+	String email = "";
+	String phone = "";
+	String start = "";
+	String end = "";
+	String location = "";
+	 
+		Vector<User> eventData = new Vector();
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+				"FROM Users u\r\n" + 
+				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
+				"where e.Event_Det_ID = "+id+"\r\n" + 
+				"and e.event_Loc_ID = "+loc+" ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				firstName = rs.getString(1);
+				lastName = rs.getString(2);
+				email = rs.getString(3);
+				phone = rs.getString(4);
+				start = rs.getString(5);
+				end = rs.getString(6);
+				location = rs.getString(7);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setStart(start);
+				tempUser.setEnd(end);
+				tempUser.setLocation(location);
+				
+
+				eventData.add(tempUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+		return eventData;
+ 
+ }
+
+
+public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time) throws Exception {
+
+	String firstName = "";
+	String lastName = "";
+	String email = "";
+	String phone = "";
+	String start = "";
+	String end = "";
+	String location = "";
+	 
+		Vector<User> eventData = new Vector();
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+				"FROM Users u\r\n" + 
+				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
+				"where e.Event_Det_ID = "+id+"\r\n" + 
+				"and e.event_Loc_ID = "+loc+"\r\n" +
+				"and Available_Start <= '"+time+"' and '"+time+"' < Available_End ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				firstName = rs.getString(1);
+				lastName = rs.getString(2);
+				email = rs.getString(3);
+				phone = rs.getString(4);
+				start = rs.getString(5);
+				end = rs.getString(6);
+				location = rs.getString(7);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setStart(start);
+				tempUser.setEnd(end);
+				tempUser.setLocation(location);
+				
+
+				eventData.add(tempUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+		return eventData;
+ 
+ }
+
 
 }

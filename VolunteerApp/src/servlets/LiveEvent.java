@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.EventDAO;
 import DAO.UserDAO;
 import javaClass.Event;
+import javaClass.TimeCalc;
 import javaClass.User;
 
 /**
@@ -38,8 +40,70 @@ public class LiveEvent extends HttpServlet {
        Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
         request.setAttribute("specificEventLocation", event2);
         
-        Vector<User> GetAllVolunteersforEvent = userDAO.GetAllVolunteersforEvent(id);
-		request.setAttribute("volunteers", GetAllVolunteersforEvent);
+        
+        int location=-1;
+        String eStart = "default";
+        
+        
+        //get the location variable 
+        if(request.getParameter("optionLocation") != null) {
+        	String strLocation = request.getParameter("optionLocation");
+        	location = Integer.parseInt(strLocation);
+        	System.out.println("the Loc ID*****IS****"+ location);
+        	request.setAttribute("selectedLocation", location);
+        }
+	
+        
+        
+        //get start Time
+        if(request.getParameter("optionStartTime") != null) {
+        	eStart = request.getParameter("optionStartTime");
+        	System.out.println("the time*****IS****"+ eStart);
+        	request.setAttribute("selectedTime", eStart);
+     
+        }
+		
+        
+        System.out.println("");
+        
+        if(location == -1 && eStart.equals("default")) {
+        	
+        	Vector<User> GetAllVolunteersforEvent = userDAO.GetAllVolunteersforEvent(id);
+    		request.setAttribute("volunteers", GetAllVolunteersforEvent);
+    		 System.out.println("1111111111111111111111111111111");
+    		
+    		
+        }else if(location != -1 && eStart.equals("default")){
+        	
+        	Vector<User> GetAllVolunteersforEvent = userDAO.GetAllVolunteersforEventLoc(id, location);
+    		request.setAttribute("volunteers", GetAllVolunteersforEvent);
+    		System.out.println("22222222222222222222222222");
+    		
+        }else if(location == -1 && !eStart.equals("default")) {
+        	Vector<User> GetAllVolunteersforEvent = userDAO.GetAllVolunteersforEventTime(id, eStart);
+    		request.setAttribute("volunteers", GetAllVolunteersforEvent);
+    		System.out.println("33333333333333333333333333");
+    		
+        }else if(location != -1 && !eStart.equals("default")){
+        	Vector<User> GetAllVolunteersforEvent = userDAO.GetAllVolunteersforEventLocTime(id, location, eStart);
+    		request.setAttribute("volunteers", GetAllVolunteersforEvent);
+    		System.out.println("44444444444444444444444444444444444444444");
+        }
+        
+        
+        
+        
+		
+		
+		//System.out.println("time is *************"+event.getStartTime());
+		
+		TimeCalc timeCalc = new TimeCalc();
+		//time logic 
+		List<String> listStart = timeCalc.calcStartTimes(event.getStartTime(), event.getEndTime()); 	
+        List<String> listEnd = timeCalc.calcEndTimes(event.getStartTime(), event.getEndTime()); 
+        
+        request.setAttribute("listStartTimes", listStart);
+        request.setAttribute("listEndTimes", listEnd);
         
         RequestDispatcher rd = request.getRequestDispatcher("/AdminLiveEvent.jsp");
         rd.forward(request, response);

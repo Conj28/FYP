@@ -15,6 +15,7 @@ public class User {
 	private String role;
 	private String start;
 	private String end;
+	private String location;
 	
 	
 	public int getUserID() {
@@ -95,7 +96,11 @@ public class User {
 	public void setEnd(String end) {
 		this.end = end;
 	}
-	
-	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	
 }
