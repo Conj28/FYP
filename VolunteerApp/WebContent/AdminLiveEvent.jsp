@@ -454,7 +454,7 @@
 
 
 
-									<!-- Table from sb admin 2 table page -->
+									<!-- Table from sb admin 2 table page ie - datatables https://datatables.net/ -->
 									<div class="card shadow mb-4">
 										<div class="card-header py-3">
 											<h6 class="m-0 font-weight-bold text-primary">DataTables
