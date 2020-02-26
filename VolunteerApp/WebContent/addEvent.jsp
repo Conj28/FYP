@@ -573,19 +573,17 @@
 												
 												<!-- end of Top Half-->
 												</div>
-												
-												
-													
-													</div>
+										
+												</div>
 												</div>
 												</div>
 												</div>
 												
 												<!-- ****************Start of the right side************************************************* -->
 												<div class = "col-lg-6 col-sm-6">
-												<div class = "card o-hidden border-0 shadow-lg my-5">
-												<div class = "card-body">
-												<div class="p-5">
+													<div class = "card o-hidden border-0 shadow-lg my-5">
+													<div class = "card-body">
+													<div class="p-5">
 												
 												<div class="text-center">
 												<h2 class="text-gray-900 mb-4">Add Locations</h2>

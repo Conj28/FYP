@@ -20,8 +20,6 @@ $(document).ready(function() {
 	      // $('#loactionForm').submit();
 	       console.log("Changed!!!!")
 	    });
-	 
-	 
 	
 	 
 	});

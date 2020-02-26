@@ -34,12 +34,12 @@ public class updateEventServlet extends HttpServlet {
 		String srrEventDetID = request.getParameter("EventID");
 		int eventID = Integer.parseInt(srrEventDetID);
 		
-		System.out.println("***********************"+eventName);
+		/*System.out.println("***********************"+eventName);
 		System.out.println(eventDate);
 		System.out.println(startTime);
 		System.out.println(endTime);
 		System.out.println(img);
-		System.out.println(description + "*******************************");
+		System.out.println(description + "*******************************"); */
 		
 		
 		EventDAO eventDAO = new EventDAO();

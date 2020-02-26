@@ -396,7 +396,6 @@
 									</div>
 
 
-
 									<div class="row mb-4">
 										<div class="col-lg-2 col-mb-2"></div>
 
@@ -413,16 +412,10 @@
 														(${tempLoc.county})</option>
 
 
-
-
-
-
 												</c:forEach>
 											</select>
 										</div>
 									</div>
-
-
 
 									<div class="row mb-4 form-group">
 										<!--  experiremental second drop down -->
@@ -673,7 +666,7 @@
 	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 	<script src="js/dataTablesDemo.js"></script>
-	#
+	
 
 </body>
 

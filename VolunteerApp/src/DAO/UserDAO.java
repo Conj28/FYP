@@ -12,7 +12,7 @@ import utils.DBManager;
 
 public class UserDAO {
 
-	
+	//https://www.sqlshack.com/the-hashbytes-function-in-t-sql/
 	public User login(String emailInput, String passwordInput) throws Exception {
 		
 		int userID;

@@ -355,9 +355,6 @@
 
 
 
-
-
-
 						<!-- Live Events -->
 						<c:forEach items="${liveEvents}" var="tempEvent">
 							<div class="col-lg-3 col-md-12 col-xs-6">
@@ -502,13 +499,7 @@
 
 
 					</div>
-					
-
-					
-							
-										
-										
-											
+								
 									</div>
 									</div>
 									</div>
