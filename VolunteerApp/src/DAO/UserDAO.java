@@ -217,7 +217,6 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 				tempUser.setStart(start);
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
-				
 
 				eventData.add(tempUser);
 			}
