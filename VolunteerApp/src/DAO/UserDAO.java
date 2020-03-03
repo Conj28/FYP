@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
-import javaClass.Event;
 import javaClass.User;
 import utils.DBManager;
 
@@ -183,6 +183,7 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 	String start = "";
 	String end = "";
 	String location = "";
+	String county = "";
 	 
 		Vector<User> eventData = new Vector();
 
@@ -190,7 +191,7 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 		Connection conn = dbmgr.getConnection();
 
 		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
 				"FROM Users u \r\n" + 
 				"inner join Event e on u.Users_ID = e.Users_ID \r\n" + 
 				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n"+ 
@@ -208,6 +209,7 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 				start = rs.getString(5);
 				end = rs.getString(6);
 				location = rs.getString(7);
+				county = rs.getString(8);
 
 				User tempUser = new User();
 				tempUser.setFirstName(firstName);
@@ -217,6 +219,7 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 				tempUser.setStart(start);
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
+				tempUser.setCounty(county);
 
 				eventData.add(tempUser);
 			}
@@ -238,6 +241,7 @@ public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exc
 	String start = "";
 	String end = "";
 	String location = "";
+	String county = "";
 	 
 		Vector<User> eventData = new Vector();
 
@@ -245,7 +249,7 @@ public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exc
 		Connection conn = dbmgr.getConnection();
 
 		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location,l.county\r\n" + 
 				"FROM Users u\r\n" + 
 				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
 				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
@@ -264,6 +268,7 @@ public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exc
 				start = rs.getString(5);
 				end = rs.getString(6);
 				location = rs.getString(7);
+				county = rs.getString(8);
 
 				User tempUser = new User();
 				tempUser.setFirstName(firstName);
@@ -273,6 +278,7 @@ public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exc
 				tempUser.setStart(start);
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
+				tempUser.setCounty(county);
 				
 
 				eventData.add(tempUser);
@@ -295,6 +301,7 @@ public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exceptio
 	String start = "";
 	String end = "";
 	String location = "";
+	String county = "";
 	 
 		Vector<User> eventData = new Vector();
 
@@ -302,7 +309,7 @@ public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exceptio
 		Connection conn = dbmgr.getConnection();
 
 		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
 				"FROM Users u\r\n" + 
 				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
 				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
@@ -321,6 +328,7 @@ public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exceptio
 				start = rs.getString(5);
 				end = rs.getString(6);
 				location = rs.getString(7);
+				county = rs.getString(8);
 
 				User tempUser = new User();
 				tempUser.setFirstName(firstName);
@@ -330,7 +338,7 @@ public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exceptio
 				tempUser.setStart(start);
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
-				
+				tempUser.setCounty(county);				
 
 				eventData.add(tempUser);
 			}
@@ -353,6 +361,7 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
 	String start = "";
 	String end = "";
 	String location = "";
+	String county = "";
 	 
 		Vector<User> eventData = new Vector();
 
@@ -360,7 +369,7 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
 		Connection conn = dbmgr.getConnection();
 
 		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location\r\n" + 
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
 				"FROM Users u\r\n" + 
 				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
 				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
@@ -380,6 +389,7 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
 				start = rs.getString(5);
 				end = rs.getString(6);
 				location = rs.getString(7);
+				county = rs.getString(8);
 
 				User tempUser = new User();
 				tempUser.setFirstName(firstName);
@@ -389,6 +399,7 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
 				tempUser.setStart(start);
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
+				tempUser.setCounty(county);
 				
 
 				eventData.add(tempUser);
@@ -402,5 +413,86 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
  
  }
 
+public ArrayList<User> getEmailAllEvents(int id) throws Exception{
+	
+	ArrayList<User> users = new ArrayList<User>();
+	
+	
+	String firstName;
+	String email;
+	
+	DBManager dbmgr = new DBManager();
+	Connection conn = dbmgr.getConnection();
+
+	String query = "Select u.First_Name, u.email from Users u\r\n" + 
+			"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+			"where e.Event_Det_ID = "+id+" " ;
+	
+	try {
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			
+			firstName = rs.getString(1);
+			email = rs.getString(2);
+			
+			User tempUser = new User();
+			tempUser.setFirstName(firstName);
+			tempUser.setEmail(email);
+			
+			users.add(tempUser);
+			
+		}
+	
+	}catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("gettig Event not working :( ");
+	}
+	return users;
+	
+}
+
+
+public ArrayList<User> getEmailLocEvents(int id, int locId) throws Exception{
+	
+	ArrayList<User> users = new ArrayList<User>();
+	
+	
+	String firstName;
+	String email;
+	
+	DBManager dbmgr = new DBManager();
+	Connection conn = dbmgr.getConnection();
+
+	String query = "Select u.First_Name, u.email from Users u\r\n" + 
+			"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
+			"where e.Event_Det_ID = "+id+""
+					+ "and e.Event_Loc_ID = "+locId+" " ;
+	
+	try {
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			
+			firstName = rs.getString(1);
+			email = rs.getString(2);
+			
+			User tempUser = new User();
+			tempUser.setFirstName(firstName);
+			tempUser.setEmail(email);
+			
+			users.add(tempUser);
+			
+		}
+	
+	}catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("gettig Event not working :( ");
+	}
+	return users;
+	
+}
+
+	
 
 }

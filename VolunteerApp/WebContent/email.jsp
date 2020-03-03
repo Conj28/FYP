@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!DOCTYPE html>
@@ -40,7 +40,8 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
@@ -270,7 +271,7 @@
 									<div class="font-weight-bold">
 										<div class="text-truncate">Hi there! I am wondering if
 											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler Â· 58m</div>
+										<div class="small text-gray-500">Emily Fowler · 58m</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -281,7 +282,7 @@
 									<div>
 										<div class="text-truncate">I have the photos that you
 											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun Â· 1d</div>
+										<div class="small text-gray-500">Jae Chun · 1d</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -293,7 +294,7 @@
 										<div class="text-truncate">Last month's report looks
 											great, I am very happy with the progress so far, keep up the
 											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
+										<div class="small text-gray-500">Morgan Alvarez · 2d</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -305,7 +306,7 @@
 										<div class="text-truncate">Am I a good boy? The reason I
 											ask is because someone told me that people say this to all
 											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
+										<div class="small text-gray-500">Chicken the Dog · 2w</div>
 									</div>
 								</a> <a class="dropdown-item text-center small text-gray-500"
 									href="#">Read More Messages</a>
@@ -348,189 +349,133 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
-
-					<div class="row">
+				<div class="container">
 
 
+					<div class="card o-hidden border-0 shadow-lg my-5">
+						<div class="card-body p-0">
+							<!-- Nested Row within Card Body -->
+							<div class="row">
 
-
-						<!-- Live Events -->
-						<c:forEach items="${liveEvents}" var="tempEvent">
-							<div class="col-lg-3 col-md-12 col-xs-6">
-								<div class="card mb-4 ">
-
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-success">
-										<h6 class="m-0 font-weight-bold text-white">Earnings
-											Overview</h6>
-										<div class="dropdown no-arrow show">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink" x-placement="bottom-end"
-												style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-												<a class="dropdown-item" href="#">Action</a> <a
-													class="dropdown-item" href="#">Another action</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item" href="#">Something else here</a>
-											</div>
+								<div class="col-lg-12">
+									<div class="p-5">
+										<div class="text-center mb-4">
+											<h1 class="h4 text-primary mb-4">Email Volunteers</h1>
+											<hr>
 										</div>
-									</div>
+										<form action="SendEventEmail?currentEventID=${specificEvent.eventDetID}" method="POST"
+											class="user" id="registerForm">
 
-
-									<div class="card-body">
-										<div class="row">
-											<div class="col-lg-5 col-md-4">
-
-												<img style="height: 10rem; width: 11rem" class="mb-4"
-													src="${tempEvent.img}" />
-
+											<div class="form-group row">
+												<div class="col-sm-4 mb-3 mb-sm-0">
+													<h4 class="ml-4">Event:</h4>
+												</div>
+												<div class="col-sm-8">
+													<h4>${specificEvent.name}</h4>
+													<input type="hidden" name="eventName" value="${specificEvent.name}"> 
+												</div>
 											</div>
-											<!-- mobile view is md -->
-											<div class="col-lg-7 col-md-8 pl-4">
+											
+											<div class="form-group row">
+												<div class="col-sm-4 mb-3 mb-sm-0 " style = "padding-top:10px;">
+													<h4 class="ml-4">Location</h4>
+												</div>
+												<div class="col-sm-8">
+													
+											<select id="optionLocation" name="optionLocation"
+												class="form-control selectPadHeight selectedLocation">
+												<option value="-1">All Locations</option>
+												<c:forEach items="${specificEventLocation}" var="tempLoc">
+
+													<!-- https://stackoverflow.com/questions/15657367/selected-value-for-jsp-drop-down-using-jstl  -->
+													<!--  make sure that the is only one space between two varibales  -->
+													<option value="${tempLoc.eventLocID}"
+														>${tempLoc.location}
+														(${tempLoc.county})</option>
 
 
-												<h3 class="text-success">${tempEvent.name}</h3>
+												</c:forEach>
+											</select>
+												</div>
+											</div>
+											
 
+											<div class="form-group row">
+												<div class="col-sm-4 mb-3 mb-sm-0 ">
+													<h4 class="ml-4">Title</h4>
+												</div>
+												<div class="col-sm-8">
+													<input type="text" class="form-control form-control-user"
+														name="title" id="title" placeholder="Title"
+														>
+												</div>
+											</div>
 
-
-												<p class="mb-0 font-weight-bold text-gray-800">Event
-													Data: ${tempEvent.eventDate}</p>
-												<p class=" mb-0 font-weight-bold text-gray-800">Start
-													Time: ${tempEvent.startTime}</p>
-												<p class=" mb-2 font-weight-bold text-gray-800">End
-													Time: ${tempEvent.endTime}</p>
-
-												<a
-													href="LiveEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-success btn-icon-split"> <span
-													class="icon"> <i class="fas fa-street-view"></i>
-												</span> <span class="text">View Live</span>
-												</a>
-
+											<div class="form-group row">
+												<div class="col-sm-4 mb-3 mb-sm-0">
+													<h4 class="ml-4">Heading</h4>
+												</div>
+												<div class="col-sm-8">
+													<input type="text" class="form-control form-control-user"
+														name="Heading" id="heading" placeholder="Heading"
+														value="${sessionScope.User.lastName}">
+												</div>
 											</div>
 
 
-										</div>
+											<div class="form-group row">
+												<div class="col-sm-4 mb-4 mb-sm-0">
+													<h4 class="ml-4">Message</h4>
+												</div>
+												<div class="col-sm-8">
+													<textarea class="form-control" name="message" rows="15"
+															cols="55"></textarea>
+												</div>
+											</div>
+
+
+											<button type="submit" 
+												class="btn btn-primary btn-user btn-block">Send Email</button>
+											<hr>
+
+										</form>
+
 									</div>
 								</div>
 							</div>
-
-						</c:forEach>
-
-
+						</div>
 					</div>
-
-
-
-					<!-- upcoming events Row -->
-					<!-- Content Row -->
-					<div class="row">
-
-						<!-- Live Events -->
-						<c:forEach items="${upcomingEvents}" var="tempEvent">
-							<div class="col-lg-3 col-md-12 col-xs-6">
-								<div class="card mb-4 ">
-								<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
-										<h6 class="m-0 font-weight-bold text-white">Earnings
-											Overview</h6>
-										<div class="dropdown no-arrow show">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink" x-placement="bottom-end"
-												style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-												<a class="dropdown-item" href="ViewUpdateEvents?updateEventID=${tempEvent.eventDetID}">Update Event</a> 
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item" href="EmailUsers?currentEventID=${tempEvent.eventDetID}">Email Volunteers</a>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
-											<div class="col-lg-5 col-md-4">
-
-												<img style="height: 10rem; width: 11rem" class="mb-4"
-													src="${tempEvent.img}" />
-
-											</div>
-											<!-- mobile view is md -->
-											<div class="col-lg-7 col-md-8 pl-4">
-
-
-												<h3 class="text-primary">${tempEvent.name}</h3>
-
-
-
-												<p class="mb-0 font-weight-bold text-gray-800">Event
-													Data: ${tempEvent.eventDate}</p>
-												<p class=" mb-0 font-weight-bold text-gray-800">Start
-													Time: ${tempEvent.startTime}</p>
-												<p class=" mb-2 font-weight-bold text-gray-800">End
-													Time: ${tempEvent.endTime}</p>
-
-												<a href="LiveEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-primary btn-icon-split"> <span
-													class="icon"> <i class="fas fa-arrow-right"></i>
-												</span> <span class="text">View Event</span>
-												</a>
-
-											</div>
-
-
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</c:forEach>
-
-
-					</div>
-								
-									</div>
-									</div>
-									</div>
-									</div>
-									</div>
-									<!-- end of form Group -->
-								</div>
-							
-					</div>
-
-
-					
 
 				</div>
-				<!-- /.container-fluid -->
-
 			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2019</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
 		</div>
-		<!-- End of Content Wrapper -->
+	</div>
+	<!-- end of form Group -->
+	</div>
+
+	</div>
+
+
+
+
+	</div>
+	<!-- /.container-fluid -->
+
+	</div>
+	<!-- End of Main Content -->
+
+	<!-- Footer -->
+	<footer class="sticky-footer bg-white">
+		<div class="container my-auto">
+			<div class="copyright text-center my-auto">
+				<span>Copyright &copy; Your Website 2019</span>
+			</div>
+		</div>
+	</footer>
+	<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -549,7 +494,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">Ã—</span>
+						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready

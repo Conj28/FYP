@@ -362,6 +362,8 @@
 							<div class="col-lg-2"></div>
 							<div class="col-lg-8">
 								<div class="card mb-4">
+								
+								
 									<div class="card-body">
 
 
@@ -437,7 +439,7 @@
 										
 										
 												<button type ="submit" class="btn btn-primary btn-user btn-block">
-                      Login
+                      Filter
                     </button>
                    
 										</div>
@@ -449,10 +451,10 @@
 
 									<!-- Table from sb admin 2 table page ie - datatables https://datatables.net/ -->
 									<div class="card shadow mb-4">
-										<div class="card-header py-3">
+										<!--  <div class="card-header py-3 ">
 											<h6 class="m-0 font-weight-bold text-primary">DataTables
 												Example</h6>
-										</div>
+										</div> -->
 										<div class="card-body">
 											<div class="table-responsive">
 												<div id="dataTable_wrapper"
@@ -473,42 +475,47 @@
 																		<th class="sorting" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Position: activate to sort column ascending"
-																			style="width: 81px;">Position</th>
+																			style="width: 81px;">Location</th>
 																		<th class="sorting" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Office: activate to sort column ascending"
-																			style="width: 56px;">Office</th>
+																			style="width: 56px;">County</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Office: activate to sort column ascending"
+																			style="width: 56px;">Email</th>
 																		<th class="sorting" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Age: activate to sort column ascending"
-																			style="width: 31px;">Age</th>
+																			style="width: 31px;">Phone</th>
 																		<th class="sorting" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Start date: activate to sort column ascending"
-																			style="width: 68px;">Start date</th>
+																			style="width: 68px;">Start Time</th>
 																		<th class="sorting" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Salary: activate to sort column ascending"
-																			style="width: 67px;">Salary</th>
+																			style="width: 67px;">End Time</th>
 																	</tr>
 																</thead>
 																<tfoot>
-																	<tr>
+																<!-- <tr>
 																		<th rowspan="1" colspan="1">Name</th>
 																		<th rowspan="1" colspan="1">Position</th>
 																		<th rowspan="1" colspan="1">Office</th>
 																		<th rowspan="1" colspan="1">Age</th>
 																		<th rowspan="1" colspan="1">Start date</th>
 																		<th rowspan="1" colspan="1">Salary</th>
-																	</tr>
-																</tfoot>
+																	</tr> 
+																</tfoot> -->
 																<tbody>
 
 
 																	<c:forEach items="${volunteers}" var="tempUser">
 																		<tr role="row" class="odd">
-																			<td class="sorting_1">${tempUser.firstName}</td>
+																			<td class="sorting_1">${tempUser.firstName} ${tempUser.lastName}</td>
 																			<td>${tempUser.location}</td>
+																			<td style="text-transform: capitalize">${tempUser.county}</td>
 																			<td>${tempUser.email}</td>
 																			<td>${tempUser.phone}</td>
 																			<td>${tempUser.start}</td>

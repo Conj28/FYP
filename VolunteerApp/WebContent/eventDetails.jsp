@@ -129,55 +129,77 @@
 
 					<div class="row">
 
-
-
-
-
 						<!--***************************** Put Code Here **************************** -->
 
 						<div class="row">
 							<div
-								class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
+								class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4">
 								<div class="card">
 
+									<div
+										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
+										<h3 class="m-0 font-weight-bold text-white">Event Details</h3>
+
+									</div>
+
 									<div class="card-body">
-										<img class="img-details-page"
-											src="${sessionScope.specificEvent.img}">
+										<div class="row mb-4">
+											<div class="col-md-6">
+												<img class="img-details-page"
+													src="${sessionScope.specificEvent.img}">
+
+											</div>
+											<div class="col-md-6">
+
+												<h2 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h2>
+												<hr>
+												<div class="mb-2">
+													<h4 class="font-weight-bold text-primary header-inline">Event
+														Date:</h4>
+													<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.eventDate}</h4>
+												</div>
+
+												<div class="mb-2">
+													<h4 class="font-weight-bold text-primary header-inline">Start
+														Time:</h4>
+													<h4 name="eventStartTime"
+														class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
+												</div>
+
+												<div class="mb-2">
+													<h4 class="font-weight-bold text-primary header-inline">End
+														Time:</h4>
+													<h4 name="eventEndTime"
+														class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
+												</div>
+												<hr>
+												<!--<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p> -->
+
+												<!--  Signup part -->
+											</div>
+										</div>
+										<div class="mb-4">
+											<h3 class="text-primary">Event Description</h3>
+											<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
+										</div>
 									</div>
 								</div>
+
 							</div>
 
-							<div class="col-xl-7 col-sm-12">
+							<div class="col-xl-5 col-sm-12">
 								<div class="card mb-4">
+
+									<div
+										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
+
+										<h3 class="m-0 font-weight-bold text-white">Get Involved</h3>
+
+									</div>
 									<div class="card-body">
-										<h2 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h2>
-										<hr>
-										<div class="mb-2">
-											<h4 class="font-weight-bold text-primary header-inline">Event
-												Date:</h4>
-											<h4 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.eventDate}</h4>
-										</div>
 
-										<div class="mb-2">
-											<h4 class="font-weight-bold text-primary header-inline">Start
-												Time:</h4>
-											<h4 name="eventStartTime"
-												class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h4>
-										</div>
 
-										<div class="mb-2">
-											<h4 class="font-weight-bold text-primary header-inline">End
-												Time:</h4>
-											<h4 name="eventEndTime"
-												class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h4>
-										</div>
-										<hr>
-										<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
 
-										<!--  Signup part -->
-
-										<hr>
-										<h2 class="font-weight-bold text-primary">Get Involved</h2>
 
 
 										<form class="user" id="submitForm" action="eventSignUpServlet"
@@ -200,30 +222,6 @@
 																${tempLoc.eventLocID == selectedLocation ? 'selected="selected"' : ''}>${tempLoc.location}
 																(${tempLoc.county})</option>
 
-																
-
-
-														</c:forEach>
-													</select>
-												</div>
-
-											</div>
-											<!-- Second Row -->
-											<!-- Start of signup change 
-											<div class="row mb-4">
-
-												<div class="col-sm-12 col-lg-4">
-													<h4 class="font-weight-bold text-primary">Start Time</h4>
-												</div>
-												<div class="col-sm-12 col-lg-8">
-													<select id="optionStartTime" name="optionStartTime"
-														onChange="onItemChanged()"
-														class="form-control selectPadHeight">
-														
-														<!--  https://stackoverflow.com/questions/2947417/issue-of-jstl-foreach-iterate-from-arraylist --
-														
-														<c:forEach items="${listStartTimes}" var="time">
-															<option value="${time}">${time}</option>
 
 														</c:forEach>
 													</select>
@@ -231,102 +229,61 @@
 
 											</div>
 
-											<div class="row mb-4">
-											-->
+
+											<div id="dataTable_wrapper"
+												class="dataTables_wrapper dt-bootstrap4">
+												<div class="row">
+													<div class="col-sm-12">
+														<table class="table table-bordered dataTable">
+															<thead>
+																<tr>
+																	<th>Time</th>
+																	<th>Select</th>
+																	<th>Spaces Available</th>
+																</tr>
 
 
-											<!--  <div class="col-sm-12 col-lg-4">
-													<h4 class="font-weight-bold text-primary">End Time
-														</h4>
-												</div>
-												<div class="col-sm-12 col-lg-8">
-													<select id ="optionEndTime" name="optionEndTime" onChange="onItemChanged()"
-														class="form-control selectPadHeight">
+															</thead>
 
-														<c:forEach items="${listEndTimes}" var="time">
-															<option  value="${time}">${time}</option>
+															<tbody>
+																<c:forEach items="${locationTimes}" var="time">
+																	<tr>
+																		<td>${time.startTime}-${time.endTime}</td>
+																		<td class="tdNoPadding"><label class="b-contain">
+																				<c:if
+																					test="${time.availableSpaces ge time.numberSpaces}">
+																					<input type="checkbox" value="${time.startTime}"
+																						name="checkedTime" disabled>
+																				</c:if> <c:if
+																					test="${time.availableSpaces lt time.numberSpaces}">
+																					<input type="checkbox" value="${time.startTime}"
+																						name="checkedTime">
+																				</c:if>
+																				<div class="b-input"></div>
+																		</label> <c:if
+																				test="${time.availableSpaces ge time.numberSpaces}">
+																				<td>0</td>
+																			</c:if> <c:if
+																				test="${time.availableSpaces lt time.numberSpaces}">
+																				<td>${time.numberSpaces - time.availableSpaces}</td>
+																			</c:if></td>
 
-														</c:forEach>
-													</select>
-												</div> -->
+																		<!--  available spaces  = num signed up -->
+																		<!-- number spaces = numer of people per event -->
 
-											<!--  New select list part -->
-											
-											<!-- <div class = "container-fluid margin40percent mb-4">
-											<c:forEach items="${locationTimes}" var="time">
-											<div class = "row">
-											
-												<div class = "col-lg-2 col-md-3">
-												<p>${time.startTime} - ${time.endTime}</p>
-												</div>
-												<div class = "col-lg-1 col-md-2">
-												<label class = "b-contain">
-																<input type="checkbox" value="${time.startTime}" name="checkedTime">
-																<div class="b-input"></div>
-																</label>
-												</div>
-												<div class = "col-lg-1 col-md-1">
-												<p>${time.availableSpaces}</p>
-												</div>
-											
-											</div>
-											</c:forEach>
-											</div> -->
-											
-											<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-											<div class = "row">
-											<div class = "col-sm-12">
-											 	<table class = "table table-bordered dataTable" >
-													<thead>
-														<tr>
-															<th>Time</th>
-															<th>Select</th>
-															<th>Spaces Available</th>
-														</tr>
-
-
-													</thead>
-
-													<tbody>
-														<c:forEach items="${locationTimes}" var="time">
-															<tr>
-																<td>${time.startTime}- ${time.endTime}</td>
-																<td class = "tdNoPadding">
-																<label class = "b-contain">
-																<c:if test="${time.availableSpaces ge time.numberSpaces}">
-																<input type="checkbox" value="${time.startTime}" name="checkedTime" disabled>
-																</c:if>
-																<c:if test="${time.availableSpaces lt time.numberSpaces}">
-																<input type="checkbox" value="${time.startTime}" name="checkedTime" >
-																</c:if>
-																<div class="b-input"></div>
-																</label>
-																
-															
-																<c:if test="${time.availableSpaces ge time.numberSpaces}">
-																<td>0</td>
-																</c:if>
-																<c:if test="${time.availableSpaces lt time.numberSpaces}">
-																<td>${time.numberSpaces - time.availableSpaces}</td>
-																</c:if>
-																</td>
-																	
-																	<!--  available spaces  = num signed up -->
-																	<!-- number spaces = numer of people per event -->
-
-														 		<!-- <td>${time.availableSpaces}</td>
+																		<!-- <td>${time.availableSpaces}</td>
 																<td>${time.numberSpaces}</td> -->
-															</tr>
+																	</tr>
 
-														</c:forEach>
-													</tbody>
-												</table> 
+																</c:forEach>
+															</tbody>
+														</table>
+													</div>
 												</div>
-												</div>
-												</div>
-												
-												
-										
+											</div>
+
+
+
 											<div class="  text-center">
 												<p class="hiddenText dangerText" id="errorMessage">Hidden
 													Text</p>
@@ -386,83 +343,17 @@
 											<input type="hidden" id="currentEventID"
 												name="currentEventID"
 												value="${sessionScope.specificEvent.eventDetID}" />
-
 										</form>
-
 
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- end of card main text column -->
 					</div>
-
-					<!--
-								------------------------Experimental second card ------------------------------------
-								<div class = "col-xl-6 col-sm-12">
-								<div class="card mb-4">
-									<div class="card-body" >
-										<h1 class="font-weight-bold text-primary">${sessionScope.specificEvent.name}</h1>
-										<hr>
-										<div class="mb-4">
-											<h3 class="font-weight-bold text-primary header-inline">Event Date: </h3>
-											<h3 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.eventDate}</h3>
-										</div>
-										
-										<div class="mb-4">
-											<h3 class="font-weight-bold text-primary header-inline">Start Time: </h3>
-											<h3 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.startTime}</h3>
-										</div>
-										
-										<div class="mb-4">
-											<h3 class="font-weight-bold text-primary header-inline">End Time: </h3>
-											<h3 class="font-weight-bold header-inline text-gray-800">${sessionScope.specificEvent.endTime}</h3>
-										</div>
-										<hr>
-										<p class="mb-4 m-0 font-weight-bold text-gray-800 text-lg">${sessionScope.specificEvent.details}</p>
-									</div>
-								</div>
-								
-								</div> -->
-
-
-
-
+					<!-- end of card main text column -->
 				</div>
 
 
-				<!-- 
-	<p>${sessionScope.specificEvent.eventDetID}</p>
-	<p>${sessionScope.specificEvent.name}</p>
-	<p>${sessionScope.specificEvent.eventDate}</p>
-	<p>${sessionScope.specificEvent.startTime}</p>
-	<p>${sessionScope.specificEvent.endTime}</p>
-	<img src ="${sessionScope.specificEvent.img}">
-	<p>${sessionScope.specificEvent.details}</p>
-	
-	<c:forEach items="${specificEventLocation}" var="tempLoc">
-
-								<div class="card shadow mb-4 broder-left-primary">
-								
-										<p>County: ${tempLoc.eventLocID}</p>
-										<p>County: ${tempLoc.county}</p>
-										<p>location Time: ${tempLoc.location}</p>
-										
-									</div>
-									
-									
-
-
-						
-						</c:forEach>
-						
-						
-						
-						
-
-
-<!--  -->
-				<!--  end of Row div -->
 			</div>
 
 
