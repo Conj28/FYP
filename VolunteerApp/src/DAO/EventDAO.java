@@ -719,8 +719,6 @@ public class EventDAO {
 			 
 			 try {
 				 
-				
-				 
 					PreparedStatement stmt = conn.prepareStatement(query);
 					ResultSet rs = stmt.executeQuery();
 					while (rs.next()) {
@@ -730,8 +728,6 @@ public class EventDAO {
 						tempAvail.setStartTime(timeList.get(i));
 						tempAvail.setEndTime(endList.get(i));
 					
-						
-						
 						
 					}
 					
@@ -940,7 +936,90 @@ public class EventDAO {
 	 
 	 }
 	 
+	 public Vector<Event> getLocAndNumber(int id) throws Exception {
+
+		String location ="";
+		int num = 0;
+
+			Vector<Event> eventData = new Vector();
+
+			DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+
+			//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+			String query = " \r\n" + 
+					"Select l.Location, count(e.Event_Loc_ID) from Event e\r\n" + 
+					"inner join Event_Det d on e.Event_Det_ID = d.Event_Det_ID\r\n" + 
+					"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
+					"where e.Event_Det_ID = "+id+"\r\n" + 
+					"group by l.Location\r\n" + 
+					"order by l.Location   ";
+
+			try {
+				PreparedStatement stmt = conn.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					location = (rs.getString(1));
+					num = (rs.getInt(2));
+					
+
+					Event tempEvent = new Event();
+					tempEvent.setLocation(location);
+					tempEvent.setNumberSpaces(num);
+					
+
+					eventData.add(tempEvent);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Error in Event.getLocAndNumber ");
+			}
+			return eventData;
 	 
+	 }
+	 
+	 public Vector<Event> getLocationMoney(int id) throws Exception {
+			int eventLocID = 0;
+			String county = "";
+			String location = "";
+			double raised = 0;
+			
+			Vector<Event> eventData = new Vector();
+
+			DBManager dbmgr = new DBManager();
+			Connection conn = dbmgr.getConnection();
+
+			String query = "Select Event_Loc_ID, County, Location, Raised from Event_Loc where Event_Det_Id = '" + id + "' ";
+
+			try {
+				PreparedStatement stmt = conn.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					System.out.println("it got here !!!");
+					eventLocID = (rs.getInt(1));
+					county = (rs.getString(2));
+					location = (rs.getString(3));
+					raised = (rs.getDouble(4));
+
+					Event tempEvent = new Event();
+					tempEvent.setEventLocID(eventLocID);
+					tempEvent.setCounty(county);
+					tempEvent.setLocation(location);
+					tempEvent.setRaised(raised);
+
+					eventData.add(tempEvent);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("gettig Event not working :( ");
+			}
+			return eventData;
+
+		}
+
+		
 	
 	 
 	 

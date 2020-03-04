@@ -18,6 +18,7 @@ public class Event {
 	private int eventID;
 	private int availableSpaces;
 	private int numberSpaces;
+	private double raised;
 	
 
 	public int getEventDetID() {
@@ -125,6 +126,11 @@ public class Event {
 	public void setNumberSpaces(int numberSpaces) {
 		this.numberSpaces = numberSpaces;
 	}
-	
+	public double getRaised() {
+		return raised;
+	}
+	public void setRaised(double raised) {
+		this.raised = raised;
+	}
 	
 }

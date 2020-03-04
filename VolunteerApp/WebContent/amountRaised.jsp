@@ -271,7 +271,7 @@
 									<div class="font-weight-bold">
 										<div class="text-truncate">Hi there! I am wondering if
 											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler · 58m</div>
+										<div class="small text-gray-500">Emily Fowler Â· 58m</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -282,7 +282,7 @@
 									<div>
 										<div class="text-truncate">I have the photos that you
 											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun · 1d</div>
+										<div class="small text-gray-500">Jae Chun Â· 1d</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -294,7 +294,7 @@
 										<div class="text-truncate">Last month's report looks
 											great, I am very happy with the progress so far, keep up the
 											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez · 2d</div>
+										<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -306,7 +306,7 @@
 										<div class="text-truncate">Am I a good boy? The reason I
 											ask is because someone told me that people say this to all
 											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog · 2w</div>
+										<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
 									</div>
 								</a> <a class="dropdown-item text-center small text-gray-500"
 									href="#">Read More Messages</a>
@@ -349,96 +349,60 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container">
 
 
-					<!-- upcoming events Row -->
-					<!-- Content Row -->
-					<div class="row">
+					<div class="card o-hidden border-0 shadow-lg my-5">
+						<div class="card-body p-0">
+							<!-- Nested Row within Card Body -->
+							<div class="row">
 
-						<div class="col-lg-12 mb-4">
-							<div class="card bg-gradient-secondary text-white shadow">
-								<div class="card-body">Past Events</div>
-							</div>
-						</div>
-
-
-						<!-- Live Events -->
-						<c:forEach items="${upcomingEvents}" var="tempEvent">
-							<div class="col-lg-3 col-md-6 col-xs-12">
-								<div class="card mb-4 ">
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-secondary">
-										<h6 class="m-0 font-weight-bold text-white">Earnings
-											Overview</h6>
-										<div class="dropdown no-arrow show">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink" x-placement="bottom-end"
-												style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-												<a class="dropdown-item"
-													href="SetAmountRaised?updateEventID=${tempEvent.eventDetID}">Amount Raised</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item"
-													href="EmailUsers?currentEventID=${tempEvent.eventDetID}">Email
-													Volunteers</a>
-											</div>
+								<div class="col-lg-12">
+									<div class="p-5">
+										<div class="text-center mb-4">
+											<h1 class="h4 text-primary mb-4">Set Update/Amount <i class="fas fa-euro-sign text-gray-600"></i></h1>
+											<hr>
 										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
+										<form action="" method="POST"
+											class="user mb-4" id="registerForm">
+
+											
+										<c:forEach items="${specificEventLocation}" var="tempLoc">
+											
+											<div class="form-group row mb-4">
+												<div class="col-sm-6 mb-3 mb-sm-0 " style = "padding-top:10px;">
+													<h4 class="ml-4">${tempLoc.location}
+														(${tempLoc.county})</h4>
+												</div>
+												<div class="col-sm-6">
+													
+											<input type="text" class="form-control form-control-user"
+														name="title" id="Amount" placeholder="Amount" value="${tempLoc.raised}"
+														>
+					
 
 
-											<div class="col-lg-5 col-md-4">
-
-												<img style="height: 10rem; width: 10rem" class="mb-4"
-													src="${tempEvent.img}" />
-
+												
+										
+												</div>
 											</div>
-											<!-- mobile view is md -->
-											<div class="col-lg-7 col-md-8 pl-4">
+										</c:forEach>
 
+											<button type="submit" 
+												class="btn btn-primary btn-user btn-block">Send Email</button>
+											<hr>
 
-												<h3 class="text-primary">${tempEvent.name}</h3>
+										</form>
 
-
-
-												<p class="mb-0 font-weight-bold text-gray-800">Event
-													Data: ${tempEvent.eventDate}</p>
-												<p class=" mb-0 font-weight-bold text-gray-800">Start
-													Time: ${tempEvent.startTime}</p>
-												<p class=" mb-2 font-weight-bold text-gray-800">End
-													Time: ${tempEvent.endTime}</p>
-
-												<a href="DetailPastEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-secondary btn-icon-split"> <span
-													class="icon"> <i class="fas fa-arrow-right"></i>
-												</span> <span class="text">View Event</span>
-												</a>
-
-											</div>
-
-
-										</div>
 									</div>
 								</div>
 							</div>
-
-						</c:forEach>
-
-
+						</div>
 					</div>
 
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 	<!-- end of form Group -->
 	</div>
@@ -484,7 +448,7 @@
 					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
-						<span aria-hidden="true">×</span>
+						<span aria-hidden="true">Ã—</span>
 					</button>
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
