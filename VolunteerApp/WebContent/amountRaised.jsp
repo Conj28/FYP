@@ -360,36 +360,44 @@
 								<div class="col-lg-12">
 									<div class="p-5">
 										<div class="text-center mb-4">
-											<h1 class="h4 text-primary mb-4">Set Update/Amount <i class="fas fa-euro-sign text-gray-600"></i></h1>
+											<h1 class="h4 text-primary mb-4">
+												Set Update/Amount <i class="fas fa-euro-sign text-gray-600"></i>
+											</h1>
 											<hr>
 										</div>
-										<form action="" method="POST"
-											class="user mb-4" id="registerForm">
+										<form action="updateAmountRaised" method="POST" class="user mb-4"
+											id="registerForm">
 
-											
-										<c:forEach items="${specificEventLocation}" var="tempLoc">
-											
-											<div class="form-group row mb-4">
-												<div class="col-sm-6 mb-3 mb-sm-0 " style = "padding-top:10px;">
-													<h4 class="ml-4">${tempLoc.location}
-														(${tempLoc.county})</h4>
+
+											<c:forEach items="${specificEventLocation}" var="tempLoc">
+
+												<div class="form-group row mb-4">
+													<div class="col-sm-6 mb-3 mb-sm-0 "
+														style="padding-top: 10px;">
+														<h4 class="ml-4">${tempLoc.location}
+															(${tempLoc.county})</h4>
+													</div>
+													<div class="col-sm-6">
+
+														<input type="text" class="form-control form-control-user"
+															name="raised${tempLoc.numberDays}" id="Amount" placeholder="Amount"
+															value="${tempLoc.raised}">
+
+
+
+														<!-- Set Hidden fields **** numberdays used for loop -->
+															<input type = "hidden" value = "${tempLoc.eventLocID}" name = "locationID${tempLoc.numberDays}">
+															
+
+
+
+													</div>
 												</div>
-												<div class="col-sm-6">
-													
-											<input type="text" class="form-control form-control-user"
-														name="title" id="Amount" placeholder="Amount" value="${tempLoc.raised}"
-														>
-					
+											</c:forEach>
 
-
-												
-										
-												</div>
-											</div>
-										</c:forEach>
-
-											<button type="submit" 
-												class="btn btn-primary btn-user btn-block">Send Email</button>
+											<button type="submit"
+												class="btn btn-primary btn-user btn-block">Send
+												Email</button>
 											<hr>
 
 										</form>
