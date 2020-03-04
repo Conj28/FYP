@@ -39,6 +39,8 @@ public class DetailPastEvent extends HttpServlet {
   //     Vector<Event> event2 = eventDAO.getSpecificEventLocation(id);
     //    request.setAttribute("specificEventLocation", event2);
         
+       Vector<User> GetAllVolunteersforEvent = userDAO.getPastEventVolunteers(id);
+		request.setAttribute("volunteers", GetAllVolunteersforEvent);
 
         
         RequestDispatcher rd = request.getRequestDispatcher("/detailPastEvent.jsp");

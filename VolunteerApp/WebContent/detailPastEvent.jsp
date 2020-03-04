@@ -25,6 +25,11 @@
 
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" rel="stylesheet">
+	
+	
 <link href="css/main.css" rel="stylesheet">
 
 </head>
@@ -352,88 +357,365 @@
 				<div class="container-fluid">
 
 
-					<!-- upcoming events Row -->
-					<!-- Content Row -->
-					<div class="row">
 
-						<div class="col-lg-12 mb-4">
-							<div class="card bg-gradient-secondary text-white shadow">
-								<div class="card-body">Past Events</div>
-							</div>
-						</div>
+					<div class="card-body p-0  ">
+						<!-- Nested Row within Card Body -->
+						<div class="form-group row">
 
-
-						<!-- Live Events -->
-						<c:forEach items="${upcomingEvents}" var="tempEvent">
-							<div class="col-lg-3 col-md-6 col-xs-12">
-								<div class="card mb-4 ">
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-secondary">
-										<h6 class="m-0 font-weight-bold text-white">Earnings
-											Overview</h6>
-										<div class="dropdown no-arrow show">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink" x-placement="bottom-end"
-												style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-
-												<a class="dropdown-item"
-													href="ViewUpdateEvents?updateEventID=${tempEvent.eventDetID}">Update
-													Event</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item"
-													href="EmailUsers?currentEventID=${tempEvent.eventDetID}">Email
-													Volunteers</a>
-											</div>
-										</div>
-									</div>
+							<div class="col-lg-6 col-sm-12">
+								<div class="card o-hidden border-left-primary shadow-lg ">
 									<div class="card-body">
-										<div class="row">
+
+										<div class="p-4">
 
 
-											<div class="col-lg-5 col-md-4">
+											<div class="row no-gutters align-items-center mb-4">
+												<div class="col mr-2">
+												
+													<div>
+													
+													<div class="mb-2 ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">Event
+																Name:</h4>
+															<h4 class="font-weight-bold header-inline text-gray-800">${specificEvent.name} </h4>
+														</div>
+													
+													<div class="mb-2 ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">Event
+																Date:</h4>
+															<h4 class="font-weight-bold header-inline text-gray-800">${specificEvent.eventDate}</h4>
+														</div>
 
-												<img style="height: 10rem; width: 10rem" class="mb-4"
-													src="${tempEvent.img}" />
+														<div class="mb-2 ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">Start
+																Time:</h4>
+															<h4 name="eventStartTime"
+																class="font-weight-bold header-inline text-gray-800">${specificEvent.startTime}</h4>
+														</div>
 
+														<div class=" ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">End
+																Time:</h4>
+															<h4 name="eventEndTime"
+																class="font-weight-bold header-inline text-gray-800">${specificEvent.endTime}</h4>
+														</div>
+													
+													
+													</div>
+												</div>
+												<div class="col-auto">
+													<i class="far fa-calendar-alt iconColour fa-5x"></i>
+												</div>
 											</div>
-											<!-- mobile view is md -->
-											<div class="col-lg-7 col-md-8 pl-4">
+
+											<!-- 	<div id="topHalf">
+												
+													<h1 class="text-gray-900 mb-4 ml-4">
+														${specificEvent.name} <i class="far fa-calendar-alt iconColour"></i>
+													</h1>
+													<hr class="mb-4">
+												
 
 
-												<h3 class="text-primary">${tempEvent.name}</h3>
+												<div class="form-group row">
+													<div class="col-sm-12 col-md-12 mb-3 mb-sm-0">
+
+														<div class="mb-2 ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">Event
+																Date:</h4>
+															<h4 class="font-weight-bold header-inline text-gray-800">${specificEvent.eventDate}</h4>
+														</div>
+
+														<div class="mb-2 ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">Start
+																Time:</h4>
+															<h4 name="eventStartTime"
+																class="font-weight-bold header-inline text-gray-800">${specificEvent.startTime}</h4>
+														</div>
+
+														<div class=" ml-4">
+															<h4 class="font-weight-bold text-primary header-inline">End
+																Time:</h4>
+															<h4 name="eventEndTime"
+																class="font-weight-bold header-inline text-gray-800">${specificEvent.endTime}</h4>
+														</div>
+													</div>
+												</div>
+											</div> -->
 
 
 
-												<p class="mb-0 font-weight-bold text-gray-800">Event
-													Data: ${tempEvent.eventDate}</p>
-												<p class=" mb-0 font-weight-bold text-gray-800">Start
-													Time: ${tempEvent.startTime}</p>
-												<p class=" mb-2 font-weight-bold text-gray-800">End
-													Time: ${tempEvent.endTime}</p>
+										</div>
+									
 
-												<a href="DetailPastEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-secondary btn-icon-split"> <span
-													class="icon"> <i class="fas fa-arrow-right"></i>
-												</span> <span class="text">View Event</span>
-												</a>
+										<div class="">
 
+
+												<div class="table-responsive">
+												<div id="dataTable_wrapper"
+													class="dataTables_wrapper dt-bootstrap4">
+
+													<div class="row">
+														<div class="col-sm-12">
+															<table class="table table-bordered dataTable"
+																id="dataTable" width="100%" cellspacing="0" role="grid"
+																aria-describedby="dataTable_info" style="width: 100%;">
+																<thead>
+																	<tr role="row">
+																		<th class="sorting_asc" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-sort="ascending"
+																			aria-label="Name: activate to sort column descending"
+																			style="width: 64px;">Name</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Position: activate to sort column ascending"
+																			style="width: 81px;">Location</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Office: activate to sort column ascending"
+																			style="width: 56px;">County</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Office: activate to sort column ascending"
+																			style="width: 56px;">Email</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Age: activate to sort column ascending"
+																			style="width: 31px;">Phone</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Start date: activate to sort column ascending"
+																			style="width: 68px;">Start Time</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="dataTable" rowspan="1" colspan="1"
+																			aria-label="Salary: activate to sort column ascending"
+																			style="width: 67px;">End Time</th>
+																	</tr>
+																</thead>
+																<tfoot>
+																<!-- <tr>
+																		<th rowspan="1" colspan="1">Name</th>
+																		<th rowspan="1" colspan="1">Position</th>
+																		<th rowspan="1" colspan="1">Office</th>
+																		<th rowspan="1" colspan="1">Age</th>
+																		<th rowspan="1" colspan="1">Start date</th>
+																		<th rowspan="1" colspan="1">Salary</th>
+																	</tr> 
+																</tfoot> -->
+																<tbody>
+
+
+																	<c:forEach items="${volunteers}" var="tempUser">
+																		<tr role="row" class="odd">
+																			<td class="sorting_1">${tempUser.firstName} ${tempUser.lastName}</td>
+																			<td>${tempUser.location}</td>
+																			<td style="text-transform: capitalize">${tempUser.county}</td>
+																			<td>${tempUser.email}</td>
+																			<td>${tempUser.phone}</td>
+																			<td>${tempUser.start}</td>
+																			<td>${tempUser.end}</td>
+																		</tr>
+
+																	</c:forEach>
+
+
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+												</div>
 											</div>
 
 
 										</div>
 									</div>
 								</div>
+								
+								
 							</div>
 
-						</c:forEach>
 
 
+
+							<!-- ****************Start of the right side************************************************* -->
+							<div class="col-lg-6 col-sm-12">
+								<div class="card o-hidden border-left-primary  shadow-lg ">
+									<div class="card-body">
+										<div class="p-5">
+
+
+
+											<div class="text-center">
+												<h2 class="text-gray-900 mb-4">
+													My profile <i class="fas fa-user iconColour"></i>
+												</h2>
+
+												<hr class="mb-4">
+
+											</div>
+
+
+
+											<form action="getUserUpdateDetails" method="POST"
+												id="getUserUpdateDetails">
+												<div class="form-group row">
+
+													<div class=col-sm-12>
+
+
+
+
+
+
+
+															
+															
+															<div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <canvas id="myPieChart" width="324" height="245" class="chartjs-render-monitor" style="display: block; height: 245px; width: 324px;"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Direct
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Social
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Referral
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+														</div>
+
+
+
+
+												</div>
+
+
+
+											</form>
+
+										</div>
+
+									</div>
+								</div>
+
+
+								<div class="card border-left-primary shadow-lg my-5">
+									<div class="card-body">
+										<div class="p-5">
+
+											<div class="text-center">
+												<h2 class="text-gray-900 mb-4">
+													Volunteering metrics <i
+														class="fas fa-clipboard-check iconColour"></i>
+												</h2>
+
+											</div>
+											<hr class="mb-4" style="border: 1px solid rgba(0, 0, 0, .1)">
+
+
+
+
+											<div class="form-group row">
+
+												<div class=col-sm-12>
+													<p>Thank you, we really appreciate every hour you spend
+														volunteering with us, keep up the good work. You can track
+														your progress below</p>
+													<div class="row mb-4">
+
+														<div class="col-sm-6 ">
+															<div class="card border-left-success shadow h-100 py-2">
+																<div class="card-body">
+																	<div class="row no-gutters align-items-center">
+																		<div class="col mr-2">
+																			<div
+																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Hours
+																				Volunteered</div>
+																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volHours}
+																				Hours</div>
+																		</div>
+																		<div class="col-auto">
+																			<i class="fas fa-hourglass fa-2x text-gray-300"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-6 ">
+
+															<div class="card border-left-success shadow h-100 py-2">
+																<div class="card-body">
+																	<div class="row no-gutters align-items-center">
+																		<div class="col mr-2">
+																			<div
+																				class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed
+																				Events</div>
+																			<div class="h5 mb-0 font-weight-bold text-gray-800">${volNum}</div>
+																		</div>
+																		<div class="col-auto">
+																			<i class="fas fa-hands-helping fa-2x text-gray-300"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+
+
+													</div>
+
+
+												</div>
+
+											</div>
+
+
+
+
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+
+
+
+
+
+
+						</div>
 					</div>
 
 				</div>
@@ -521,6 +803,17 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
+
+	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha256-8zyeSXm+yTvzUN1VgAOinFgaVFEFTyYzWShOy9w7WoQ=" crossorigin="anonymous"></script>
+	
+	<script src="js/pieChart.js"></script>
+	<script src="js/dataTablesDemo.js"></script>
+	
 </body>
 
 </html>

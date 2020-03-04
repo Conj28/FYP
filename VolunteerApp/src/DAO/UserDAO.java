@@ -493,6 +493,65 @@ public ArrayList<User> getEmailLocEvents(int id, int locId) throws Exception{
 	
 }
 
+
+public Vector<User> getPastEventVolunteers(int id) throws Exception {
+
+	String firstName = "";
+	String lastName = "";
+	String email = "";
+	String phone = "";
+	String start = "";
+	String end = "";
+	String location = "";
+	String county = "";
+	 
+		Vector<User> eventData = new Vector();
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
+				"FROM Users u \r\n" + 
+				"inner join Event e on u.Users_ID = e.Users_ID \r\n" + 
+				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n"+ 
+				"where e.Event_Det_ID = "+id+" ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				firstName = rs.getString(1);
+				lastName = rs.getString(2);
+				email = rs.getString(3);
+				phone = rs.getString(4);
+				start = rs.getString(5);
+				end = rs.getString(6);
+				location = rs.getString(7);
+				county = rs.getString(8);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setStart(start);
+				tempUser.setEnd(end);
+				tempUser.setLocation(location);
+				tempUser.setCounty(county);
+
+				eventData.add(tempUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("GetAllVolunteersforEvent broken :( ");
+		}
+		System.out.println("getting past events sucessfully");
+		return eventData;
+ 
+ }
 	
 
 }
