@@ -1,7 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.text.DecimalFormat;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.EventDAO;
 import DAO.UserDAO;
 import javaClass.Event;
-import javaClass.TimeCalc;
 import javaClass.User;
 
 /**
@@ -42,6 +41,7 @@ public class DetailPastEvent extends HttpServlet {
 		request.setAttribute("volunteers", GetAllVolunteersforEvent);
 
 		
+		
 		//get locations and number at each 
 		Vector<Event> locEventNum = eventDAO.getLocAndNumber(id);
 		request.setAttribute("numVol", locEventNum);
@@ -50,6 +50,38 @@ public class DetailPastEvent extends HttpServlet {
 		request.setAttribute("pastAmount", pastEventMoney);
 		
 		//Start of small icons 
+		//-------------------------------------
+		//total number of volunteers
+		int totalNumVolunteers = eventDAO.getTotalNumVolunteers(id);
+		request.setAttribute("totalNumVolunteers", totalNumVolunteers);
+		
+		//number of locations
+		int numberOfLocation = eventDAO.getNumerOfLocation(id);
+		request.setAttribute("numberOfLocation", numberOfLocation);
+		
+		//duration ?
+		int minEventDuration = eventDAO.getEventDuration(id);
+		double eventDuration = minEventDuration/60;
+		request.setAttribute("eventDuration", eventDuration);
+		
+		//total revenue 
+		double totalRevenue = eventDAO.getTotalRevenue(id);
+		request.setAttribute("totalRevenue", totalRevenue);
+		
+		//most profitable location
+		String mostProfitableEvent = eventDAO.getMostPEvent(id);
+		request.setAttribute("mostProfitableEvent", mostProfitableEvent);
+		
+		//least profitable loc 
+		String leastProfitableEvent = eventDAO.getLeastPEvent(id);
+		request.setAttribute("leasetProfitableEvent", leastProfitableEvent);
+		
+		//revenue per volunteer 
+		double revPerPerson = Math.round(totalRevenue / totalNumVolunteers);
+		request.setAttribute("revPerPerson", revPerPerson);
+		
+		double avgVolunteerTime = eventDAO.getAvgVolTime(id);
+		request.setAttribute("avgVolunteerTime", avgVolunteerTime);
 		
 		
         

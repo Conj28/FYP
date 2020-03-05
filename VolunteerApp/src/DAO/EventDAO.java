@@ -1074,5 +1074,196 @@ public class EventDAO {
 		return eventData;
 
 	}
+	
+	public int getTotalNumVolunteers(int id) throws Exception {
+		
+		int total = 0;
+		
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Select Count(USERS_ID) from event where event_det_ID = "+id+" ";
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				total = (rs.getInt(1));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error in Event.getTotalVOl ");
+		}
+		
+		
+		return total;
+		
+	}
+	
+	public int getNumerOfLocation(int id) throws Exception {
+		
+		int total = 0;
+		
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Select Count(event_Loc_ID) from Event_Loc where event_det_Id = "+id+" ";
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				total = (rs.getInt(1));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error in Event.getTotalLocs ");
+		}
+		
+		
+		return total;
+		
+	}
+
+	
+public int getEventDuration(int id) throws Exception {
+		
+		int total = 0;
+		
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Select DateDIFF(MINUTE, Start_Time, End_time) From event_Det where Event_Det_Id = "+id+" ";
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				total = (rs.getInt(1));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Error in Event.getEventDur ");
+		}
+		
+		
+		return total;
+		
+	}
+
+public double getTotalRevenue(int id) throws Exception {
+	
+	double total = 0;
+	
+	DBManager dbmgr = new DBManager();
+	Connection conn = dbmgr.getConnection();
+
+	String query = "Select SUM(Raised) from Event_Loc where Event_Det_ID = "+id+" ";
+	
+	try {
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			total = (rs.getDouble(1));
+			
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("Error in Event.getTotal --DOuble ");
+	}
+	
+	
+	return total;
+	
+}
+
+
+public String getMostPEvent(int id) throws Exception {
+	
+	String loc = "";
+	
+	DBManager dbmgr = new DBManager();
+	Connection conn = dbmgr.getConnection();
+
+	String query = "Select Top 1 [Location],ISNULL(Raised, 0)  from Event_Loc where Event_Det_ID = "+id+" order by Raised desc";
+	
+	try {
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			loc = (rs.getString(1));
+			
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("Error in Event.getTotal ");
+	}
+	
+	
+	return loc;
+	
+}
+
+public String getLeastPEvent(int id) throws Exception {
+	
+	String loc = "";
+	
+	DBManager dbmgr = new DBManager();
+	Connection conn = dbmgr.getConnection();
+
+	String query = "Select Top 1 [Location],ISNULL(Raised, 0)  from Event_Loc where Event_Det_ID = "+id+" order by Raised ";
+	
+	try {
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			loc = (rs.getString(1));
+			
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("Error in Event.getTotal ");
+	}
+	
+	
+	return loc;
+	
+}
+
+public double getAvgVolTime(int id) throws Exception {
+	
+	double total = 0;
+	
+	DBManager dbmgr = new DBManager();
+	Connection conn = dbmgr.getConnection();
+
+	String query = "Select AVG(DateDIFF(MINUTE, Available_Start, Available_End)) From event where Event_Det_Id = "+id+" ";
+	
+	try {
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			total = (rs.getDouble(1));
+			
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+		System.out.println("Error in Event.getTotal ");
+	}
+	
+	
+	return total;
+	
+}
 
 }

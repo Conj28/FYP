@@ -402,13 +402,15 @@
 															<h4 name="eventEndTime"
 																class="font-weight-bold header-inline text-gray-800">${specificEvent.endTime}</h4>
 														</div>
+															
 
 
 													</div>
 												</div>
 												<div class="col-auto">
-													<i class="far fa-calendar-alt iconColour fa-5x"></i>
-												</div>
+												<a href = "EmailUsers?currentEventID=${specificEvent.eventDetID}">
+													<i class="far fa-envelope iconColour fa-5x"></i>
+												<h3 class ="font-weight-bold text-primary">Email</h3></a></div>
 											</div>
 
 											<!-- 	<div id="topHalf">
@@ -699,70 +701,165 @@
 
 
 
+									<div class = "col-sm-12">
+									
+												
 
-										<div class="card border-left-primary shadow-lg my-5">
-											<div class="card-body">
-												<div class="p-5">
-
-													<div class="text-center">
-														<h2 class="text-gray-900 mb-4">
-															Volunteering metrics <i
-																class="fas fa-clipboard-check iconColour"></i>
-														</h2>
-
-
-
-													</div>
-													<hr class="mb-4"
-														style="border: 1px solid rgba(0, 0, 0, .1)">
+													
+													<!-- <hr class="mb-4"
+														style="border: 1px solid rgba(0, 0, 0, .1)"> -->
 
 
 
 
 													<div class="form-group row">
 
-														<div class=col-sm-12>
-															<p>Thank you, we really appreciate every hour you
-																spend volunteering with us, keep up the good work. You
-																can track your progress below</p>
+														<div class="col-sm-12">
+															
 															<div class="row mb-4">
 
-																<div class="col-sm-6 ">
-																	<div class="card border-left-success shadow h-100 py-2">
+																<!-- total Revenue -->
+																<div class="col-sm-12 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
 																		<div class="card-body">
 																			<div class="row no-gutters align-items-center">
 																				<div class="col mr-2">
 																					<div
-																						class="text-xs font-weight-bold text-success text-uppercase mb-1">Hours
-																						Volunteered</div>
-																					<div class="h5 mb-0 font-weight-bold text-gray-800">${volHours}
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Total Raised</div>
+																					<div class="h2 mb-0 font-weight-bold text-gray-600">€ ${totalRevenue}</div>
+																				</div>
+																				<div class="col-auto">
+																					<i class="fas fa-euro-sign fa-2x text-grey-800"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															
+															
+															<!-- Total volunteers -->
+															<div class="col-sm-12 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
+																		<div class="card-body">
+																			<div class="row no-gutters align-items-center">
+																				<div class="col mr-2">
+																					<div
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Total Volunteers</div>
+																					<div class="h2 mb-0 font-weight-bold text-gray-600">${totalNumVolunteers}
+																						</div>
+																				</div>
+																				<div class="col-auto">
+																					<i class="fas fa-user-friends fa-2x text-grey-800"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																
+																<div class="col-sm-6 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
+																		<div class="card-body">
+																			<div class="row no-gutters align-items-center">
+																				<div class="col mr-2">
+																					<div
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Number of Locations</div>
+																					<div class="h3 mb-0 font-weight-bold text-gray-600">${numberOfLocation}
+																						</div>
+																				</div>
+																				<div class="col-auto">
+																					<i class="fas fa-map-marker-alt fa-2x text-grey-800"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div><div class="col-sm-6 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
+																		<div class="card-body">
+																			<div class="row no-gutters align-items-center">
+																				<div class="col mr-2">
+																					<div
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Event Duration</div>
+																					<div class="h3 mb-0 font-weight-bold text-grey-600">${eventDuration}
 																						Hours</div>
 																				</div>
 																				<div class="col-auto">
-																					<i class="fas fa-hourglass fa-2x text-gray-300"></i>
+																					<i class="fas fa-clock fa-2x text-grey-800"></i>
 																				</div>
 																			</div>
 																		</div>
 																	</div>
 																</div>
-																<div class="col-sm-6 ">
-
-																	<div class="card border-left-success shadow h-100 py-2">
+																<div class="col-sm-6 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
 																		<div class="card-body">
 																			<div class="row no-gutters align-items-center">
 																				<div class="col mr-2">
 																					<div
-																						class="text-xs font-weight-bold text-success text-uppercase mb-1">Completed
-																						Events</div>
-																					<div class="h5 mb-0 font-weight-bold text-gray-800">${volNum}</div>
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Average Volunteer Time</div>
+																					<div class="h3 mb-0 font-weight-bold text-gray-600">${avgVolunteerTime}
+																						Minutes</div>
 																				</div>
 																				<div class="col-auto">
-																					<i class="fas fa-hands-helping fa-2x text-gray-300"></i>
+																					<i class="fas fa-hourglass fa-2x text-grey-800"></i>
 																				</div>
 																			</div>
 																		</div>
 																	</div>
 																</div>
+																<div class="col-sm-6 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
+																		<div class="card-body">
+																			<div class="row no-gutters align-items-center">
+																				<div class="col mr-2">
+																					<div
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Value per Volunteer</div>
+																					<div class="h3 mb-0 font-weight-bold text-gray-600">€ ${revPerPerson}
+																						</div>
+																				</div>
+																				<div class="col-auto">
+																					<i class="fas fa-search-dollar fa-2x text-grey-800"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																
+																<div class="col-sm-6 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
+																		<div class="card-body">
+																			<div class="row no-gutters align-items-center">
+																				<div class="col mr-2">
+																					<div
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Best Performing Location</div>
+																					<div class="h3 mb-0 font-weight-bold text-gray-600">${mostProfitableEvent}
+																						</div>
+																				</div>
+																				<div class="col-auto">
+																					<i class="fas fa-arrow-circle-up fa-2x text-grey-800"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div><div class="col-sm-6 mb-4 ">
+																	<div class="card border-left-primary shadow h-100 py-2">
+																		<div class="card-body">
+																			<div class="row no-gutters align-items-center">
+																				<div class="col mr-2">
+																					<div
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Worst Performing Event</div>
+																					<div class="h3 mb-0 font-weight-bold text-gray-600">${leasetProfitableEvent}
+																						</div>
+																				</div>
+																				<div class="col-auto">
+																					<i class="fas fa-arrow-circle-down fa-2x text-grey-800"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																
+																
+																
 
 
 
@@ -776,9 +873,7 @@
 
 
 
-												</div>
-											</div>
-										</div>
+										
 
 
 									</div>
@@ -1071,7 +1166,7 @@
 								
 								],
 						datasets : [ {
-							label : "Volunteers ",
+							label : "",
 							backgroundColor : "#3CB371",
 							hoverBackgroundColor : "#2e59d9",
 							borderColor : "#4e73df",
@@ -1147,7 +1242,7 @@
 								label : function(tooltipItem, chart) {
 									var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label
 											|| '';
-									return datasetLabel 
+									return datasetLabel + '€ '
 											+ number_format(tooltipItem.yLabel);
 								}
 							}
