@@ -12,196 +12,199 @@ import utils.DBManager;
 
 public class UserDAO {
 
-	//https://www.sqlshack.com/the-hashbytes-function-in-t-sql/
+	// https://www.sqlshack.com/the-hashbytes-function-in-t-sql/
 	public User login(String emailInput, String passwordInput) throws Exception {
-		
+
 		int userID;
 		String firstName;
-		 String lastName;
-		 String email;
-		 String phone;
-		 String address;
-		 String town; 
-		 String county; 
-		 String vetted;
-		 String role;
-		
-		 DBManager dbmgr = new DBManager();
-			Connection conn = dbmgr.getConnection();
+		String lastName;
+		String email;
+		String phone;
+		String address;
+		String town;
+		String county;
+		String vetted;
+		String role;
 
-			String query = "Select Distinct* From Users where UPPER(Email) = UPPER('"+emailInput+"') and Password = HASHBYTES('SHA2_512','"+passwordInput+"')"; 
-		
-			User tempUser = new User();
-			try {
-				PreparedStatement stmt = conn.prepareStatement(query);
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					System.out.println("get Specific Event !!!*");
-					userID = (rs.getInt(1));
-					firstName = (rs.getString(2));
-					lastName = (rs.getString(3));
-					email= (rs.getString(4));
-					phone = (rs.getString(5));
-					address= (rs.getString(6));
-					town = (rs.getString(7));
-					county = (rs.getString(8));
-					vetted = (rs.getString(9));
-					role = (rs.getString(10));
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
 
-					tempUser.setUserID(userID);
-					tempUser.setFirstName(firstName);
-					tempUser.setLastName(lastName);
-					tempUser.setEmail(email);
-					tempUser.setPhone(phone);
-					tempUser.setAddress(address);
-					tempUser.setTown(town);
-					tempUser.setCounty(county);
-					tempUser.setVetted(vetted);
-					tempUser.setRole(role);
+		String query = "Select Distinct* From Users where UPPER(Email) = UPPER('" + emailInput
+				+ "') and Password = HASHBYTES('SHA2_512','" + passwordInput + "')";
 
-				}
+		User tempUser = new User();
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println("get Specific Event !!!*");
+				userID = (rs.getInt(1));
+				firstName = (rs.getString(2));
+				lastName = (rs.getString(3));
+				email = (rs.getString(4));
+				phone = (rs.getString(5));
+				address = (rs.getString(6));
+				town = (rs.getString(7));
+				county = (rs.getString(8));
+				vetted = (rs.getString(9));
+				role = (rs.getString(10));
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("gettig Event not working :( ");
+				tempUser.setUserID(userID);
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setAddress(address);
+				tempUser.setTown(town);
+				tempUser.setCounty(county);
+				tempUser.setVetted(vetted);
+				tempUser.setRole(role);
+
 			}
-			
-			if(tempUser.getFirstName() == null) {
-				return null;
-			} else {
-				
-			return tempUser;}
-			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+
+		if (tempUser.getFirstName() == null) {
+			return null;
+		} else {
+
+			return tempUser;
+		}
+
 	}
-	
-	
-	public void registerUser(String firstName, String lastName, String email, String phone, String address, String town, String county, String password) throws Exception {
-		
+
+	public void registerUser(String firstName, String lastName, String email, String phone, String address, String town,
+			String county, String password) throws Exception {
+
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
 		String query = "INSERT INTO Users(First_Name, Last_Name, Email, Phone, Address, Town, County, Vetted, User_Role, Password) Values"
-				+ "('"+ firstName+"', '"+lastName+"', '" +email +"', '"+phone+"', '"+address+"', '"+ town+"', '"+ county +"', 'N', 1, HASHBYTES('SHA2_512','"+password+"') )";
-	
+				+ "('" + firstName + "', '" + lastName + "', '" + email + "', '" + phone + "', '" + address + "', '"
+				+ town + "', '" + county + "', 'N', 1, HASHBYTES('SHA2_512','" + password + "') )";
+
 		try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.execute();
-            System.out.println("Register Working!!!");
-        }catch(SQLException e){
-            System.out.println("Register Not Working  :( ");
-             e.printStackTrace();
-        }
-		
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.execute();
+			System.out.println("Register Working!!!");
+		} catch (SQLException e) {
+			System.out.println("Register Not Working  :( ");
+			e.printStackTrace();
+		}
+
 	}
-	
-	public void updateUser(String firstName,String lastName,String  email,String phone,String address,String town,String county) throws Exception {
-		
+
+	public void updateUser(String firstName, String lastName, String email, String phone, String address, String town,
+			String county) throws Exception {
+
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
-		
-		String query = "Update Users set First_Name = '"+ firstName+"', Last_Name = '"+lastName+"', phone = '"+phone+"', Address = '"+address+"', Town = '"+ town+"', county = '"+ county +"' WHERE email = '" +email +"' ";
-		
+
+		String query = "Update Users set First_Name = '" + firstName + "', Last_Name = '" + lastName + "', phone = '"
+				+ phone + "', Address = '" + address + "', Town = '" + town + "', county = '" + county
+				+ "' WHERE email = '" + email + "' ";
+
 		try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.execute();
-            System.out.println("Update user  Working!!!");
-        }catch(SQLException e){
-            System.out.println("Update user Not Working  :( ");
-             e.printStackTrace();
-        }
-		
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.execute();
+			System.out.println("Update user  Working!!!");
+		} catch (SQLException e) {
+			System.out.println("Update user Not Working  :( ");
+			e.printStackTrace();
+		}
+
 	}
-	
-	
-public User getUpdateInfo(String emailInput) throws Exception {
-		
+
+	public User getUpdateInfo(String emailInput) throws Exception {
+
 		int userID;
 		String firstName;
-		 String lastName;
-		 String email;
-		 String phone;
-		 String address;
-		 String town; 
-		 String county; 
-		 String vetted;
-		 String role;
-		
-		 DBManager dbmgr = new DBManager();
-			Connection conn = dbmgr.getConnection();
+		String lastName;
+		String email;
+		String phone;
+		String address;
+		String town;
+		String county;
+		String vetted;
+		String role;
 
-			String query = "Select Distinct* From Users where UPPER(Email) = UPPER('"+emailInput+"')"; 
-		
-			User tempUser = new User();
-			try {
-				PreparedStatement stmt = conn.prepareStatement(query);
-				ResultSet rs = stmt.executeQuery();
-				while (rs.next()) {
-					System.out.println("get Specific Event !!!*");
-					userID = (rs.getInt(1));
-					firstName = (rs.getString(2));
-					lastName = (rs.getString(3));
-					email= (rs.getString(4));
-					phone = (rs.getString(5));
-					address= (rs.getString(6));
-					town = (rs.getString(7));
-					county = (rs.getString(8));
-					vetted = (rs.getString(9));
-					role = (rs.getString(10));
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
 
-					tempUser.setUserID(userID);
-					tempUser.setFirstName(firstName);
-					tempUser.setLastName(lastName);
-					tempUser.setEmail(email);
-					tempUser.setPhone(phone);
-					tempUser.setAddress(address);
-					tempUser.setTown(town);
-					tempUser.setCounty(county);
-					tempUser.setVetted(vetted);
-					tempUser.setRole(role);
+		String query = "Select Distinct* From Users where UPPER(Email) = UPPER('" + emailInput + "')";
 
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				System.out.println("gettig Event not working :( ");
+		User tempUser = new User();
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println("get Specific Event !!!*");
+				userID = (rs.getInt(1));
+				firstName = (rs.getString(2));
+				lastName = (rs.getString(3));
+				email = (rs.getString(4));
+				phone = (rs.getString(5));
+				address = (rs.getString(6));
+				town = (rs.getString(7));
+				county = (rs.getString(8));
+				vetted = (rs.getString(9));
+				role = (rs.getString(10));
+
+				tempUser.setUserID(userID);
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setAddress(address);
+				tempUser.setTown(town);
+				tempUser.setCounty(county);
+				tempUser.setVetted(vetted);
+				tempUser.setRole(role);
+
 			}
-			
-			if(tempUser.getFirstName() == null) {
-				return null;
-			} else {
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+
+		if (tempUser.getFirstName() == null) {
+			return null;
+		} else {
 			return tempUser;
-			}
-			
-}
+		}
 
+	}
 
-public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
+	public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 
-	String firstName = "";
-	String lastName = "";
-	String email = "";
-	String phone = "";
-	String start = "";
-	String end = "";
-	String location = "";
-	String county = "";
-	 
+		String firstName = "";
+		String lastName = "";
+		String email = "";
+		String phone = "";
+		String start = "";
+		String end = "";
+		String location = "";
+		String county = "";
+
 		Vector<User> eventData = new Vector();
 
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
-		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
-				"FROM Users u \r\n" + 
-				"inner join Event e on u.Users_ID = e.Users_ID \r\n" + 
-				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n"+ 
-				"where e.Event_Det_ID = "+id+" ";
+		// https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n"
+				+ "FROM Users u \r\n" + "inner join Event e on u.Users_ID = e.Users_ID \r\n"
+				+ "inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n" + "where e.Event_Det_ID = " + id
+				+ " ";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				
+
 				firstName = rs.getString(1);
 				lastName = rs.getString(2);
 				email = rs.getString(3);
@@ -229,38 +232,36 @@ public Vector<User> GetAllVolunteersforEvent(int id) throws Exception {
 			System.out.println("GetAllVolunteersforEvent broken :( ");
 		}
 		return eventData;
- 
- }
 
-public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exception {
+	}
 
-	String firstName = "";
-	String lastName = "";
-	String email = "";
-	String phone = "";
-	String start = "";
-	String end = "";
-	String location = "";
-	String county = "";
-	 
+	public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exception {
+
+		String firstName = "";
+		String lastName = "";
+		String email = "";
+		String phone = "";
+		String start = "";
+		String end = "";
+		String location = "";
+		String county = "";
+
 		Vector<User> eventData = new Vector();
 
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
-		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location,l.county\r\n" + 
-				"FROM Users u\r\n" + 
-				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
-				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
-				"where e.Event_Det_ID = "+id+"\r\n" + 
-				"and Available_Start <= '"+time+"' and '"+time+"' < Available_End  ";
+		// https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location,l.county\r\n"
+				+ "FROM Users u\r\n" + "inner join Event e on u.Users_ID = e.Users_ID\r\n"
+				+ "inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + "where e.Event_Det_ID = " + id
+				+ "\r\n" + "and Available_Start <= '" + time + "' and '" + time + "' < Available_End  ";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				
+
 				firstName = rs.getString(1);
 				lastName = rs.getString(2);
 				email = rs.getString(3);
@@ -279,7 +280,6 @@ public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exc
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
 				tempUser.setCounty(county);
-				
 
 				eventData.add(tempUser);
 			}
@@ -289,99 +289,36 @@ public Vector<User> GetAllVolunteersforEventTime(int id, String time) throws Exc
 			System.out.println("gettig Event not working :( ");
 		}
 		return eventData;
- 
- }
 
-public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exception {
+	}
 
-	String firstName = "";
-	String lastName = "";
-	String email = "";
-	String phone = "";
-	String start = "";
-	String end = "";
-	String location = "";
-	String county = "";
-	 
+	public Vector<User> GetAllVolunteersforEventLoc(int id, int loc) throws Exception {
+
+		String firstName = "";
+		String lastName = "";
+		String email = "";
+		String phone = "";
+		String start = "";
+		String end = "";
+		String location = "";
+		String county = "";
+
 		Vector<User> eventData = new Vector();
 
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
-		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
-				"FROM Users u\r\n" + 
-				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
-				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
-				"where e.Event_Det_ID = "+id+"\r\n" + 
-				"and e.event_Loc_ID = "+loc+" ";
+		// https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n"
+				+ "FROM Users u\r\n" + "inner join Event e on u.Users_ID = e.Users_ID\r\n"
+				+ "inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + "where e.Event_Det_ID = " + id
+				+ "\r\n" + "and e.event_Loc_ID = " + loc + " ";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				
-				firstName = rs.getString(1);
-				lastName = rs.getString(2);
-				email = rs.getString(3);
-				phone = rs.getString(4);
-				start = rs.getString(5);
-				end = rs.getString(6);
-				location = rs.getString(7);
-				county = rs.getString(8);
 
-				User tempUser = new User();
-				tempUser.setFirstName(firstName);
-				tempUser.setLastName(lastName);
-				tempUser.setEmail(email);
-				tempUser.setPhone(phone);
-				tempUser.setStart(start);
-				tempUser.setEnd(end);
-				tempUser.setLocation(location);
-				tempUser.setCounty(county);				
-
-				eventData.add(tempUser);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("gettig Event not working :( ");
-		}
-		return eventData;
- 
- }
-
-
-public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time) throws Exception {
-
-	String firstName = "";
-	String lastName = "";
-	String email = "";
-	String phone = "";
-	String start = "";
-	String end = "";
-	String location = "";
-	String county = "";
-	 
-		Vector<User> eventData = new Vector();
-
-		DBManager dbmgr = new DBManager();
-		Connection conn = dbmgr.getConnection();
-
-		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
-				"FROM Users u\r\n" + 
-				"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
-				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + 
-				"where e.Event_Det_ID = "+id+"\r\n" + 
-				"and e.event_Loc_ID = "+loc+"\r\n" +
-				"and Available_Start <= '"+time+"' and '"+time+"' < Available_End ";
-
-		try {
-			PreparedStatement stmt = conn.prepareStatement(query);
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				
 				firstName = rs.getString(1);
 				lastName = rs.getString(2);
 				email = rs.getString(3);
@@ -400,7 +337,6 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
 				tempUser.setEnd(end);
 				tempUser.setLocation(location);
 				tempUser.setCounty(county);
-				
 
 				eventData.add(tempUser);
 			}
@@ -410,118 +346,169 @@ public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time
 			System.out.println("gettig Event not working :( ");
 		}
 		return eventData;
- 
- }
 
-public ArrayList<User> getEmailAllEvents(int id) throws Exception{
-	
-	ArrayList<User> users = new ArrayList<User>();
-	
-	
-	String firstName;
-	String email;
-	
-	DBManager dbmgr = new DBManager();
-	Connection conn = dbmgr.getConnection();
-
-	String query = "Select u.First_Name, u.email from Users u\r\n" + 
-			"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
-			"where e.Event_Det_ID = "+id+" " ;
-	
-	try {
-		PreparedStatement stmt = conn.prepareStatement(query);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			
-			firstName = rs.getString(1);
-			email = rs.getString(2);
-			
-			User tempUser = new User();
-			tempUser.setFirstName(firstName);
-			tempUser.setEmail(email);
-			
-			users.add(tempUser);
-			
-		}
-	
-	}catch (SQLException e) {
-		e.printStackTrace();
-		System.out.println("gettig Event not working :( ");
 	}
-	return users;
-	
-}
 
+	public Vector<User> GetAllVolunteersforEventLocTime(int id, int loc, String time) throws Exception {
 
-public ArrayList<User> getEmailLocEvents(int id, int locId) throws Exception{
-	
-	ArrayList<User> users = new ArrayList<User>();
-	
-	
-	String firstName;
-	String email;
-	
-	DBManager dbmgr = new DBManager();
-	Connection conn = dbmgr.getConnection();
+		String firstName = "";
+		String lastName = "";
+		String email = "";
+		String phone = "";
+		String start = "";
+		String end = "";
+		String location = "";
+		String county = "";
 
-	String query = "Select u.First_Name, u.email from Users u\r\n" + 
-			"inner join Event e on u.Users_ID = e.Users_ID\r\n" + 
-			"where e.Event_Det_ID = "+id+""
-					+ "and e.Event_Loc_ID = "+locId+" " ;
-	
-	try {
-		PreparedStatement stmt = conn.prepareStatement(query);
-		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
-			
-			firstName = rs.getString(1);
-			email = rs.getString(2);
-			
-			User tempUser = new User();
-			tempUser.setFirstName(firstName);
-			tempUser.setEmail(email);
-			
-			users.add(tempUser);
-			
-		}
-	
-	}catch (SQLException e) {
-		e.printStackTrace();
-		System.out.println("gettig Event not working :( ");
-	}
-	return users;
-	
-}
-
-
-public Vector<User> getPastEventVolunteers(int id) throws Exception {
-
-	String firstName = "";
-	String lastName = "";
-	String email = "";
-	String phone = "";
-	String start = "";
-	String end = "";
-	String location = "";
-	String county = "";
-	 
 		Vector<User> eventData = new Vector();
 
 		DBManager dbmgr = new DBManager();
 		Connection conn = dbmgr.getConnection();
 
-		//https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
-		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n" + 
-				"FROM Users u \r\n" + 
-				"inner join Event e on u.Users_ID = e.Users_ID \r\n" + 
-				"inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n"+ 
-				"where e.Event_Det_ID = "+id+" ";
+		// https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n"
+				+ "FROM Users u\r\n" + "inner join Event e on u.Users_ID = e.Users_ID\r\n"
+				+ "inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID\r\n" + "where e.Event_Det_ID = " + id
+				+ "\r\n" + "and e.event_Loc_ID = " + loc + "\r\n" + "and Available_Start <= '" + time + "' and '" + time
+				+ "' < Available_End ";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				
+
+				firstName = rs.getString(1);
+				lastName = rs.getString(2);
+				email = rs.getString(3);
+				phone = rs.getString(4);
+				start = rs.getString(5);
+				end = rs.getString(6);
+				location = rs.getString(7);
+				county = rs.getString(8);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setStart(start);
+				tempUser.setEnd(end);
+				tempUser.setLocation(location);
+				tempUser.setCounty(county);
+
+				eventData.add(tempUser);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+		return eventData;
+
+	}
+
+	public ArrayList<User> getEmailAllEvents(int id) throws Exception {
+
+		ArrayList<User> users = new ArrayList<User>();
+
+		String firstName;
+		String email;
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Select u.First_Name, u.email from Users u\r\n"
+				+ "inner join Event e on u.Users_ID = e.Users_ID\r\n" + "where e.Event_Det_ID = " + id + " ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				firstName = rs.getString(1);
+				email = rs.getString(2);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setEmail(email);
+
+				users.add(tempUser);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+		return users;
+
+	}
+
+	public ArrayList<User> getEmailLocEvents(int id, int locId) throws Exception {
+
+		ArrayList<User> users = new ArrayList<User>();
+
+		String firstName;
+		String email;
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Select u.First_Name, u.email from Users u\r\n"
+				+ "inner join Event e on u.Users_ID = e.Users_ID\r\n" + "where e.Event_Det_ID = " + id + ""
+				+ "and e.Event_Loc_ID = " + locId + " ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				firstName = rs.getString(1);
+				email = rs.getString(2);
+
+				User tempUser = new User();
+				tempUser.setFirstName(firstName);
+				tempUser.setEmail(email);
+
+				users.add(tempUser);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+		return users;
+
+	}
+
+	public Vector<User> getPastEventVolunteers(int id) throws Exception {
+
+		String firstName = "";
+		String lastName = "";
+		String email = "";
+		String phone = "";
+		String start = "";
+		String end = "";
+		String location = "";
+		String county = "";
+
+		Vector<User> eventData = new Vector();
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		// https://stackoverflow.com/questions/28872787/how-to-get-current-todays-date-data-in-sql-server
+		String query = "Select u.First_Name, u.Last_Name, u.Email, u.Phone, Left(e.Available_start,5), LEFT(e.Available_End,5), l.Location, l.county\r\n"
+				+ "FROM Users u \r\n" + "inner join Event e on u.Users_ID = e.Users_ID \r\n"
+				+ "inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID \r\n" + "where e.Event_Det_ID = " + id
+				+ " ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
 				firstName = rs.getString(1);
 				lastName = rs.getString(2);
 				email = rs.getString(3);
@@ -550,8 +537,90 @@ public Vector<User> getPastEventVolunteers(int id) throws Exception {
 		}
 		System.out.println("getting past events sucessfully");
 		return eventData;
- 
- }
-	
 
-}
+	}
+
+	public Vector<User> getAllUsers() throws Exception {
+
+		int userID = 0;
+		String firstName = "";
+		String lastName = "";
+		String email = "";
+		String phone = "";
+		String address = "";
+		String town = "";
+		String county = "";
+		String vetted = "";
+		String role = "";
+
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Select Distinct* From Users";
+
+		Vector<User> allUsers = new Vector();
+		
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println("get Users");
+				userID = (rs.getInt(1));
+				firstName = (rs.getString(2));
+				lastName = (rs.getString(3));
+				email = (rs.getString(4));
+				phone = (rs.getString(5));
+				address = (rs.getString(6));
+				town = (rs.getString(7));
+				county = (rs.getString(8));
+				vetted = (rs.getString(9));
+				role = (rs.getString(10));
+
+				User tempUser = new User();
+				
+				tempUser.setUserID(userID);
+				tempUser.setFirstName(firstName);
+				tempUser.setLastName(lastName);
+				tempUser.setEmail(email);
+				tempUser.setPhone(phone);
+				tempUser.setAddress(address);
+				tempUser.setTown(town);
+				tempUser.setCounty(county);
+				tempUser.setVetted(vetted);
+				tempUser.setRole(role);
+				
+				allUsers.add(tempUser);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("gettig Event not working :( ");
+		}
+
+		
+			return allUsers;
+		}
+
+	public void addNewAdmin(int id) throws Exception {
+		
+		DBManager dbmgr = new DBManager();
+		Connection conn = dbmgr.getConnection();
+
+		String query = "Update Users set User_Role = 2 where Users_Id = "+id+" ";
+
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.execute();
+			System.out.println("Update user  Working!!!");
+		} catch (SQLException e) {
+			System.out.println("Update user Not Working  :( ");
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	}
+
+

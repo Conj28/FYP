@@ -1192,7 +1192,7 @@ public String getMostPEvent(int id) throws Exception {
 	DBManager dbmgr = new DBManager();
 	Connection conn = dbmgr.getConnection();
 
-	String query = "Select Top 1 [Location],ISNULL(Raised, 0)  from Event_Loc where Event_Det_ID = "+id+" order by Raised desc";
+	String query = "Select Top 1 Concat(Location,' (', county,')'),ISNULL(Raised, 0)  from Event_Loc where Event_Det_ID = "+id+" order by Raised desc";
 	
 	try {
 		PreparedStatement stmt = conn.prepareStatement(query);
@@ -1219,7 +1219,7 @@ public String getLeastPEvent(int id) throws Exception {
 	DBManager dbmgr = new DBManager();
 	Connection conn = dbmgr.getConnection();
 
-	String query = "Select Top 1 [Location],ISNULL(Raised, 0)  from Event_Loc where Event_Det_ID = "+id+" order by Raised ";
+	String query = "Select Top 1 Concat(Location,' (', county,')'),ISNULL(Raised, 0)  from Event_Loc where Event_Det_ID = "+id+" order by Raised ";
 	
 	try {
 		PreparedStatement stmt = conn.prepareStatement(query);

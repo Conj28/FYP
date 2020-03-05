@@ -467,32 +467,32 @@
 																aria-describedby="dataTable_info" style="width: 100%;">
 																<thead>
 																	<tr role="row">
-																		<th class="sorting_asc" tabindex="0"
+																		<th class="sorting_asc bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-sort="ascending"
 																			aria-label="Name: activate to sort column descending"
 																			style="width: 64px;">Name</th>
-																		<th class="sorting" tabindex="0"
+																		<th class="sorting bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Position: activate to sort column ascending"
 																			style="width: 81px;">Location</th>
-																		<th class="sorting" tabindex="0"
+																		<th class="sorting bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Office: activate to sort column ascending"
 																			style="width: 56px;">County</th>
-																		<th class="sorting" tabindex="0"
+																		<th class="sorting bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Office: activate to sort column ascending"
 																			style="width: 56px;">Email</th>
-																		<th class="sorting" tabindex="0"
+																		<th class="sorting bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Age: activate to sort column ascending"
 																			style="width: 31px;">Phone</th>
-																		<th class="sorting" tabindex="0"
+																		<th class="sorting bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Start date: activate to sort column ascending"
 																			style="width: 68px;">Start Time</th>
-																		<th class="sorting" tabindex="0"
+																		<th class="sorting bg-gradient-primary text-white" tabindex="0"
 																			aria-controls="dataTable" rowspan="1" colspan="1"
 																			aria-label="Salary: activate to sort column ascending"
 																			style="width: 67px;">End Time</th>

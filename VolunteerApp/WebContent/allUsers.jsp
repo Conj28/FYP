@@ -25,7 +25,10 @@
 
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
+
 
 </head>
 
@@ -43,14 +46,14 @@
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
-				<div class="sidebar-brand-icon ">
-					<i class="fas fa-hands-helping"></i>
+				<div class="sidebar-brand-icon rotate-n-15">
+					<i class="fas fa-laugh-wink"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					AlzInvolved
+					SB Admin <sup>2</sup>
 				</div>
 			</a>
-	
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
@@ -349,95 +352,179 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div>
+					<form action="LiveEvent?currentEventID=${specificEvent.eventDetID}"
+						method="POST">
+						<div class="col-xl-12 col-sm-12">
+
+							<div class="row">
 
 
-					<!-- upcoming events Row -->
-					<!-- Content Row -->
-					<div class="row">
-
-						<div class="col-lg-12 mb-4">
-							<div class="card bg-gradient-secondary text-white shadow">
-								<div class="card-body">Past Events</div>
-							</div>
-						</div>
+								<!--  used for padding left -->
+								<div class="col-lg-1"></div>
+								<div class="col-lg-10">
 
 
-						<!-- Live Events -->
-						<c:forEach items="${upcomingEvents}" var="tempEvent">
-							<div class="col-lg-3 col-md-6 col-xs-12">
-								<div class="card mb-4 ">
-									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-secondary">
-										<h6 class="m-0 font-weight-bold text-white">Earnings
-											Overview</h6>
-										<div class="dropdown no-arrow show">
-											<a class="dropdown-toggle" href="#" role="button"
-												id="dropdownMenuLink" data-toggle="dropdown"
-												aria-haspopup="true" aria-expanded="true"> <i
-												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-											</a>
-											<div
-												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-												aria-labelledby="dropdownMenuLink" x-placement="bottom-end"
-												style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
 
-												<a class="dropdown-item"
-													href="SetAmountRaised?updateEventID=${tempEvent.eventDetID}">Amount Raised</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item"
-													href="EmailUsers?currentEventID=${tempEvent.eventDetID}">Email
-													Volunteers</a>
+
+
+
+
+
+
+
+									<!-- Table from sb admin 2 table page ie - datatables https://datatables.net/ -->
+									<div class="card shadow mb-4">
+										<!--  <div class="card-header py-3 ">
+											<h6 class="m-0 font-weight-bold text-primary">DataTables
+												Example</h6>
+										</div> -->
+
+
+										<div
+											class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
+											<h6 class="h4 m-0 font-weight-bold text-white">All Users</h6>
+
+										</div>
+
+
+										<div class="card-body">
+											<div class="table-responsive">
+												<div id="dataTable_wrapper"
+													class="dataTables_wrapper dt-bootstrap4">
+
+													<div class="row">
+														<div class="col-sm-12">
+															<table class="table table-bordered dataTable"
+																id="dataTable" width="100%" cellspacing="0" role="grid"
+																aria-describedby="dataTable_info" style="width: 100%;">
+																<thead>
+																	<tr role="row">
+																		<th class="sorting_asc bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1" aria-sort="ascending"
+																			aria-label="Name: activate to sort column descending"
+																			style="width: 64px;">Name</th>
+																		<th class="sorting bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1"
+																			aria-label="Position: activate to sort column ascending"
+																			style="width: 81px;">Email</th>
+																		<th class="sorting bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1"
+																			aria-label="Office: activate to sort column ascending"
+																			style="width: 56px;">Phone</th>
+																		<th class="sorting bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1"
+																			aria-label="Office: activate to sort column ascending"
+																			style="width: 56px;">Address</th>
+																		<th class="sorting bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1"
+																			aria-label="Age: activate to sort column ascending"
+																			style="width: 31px;">Town</th>
+																		<th class="sorting bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1"
+																			aria-label="Start date: activate to sort column ascending"
+																			style="width: 68px;">County</th>
+																		<th class="sorting bg-gradient-primary text-white"
+																			tabindex="0" aria-controls="dataTable" rowspan="1"
+																			colspan="1"
+																			aria-label="Salary: activate to sort column ascending"
+																			style="width: 67px;">Admin</th>
+																	</tr>
+																</thead>
+																<tfoot>
+																<tbody>
+
+
+																	<c:forEach items="${volunteers}" var="tempUser">
+																		<tr role="row" class="odd">
+																			<td class="sorting_1">${tempUser.firstName}
+																				${tempUser.lastName}</td>
+																			<td>${tempUser.email}</td>
+																			<td>${tempUser.phone}</td>
+																			<td style="text-transform: capitalize">${tempUser.county}</td>
+
+																			<td>${tempUser.address}</td>
+																			<td>${tempUser.town}</td>
+																			
+																			<c:if test="${tempUser.role eq 1}">
+																				<td>No <a href = "addAdmin?userID=${tempUser.userID}" class = "text-danger" >
+																				(Make Admin)
+																				</a>
+																				</td>
+																			</c:if>
+																			<c:if test="${tempUser.role eq 2}">
+																				<td class = "text-success">Admin</td>
+																			</c:if>
+																			
+																			
+																		</tr>
+
+																	</c:forEach>
+
+
+
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="card-body">
-										<div class="row">
 
 
-											<div class="col-lg-5 col-md-4">
+									<!--  Check if the user is logged in  otherwise prompt them to -->
 
-												<img style="height: 10rem; width: 10rem" class="mb-4"
-													src="${tempEvent.img}" />
-
-											</div>
-											<!-- mobile view is md -->
-											<div class="col-lg-7 col-md-8 pl-4">
-
-
-												<h3 class="text-primary">${tempEvent.name}</h3>
+									<input type="hidden" id="eventId" name="eventId"
+										value="${specificEvent.eventDetID}" /> <input type="hidden"
+										id="setLocation" name="setLocation" /> <input type="hidden"
+										id="eventName" name="eventName" value="${specificEvent.name}" />
+									<input type="hidden" id="optionStartTime"
+										name="optionStartTime" /> <input type="hidden"
+										id="optionEndTime" name="optionEndTime" />
 
 
+									<!-- values relating to the session -->
+									<c:if test="${not empty sessionScope.User}">
+										<input type="hidden" id="userId" name="userId"
+											value="${sessionScope.User.userID }" />
 
-												<p class="mb-0 font-weight-bold text-gray-800">Event
-													Data: ${tempEvent.eventDate}</p>
-												<p class=" mb-0 font-weight-bold text-gray-800">Start
-													Time: ${tempEvent.startTime}</p>
-												<p class=" mb-2 font-weight-bold text-gray-800">End
-													Time: ${tempEvent.endTime}</p>
+										<input type="hidden" id="userEmail" name="userEmail"
+											value="${sessionScope.User.email}" />
 
-												<a href="DetailPastEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-secondary btn-icon-split"> <span
-													class="icon"> <i class="fas fa-arrow-right"></i>
-												</span> <span class="text">View Event</span>
-												</a>
-
-											</div>
+										<input type="hidden" id="firstName" name="firstName"
+											value="${sessionScope.User.firstName}" />
 
 
-										</div>
-									</div>
+
+
+
+
+									</c:if>
+
+
+
+									<!--  https://stackoverflow.com/questions/10943635/how-do-i-pass-multiple-parameter-in-url/10943694 -->
+
+
+
+
 								</div>
 							</div>
-
-						</c:forEach>
-
-
-					</div>
-
+						</div>
+					</form>
+					<!-- end of card main text column -->
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 	<!-- end of form Group -->
@@ -519,6 +606,14 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+
+
+	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<script src="js/dataTablesDemo.js"></script>
+
 
 </body>
 
