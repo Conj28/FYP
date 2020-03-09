@@ -137,7 +137,7 @@
 									</div>
 								</div>
 								<button type="button" id="checkPassword"
-									class="btn btn-primary btn-user btn-block">Register
+									class="btn btn-secondary btn-user btn-block">Register
 									Account</button>
 								<hr>
 

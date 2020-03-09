@@ -19,7 +19,7 @@
 
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>User Home</title>
 </head>
 <body>
 	<!-- Page Wrapper -->
@@ -146,7 +146,7 @@
 											<div id="topHalf">
 												<div class="text-center">
 													<h2 class="text-gray-900 mb-4">
-														Upcoming Events <i class="far fa-calendar-alt iconColour"></i>
+														Upcoming Events <i class="far fa-calendar-alt text-primary"></i>
 													</h2>
 													<hr class="mb-4">
 												</div>
@@ -231,7 +231,7 @@
 
 											<div class="text-center">
 												<h2 class="text-gray-900 mb-4">
-													My profile <i class="fas fa-user iconColour"></i>
+													My profile <i class="fas fa-user text-primary"></i>
 												</h2>
 
 												<hr class="mb-4">
@@ -359,7 +359,7 @@
 
 											<div class="text-center">
 												<h2 class="text-gray-900 mb-4">
-													Volunteering metrics <i class="fas fa-clipboard-check iconColour"></i>
+													Volunteering metrics <i class="fas fa-clipboard-check text-primary"></i>
 												</h2>
 
 											</div>

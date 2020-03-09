@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Register</title>
+<title>Admin Home</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -184,7 +184,7 @@
 
 										
 
-											<div class="col-lg-5 col-md-4">
+											<div class="col-lg-5 d-none d-lg-block">
 
 												<img style="height: 10rem; width: 11rem" class="mb-4"
 													src="${tempEvent.img}" />

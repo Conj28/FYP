@@ -37,10 +37,9 @@ public class Email {
     	    	    System.getProperty("line.separator"),
     	    	    "<h1>Volunteering Confirmation</h1>",
     	    	    "<h3>Hi " + firstName +"</h3>",
-    	    	    "<p>Thnak you for siginging up to volunteer at" + location + " ", 
+    	    	    "<p>Thnak you for signing up to volunteer at" + location + " ", 
     	    	    " from " + startTime + " to " + endTime + "",
-    	    	    "you can log in to view and edit your availability here"
-    	    	);
+    	    	    "you can log in to view and edit your availability <a href = \"http://testapp-env.3ymwc3ykuk.eu-west-1.elasticbeanstalk.com/login.jsp\">here</a>" );
 
         // Create a Properties object to contain connection configuration information.
     	Properties props = System.getProperties();

@@ -44,6 +44,12 @@ public class getLocationTimes extends HttpServlet {
 
 		//Event_Loaction
 		String strLocation = request.getParameter("LevetLocation");
+	if(strLocation.equals("default")) {	
+	//System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6"+strLocation);
+		RequestDispatcher rd = request.getRequestDispatcher("/eventDetails.jsp");
+		rd.forward(request, response);
+		
+	}else {
 		int location = Integer.parseInt(strLocation);
 
 		//Get the start and end times 
@@ -76,7 +82,7 @@ public class getLocationTimes extends HttpServlet {
 		 
 		RequestDispatcher rd = request.getRequestDispatcher("/eventDetails.jsp");
 		rd.forward(request, response);
-
+	}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

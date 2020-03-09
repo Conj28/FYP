@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Register</title>
+<title>Events</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -43,16 +43,15 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
 				<div class="sidebar-brand-icon ">
 					<i class="fas fa-hands-helping"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">
-					AlzInvolved
-				</div>
+				<div class="sidebar-brand-text mx-3">AlzInvolved</div>
 			</a>
-	
+
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
@@ -88,22 +87,22 @@
 					<i class="fas fa-user-friends"></i> <span>Users</span>
 			</a></li>
 
-			
+
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Other</div>
-			
+
 			<li class="nav-item"><a class="nav-link" href="getEventsServlet">
 					<i class="fab fa-elementor"></i> <span>Home</span>
 			</a></li>
-			
+
 			<li class="nav-item"><a class="nav-link" href="LogoutServlet">
 					<i class="fas fa-sign-out-alt"></i> <span>Log out</span>
 			</a></li>
 
-		
+
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -122,6 +121,25 @@
 
 			<!-- Main Content -->
 			<div id="content">
+			
+			<nav
+					class=" navbar-expand navbar-light bg-white mb-4 static-top shadow">
+
+					<!-- navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow -->
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop"
+						class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+					<ul class="navbar-nav ml-auto">
+
+						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+
+					</ul>
+
+				</nav>
 
 				
 				<!-- Begin Page Content -->

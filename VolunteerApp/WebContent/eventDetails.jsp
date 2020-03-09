@@ -6,6 +6,7 @@
 <html>
 <head>
 
+	
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
@@ -18,7 +19,7 @@
 
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Event Details</title>
 </head>
 <body>
 	<!-- Page Wrapper -->
