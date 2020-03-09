@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -105,7 +106,9 @@ public class updateEventServlet extends HttpServlet {
 			eventDAO.addNewUpdateEvent(eventID, aList);
 		}
 		
-		
+		RequestDispatcher rd = request.getRequestDispatcher("AdminHome");
+	    rd.forward(request, response);
+	    
 //    for(int i = 0; i < aList.size(); i++){
 //		for(int j = 0; j < 2 ; j++){
 //			System.out.print(aList.get(i).get(j));

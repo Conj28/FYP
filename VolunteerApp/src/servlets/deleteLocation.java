@@ -27,7 +27,11 @@ public class deleteLocation extends HttpServlet {
 		
 		eventDAO.deleteLocation(id);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("ViewUpdateEvents");
+		//get past ID
+		String SuserID = request.getParameter("eventID");
+		int userId = Integer.parseInt(SuserID);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("ViewUpdateEvents?updateEventID="+userId);
         rd.forward(request, response);
         
     	

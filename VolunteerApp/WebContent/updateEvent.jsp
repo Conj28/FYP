@@ -605,7 +605,7 @@
 																value=${locs.availableSpaces}>
 														</div>
 														<div class="col-sm-1 mb-3 mb-sm-0">
-															<a href="deleteLocation?id=${locs.eventLocID}"
+															<a href="deleteLocation?id=${locs.eventLocID}&eventID=${specificEvent.eventDetID}"
 																class="btn btn-large btn-danger btn-circle"> <i
 																class="fas fa-trash"></i>
 															</a>
@@ -675,7 +675,7 @@
 
 												<button type="submit" id="checkPassword"
 													class="btn btn-primary btn-user btn-block">
-													<b>Add Event</b>
+													<b>Update Event</b>
 												</button>
 												<hr>
 											</div>

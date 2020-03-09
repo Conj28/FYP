@@ -62,11 +62,11 @@
 						</div>\
 						<div class="col-sm-5 mb-3 mb-sm-0">\
 							<input type="text" class="form-control form-control-user"\
-							id = "locTxt'+ iCnt +'" name = "locTxt'+ iCnt +'" placeholder="Location">\
+							id = "locTxt'+ iCnt +'" name = "locTxt'+ iCnt +'" placeholder="Location" required>\
 						</div>\
 						<div class="col-sm-2 mb-3 mb-sm-0">\
 						<input type="number" class="form-control form-control-user"\
-							name="locSpaces'+ iCnt +'" id = "locSpaces'+ iCnt +'" placeholder="Available Spaces">\
+							name="locSpaces'+ iCnt +'" id = "locSpaces'+ iCnt +'" placeholder="Available Spaces" required>\
 					</div>\
 					</div>')
 					

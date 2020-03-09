@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -70,8 +71,8 @@ public class addEventServlet extends HttpServlet {
     	//get the event Details bar location 
  		String eventName = request.getParameter("eventName");
  		String eventDate = request.getParameter("date");
- 		String strcreatedBy = request.getParameter("loggedInUser");
- 		int createdBy  =Integer.parseInt(strcreatedBy);
+ 		//String strcreatedBy = request.getParameter("loggedInUser");
+ 		int createdBy  = 9;
  		String startTime = request.getParameter("startTime");
  		String endTime = request.getParameter("endTime");
  		String img = request.getParameter("img");
@@ -85,6 +86,9 @@ public class addEventServlet extends HttpServlet {
  		String countyN = request.getParameter("countyN");
 		String locN = request.getParameter("locationN");
 		String strSpacesN = request.getParameter("spacesN");
+		
+		System.out.println("The Space number is" + strSpacesN);
+		
  		int spacesN = Integer.parseInt(strSpacesN);
  		
  		EventDAO eventDAO = new EventDAO();
@@ -101,6 +105,10 @@ public class addEventServlet extends HttpServlet {
  	
  	eventDAO.setEventLocations(primaryKey,countyN, locN, spacesN, aList);
 // 		
+ 	
+	RequestDispatcher rd = request.getRequestDispatcher("AdminHome");
+    rd.forward(request, response);
+ 	
 // 		System.out.println(eventName);	
 // 		System.out.println(eventDate);
 // 		System.out.println(startTime);

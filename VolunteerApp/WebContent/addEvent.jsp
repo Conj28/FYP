@@ -177,7 +177,7 @@
 														</div>
 														<div class="col-sm-6">
 															<input type="text" class="form-control form-control-user"
-																name="eventName" id="eventName" placeholder="Event Name" />
+																name="eventName" id="eventName" placeholder="Event Name" required />
 														</div>
 
 													</div>
@@ -192,7 +192,7 @@
 														</div>
 														<div class="col-sm-6">
 															<input type="date" class="form-control form-control-user"
-																name="date" id="date" placeholder="Event Date">
+																name="date" id="date" placeholder="Event Date" required>
 														</div>
 													</div>
 
@@ -344,7 +344,7 @@
 														</div>
 														<div class="col-sm-6">
 															<input type="text" class="form-control form-control-user"
-																name="img" id="img">
+																name="img" id="img" required>
 														</div>
 													</div>
 
@@ -358,7 +358,7 @@
 														</div>
 														<div class="col-sm-6">
 															<textarea class="form-control" name="description"
-																rows="18" cols="30"></textarea>
+																rows="18" cols="30" required></textarea>
 														</div>
 													</div>
 
@@ -464,13 +464,13 @@
 
 													<div class="col-sm-5 mb-3 mb-sm-0">
 														<input type="text" class="form-control form-control-user"
-															name="locationN" id="locationN" placeholder="Location">
+															name="locationN" id="locationN" placeholder="Location" required>
 													</div>
 
 													<div class="col-sm-2 mb-3 mb-sm-0">
 														<input type="number"
 															class="form-control form-control-user" name="spacesN"
-															id="spacesN" placeholder="Available Spaces">
+															id="spacesN" placeholder="Spaces" required>
 													</div>
 												</div>
 
