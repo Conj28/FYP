@@ -19,7 +19,7 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="css/sb-admin-2.css" rel="stylesheet">
 <link href="vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 <link
@@ -158,8 +158,8 @@
 
 									<div class="col-lg-4">
 										<div class="card o-hidden border shadow-lg text-white"
-											style="height: 100%; background: #00659d">
-
+											style="height: 100%; background: #00b2ae">
+<!-- #00659d -->
 											<div class="p-4">
 												<!-- Nested Row within Card Body -->
 												<h1 class="p-4">Upcoming Events</h1>
@@ -182,7 +182,7 @@
 
 												<hr>
 
-												<h4 class="pl-4">
+												<h4 class="pl-4 pt-4">
 													Have an account <u><a class="text-gray-400"
 														href="login.jsp">Login</a></u>
 												</h4>
@@ -192,8 +192,8 @@
 										</div>
 									</div>
 
-									<div class="col-lg-8" style="background: #00659d">
-										<img class="img-fluid" src="img/Alz_info.png">
+									<div class="col-lg-8" style="background: #00b2ae">
+										<img class="img-fluid pl-4 pt-4" src="img/alzpic4.png">
 									</div>
 								</div>
 							</div>
@@ -215,7 +215,7 @@
 							<div class="card shadow mb-4">
 
 								<a href="#collapseCard1"
-									class="d-block card-header py-3 bg-gradient-secondary"
+									class="d-block card-header py-3 bg-gradient-primary"
 									data-toggle="collapse" role="button" aria-expanded="true"
 									aria-controls="collapseCard1">
 									<h6 class="m-0 font-weight-bold text-white">Filter Events</h6>
@@ -298,12 +298,12 @@
 										</select></li>
 
 										<li>
-											<button type="submit" class="btn btn-primary">Filter</button>
+											<button type="submit" class="btn btn-secondary">Filter</button>
 
 										</li>
 										</form>
 										<li><form action="getEventsServlet" method="POST">
-												<button type="submit" class="btn btn-primary">Reset
+												<button type="submit" class="btn btn-secondary">Reset
 													Filter</button>
 											</form></li>
 									</ul>
@@ -340,9 +340,9 @@
 										<div class="card shadow mb-4 broder-left-primary ">
 											<div class="box">
 												<img src="${tempEvent.img }"
-													style="width: 100%; height: 20rem">
+													style="width: 100%; height: 18rem">
 												<div class="card-body ">
-													<h6 class="m-0 font-weight-bold text-primary">${tempEvent.name }</h6>
+													<h4 class="m-0 font-weight-bold text-primary">${tempEvent.name }</h4>
 
 													<p class="cardMarginBottom">Date:
 														${tempEvent.eventDate}</p>

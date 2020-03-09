@@ -331,7 +331,7 @@
 
 												<div class="mb-4">
 													<button type="button" id="submitButton"
-														class="mb-4 btn btn-primary btn-user btn-block">Volunteer</button>
+														class="mb-4 btn btn-secondary btn-user btn-block">Volunteer</button>
 												</div>
 
 											</c:if>

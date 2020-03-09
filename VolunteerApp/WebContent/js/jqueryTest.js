@@ -66,7 +66,7 @@
 						</div>\
 						<div class="col-sm-2 mb-3 mb-sm-0">\
 						<input type="number" class="form-control form-control-user"\
-							name="locSpaces'+ iCnt +'" id = "locSpaces'+ iCnt +'" placeholder="Available Spaces" required>\
+							name="locSpaces'+ iCnt +'" id = "locSpaces'+ iCnt +'" placeholder="Spaces" required>\
 					</div>\
 					</div>')
 					

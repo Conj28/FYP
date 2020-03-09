@@ -223,7 +223,7 @@
 										<div class = "form-group col-lg-1 col-md-2">
 										
 										
-												<button type ="submit" class="btn btn-primary btn-user btn-block">
+												<button type ="submit" class="btn btn-secondary btn-user btn-block">
                       Filter
                     </button>
                    

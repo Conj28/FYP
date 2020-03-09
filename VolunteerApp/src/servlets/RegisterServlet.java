@@ -4,6 +4,7 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,8 @@ public class RegisterServlet extends HttpServlet {
 		 UserDAO userDAO = new UserDAO();
 		 userDAO.registerUser(firstName, lastName, email, phone, address, town, county, password);
 		 
-		 
+		 RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+	     rd.forward(request, response);
 		 
 	 }
  

@@ -209,7 +209,7 @@
 												</div>
 												<div class="col-auto">
 												<a href = "EmailUsers?currentEventID=${specificEvent.eventDetID}">
-													<i class="far fa-envelope iconColour fa-5x"></i>
+													<i class="far fa-envelope iconColour fa-5x text-primary"></i>
 												<h3 class ="font-weight-bold text-primary">Email</h3></a></div>
 											</div>
 

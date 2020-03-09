@@ -75,11 +75,11 @@
 										</div>
 
 										<button type="submit"
-											class="btn btn-primary btn-user btn-block">Login</button>
+											class="btn btn-secondary btn-user btn-block">Login</button>
 
 
 										<a href="register.jsp"
-											class="btn btn-primary btn-success btn-user btn-block"> Sign Up </a>
+											class="btn btn-secondary btn-user btn-block"> Sign Up </a>
 									</form>
 
 									<hr>

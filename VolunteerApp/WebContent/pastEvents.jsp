@@ -149,7 +149,7 @@
 					<div class="row">
 
 						<div class="col-lg-12 mb-4">
-							<div class="card bg-gradient-secondary text-white shadow">
+							<div class="card bg-gradient-primary text-white shadow">
 								<div class="card-body">Past Events</div>
 							</div>
 						</div>
@@ -160,9 +160,8 @@
 							<div class="col-lg-3 col-md-6 col-xs-12">
 								<div class="card mb-4 ">
 									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-secondary">
-										<h6 class="m-0 font-weight-bold text-white">Earnings
-											Overview</h6>
+										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-secondary">
+										<h6 class="m-0 font-weight-bold text-white">Past Event</h6>
 										<div class="dropdown no-arrow show">
 											<a class="dropdown-toggle" href="#" role="button"
 												id="dropdownMenuLink" data-toggle="dropdown"

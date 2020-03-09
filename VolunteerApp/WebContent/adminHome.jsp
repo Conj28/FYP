@@ -147,7 +147,7 @@
 
 							<div class="col-lg-12 mb-4">
 												<div class="card bg-gradient-primary text-white shadow">
-													<div class="card-body">Admin Home</div>
+													<div class="card-body">Upcoming Events</div>
 												</div>
 											</div>
 
@@ -158,8 +158,8 @@
 								<div class="card mb-4 ">
 
 									<div
-										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-success">
-										<h6 class="m-0 font-weight-bold "></h6>
+										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-secondary">
+										<h6 class="m-0 font-weight-bold text-white">Live Event</h6>
 										<div class="dropdown no-arrow show">
 											<a class="dropdown-toggle" href="#" role="button"
 												id="dropdownMenuLink" data-toggle="dropdown"
@@ -171,10 +171,9 @@
 												aria-labelledby="dropdownMenuLink" x-placement="bottom-end"
 												style="position: absolute; transform: translate3d(-156px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
 
-												<a class="dropdown-item" href="#">Action</a> <a
-													class="dropdown-item" href="#">Another action</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item" href="#">Something else here</a>
+												<a class="dropdown-item"
+													href="EmailUsers?currentEventID=${tempEvent.eventDetID}">Email
+													Volunteers</a>
 											</div>
 										</div>
 									</div>
@@ -195,7 +194,7 @@
 											<div class="col-lg-7 col-md-8 pl-4">
 
 
-												<h3 class="text-success">${tempEvent.name}</h3>
+												<h3 class="text-primary">${tempEvent.name}</h3>
 
 
 
@@ -207,7 +206,7 @@
 													Time: ${tempEvent.endTime}</p>
 
 												<a href="LiveEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-success btn-icon-split"> <span
+													class="btn btn-secondary btn-icon-split"> <span
 													class="icon"> <i class="fas fa-street-view"></i>
 												</span> <span class="text">View Live</span>
 												</a>
@@ -237,7 +236,7 @@
 								<div class="card mb-4 ">
 									<div
 										class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-gradient-primary">
-										<h6 class="m-0 font-weight-bold text-white"></h6>
+										<h6 class="m-0 font-weight-bold text-white">Upcoming Event</h6>
 										<div class="dropdown no-arrow show">
 											<a class="dropdown-toggle" href="#" role="button"
 												id="dropdownMenuLink" data-toggle="dropdown"
@@ -282,7 +281,7 @@
 													Time: ${tempEvent.endTime}</p>
 
 												<a href="LiveEvent?currentEventID=${tempEvent.eventDetID}"
-													class="btn btn-primary btn-icon-split"> <span
+													class="btn btn-secondary btn-icon-split"> <span
 													class="icon"> <i class="fas fa-arrow-right"></i>
 												</span> <span class="text">View Event</span>
 												</a>

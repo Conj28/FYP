@@ -173,7 +173,7 @@
 																			<div class="col-sm-8 pl-4">
 
 
-																				<h3 class = "mb-2 text-primary">Event : ${tempEvent.name}</h3>
+																				<h3 class = "mb-2 text-primary">${tempEvent.name}</h3>
 
 
 																				<p class="mb-1">Location: ${tempEvent.location}</p>

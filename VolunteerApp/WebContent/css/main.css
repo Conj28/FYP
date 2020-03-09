@@ -380,3 +380,68 @@ table.timesTable .tdNoPadding{
 .iconColour{
 	color: #4e73df;
 }
+
+
+
+/*all changes to bootstrap */
+/*Buttons */
+.btn-primary {
+  color: #fff;
+  background-color: #520f71;
+  border-color: #520f71;
+}
+
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #8317b5;
+  border-color: #8317b5;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #00b2ae;
+  border-color: #00b2ae;
+}
+
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #00b2ae;
+  border-color: #00b2ae;
+}
+
+
+/*Backgrounds */
+.bg-primary {
+  background-color: #520f71 !important;
+}
+
+.bg-gradient-primary {
+  background-color: #520f71;
+  background-image: linear-gradient(180deg, #520f71 10%, #621287 100%);
+  background-size: cover;
+}
+
+.bg-gradient-secondary {
+  background-color: #00b2ae;
+  background-image: linear-gradient(180deg, #00b2ae 10%, #00ccc9 100%);
+  background-size: cover;
+}
+
+
+
+
+/*Buttons */
+.text-primary {
+  color: #00b2ae !important;
+}
+
+
+/*Buttons */
+.border-left-primary {
+  border-left: 0.25rem solid #00b2ae !important;
+}
+
+
+	
