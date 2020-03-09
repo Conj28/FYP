@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,81 +41,82 @@
 
 
 					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-						</div>
-					</form>
+					<ul class="navbar-nav mr-auto">
+						<a class = "hiddedRef" href = "getEventsServlet" style = "text-decoration:none;">
+						<h3 class  = "text-white hiddenRef">
+							<i class="fas fa-hands-helping 2x"></i>AlzInvolved
+						</h3>
+						</a>
+					</ul>
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
+
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-						<li class="nav-item dropdown no-arrow d-sm-none"><a
-							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-						</a> <!-- Dropdown - Messages -->
-							<div
-								class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-								aria-labelledby="searchDropdown">
-								<form class="form-inline mr-auto w-100 navbar-search">
-									<div class="input-group">
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="Search for..." aria-label="Search"
-											aria-describedby="basic-addon2">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div></li>
-
-
-
-
-
 
 						<!-- Nav Item - User Information -->
+
+						<!-- check if the is a session 
+						Not logged in -->
+						<c:if test="${empty sessionScope.User}">
 						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-600 small"
-								style="color: white;">User Profile</span> <img
-								class="img-profile rounded-circle" src="img/headshot.png">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a>
-								<div class="dropdown-divider"></div>
-
-								<!-- https://stackoverflow.com/questions/10039968/submit-form-using-a-tag -->
-
-								<form id="logoutForm" action="LogoutServlet" method="POST">
-									<a href="javascript:{}"
-										onclick="document.getElementById('logoutForm').submit();"
-										class="dropdown-item" data-toggle="modal"
-										data-target="#logoutModal"> <i
-										class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-										Logout
+								class="nav-link dropdown-toggle" href="#" id="userDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <span
+									class="mr-2 d-none d-lg-inline text-600 small"
+									style="color: white;">User Profile</span> <i class="fas fa-users-cog text-white fa-lg"></i>
+							</a> <!-- Dropdown - User Information -->
+								<div
+									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+									aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="login.jsp"> <i
+										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+										Login
 									</a>
-								</form>
-							</div></li>
+									
+								</div></li>
+						</c:if>
+						
+						<!-- Logged in -->
+						<c:if test="${not empty sessionScope.User}">
+							<li class="nav-item dropdown no-arrow"><a
+								class="nav-link dropdown-toggle" href="#" id="userDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <span
+									class="mr-2 d-none d-lg-inline text-600 small"
+									style="color: white;">User Profile</span> <i class="fas fa-users-cog text-white fa-lg"></i>
+							</a> <!-- Dropdown - User Information -->
+								<div
+									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+									aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="getUserEventsServlet?userID=${sessionScope.User.userID}"> <i
+										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+										Profile
+									</a>
+									
+									<c:if test="${sessionScope.User.role == '2'}">
+									<div class="dropdown-divider"></div>
+									
+									<a class="dropdown-item" href="AdminHome">
+									 <i
+										class="fas fa-home fa-sm fa-fw mr-2 text-danger"></i>
+										Admin Home
+									</a>
+									</c:if>
+									<div class="dropdown-divider"></div>
+
+									<!-- https://stackoverflow.com/questions/10039968/submit-form-using-a-tag -->
+
+									<form id="logoutForm" action="LogoutServlet" method="POST">
+										<a href="javascript:{}" class="dropdown-item"
+											data-toggle="modal" data-target="#logoutModal"> <i
+											class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+											Logout
+										</a>
+									</form>
+								</div></li>
+						</c:if>
 
 					</ul>
 
@@ -171,16 +173,16 @@
 																			<div class="col-sm-8 pl-4">
 
 
-																				<h3>Event : ${tempEvent.name}</h3>
+																				<h3 class = "mb-2 text-primary">Event : ${tempEvent.name}</h3>
 
 
-																				<p class="mb-0">Location: ${tempEvent.location}</p>
-																				<p class="mb-0">County: ${tempEvent.county}</p>
-																				<p>Event Data: ${tempEvent.eventDate}</p>
-																				<p>Start Time: ${tempEvent.userStart}</p>
-																				<p>End Time: ${tempEvent.userEnd}</p>
+																				<p class="mb-1">Location: ${tempEvent.location}</p>
+																				<p class="mb-1">County: ${tempEvent.county}</p>
+																				<p class="mb-1">Event Data: ${tempEvent.eventDate}</p>
+																				<p class="mb-1">Start Time: ${fn:substring(tempEvent.userStart,0,5)}</p>
+																				<p class="mb-2">End Time: ${fn:substring(tempEvent.userEnd,0,5)}</p>
 																				
-																			
+																			<!-- https://www.tutorialspoint.com/jsp/jstl_function_substring.htm -->
 																				
 																				
 
@@ -461,6 +463,28 @@
 
 		</div>
 		<!-- End of Content Wrapper -->
+		
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Logout?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Are you sure you want to Logout</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="LogoutServlet">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 
 	</div>
 	<!-- End of Page Wrapper -->

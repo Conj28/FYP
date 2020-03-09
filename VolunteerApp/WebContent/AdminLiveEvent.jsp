@@ -345,14 +345,8 @@
 
 
 
-
-										<div class="mb-4">
-											<button type="button" id="submitButton"
-												class="mb-4 btn btn-primary btn-user btn-block">Volunteer</button>
-										</div>
-
+										
 									</c:if>
-
 
 
 									<!--  https://stackoverflow.com/questions/10943635/how-do-i-pass-multiple-parameter-in-url/10943694 -->
@@ -360,6 +354,15 @@
 
 
 								</div>
+
+<div class = "mt-1 mb-4">
+<a href="AdminHome" class="btn btn-danger btn-icon-split text-white">
+                    <span class="icon text-white">
+                      <i class="fas fa-chevron-circle-left"></i>
+                    </span>
+                    <span class="text">Back</span>
+                  </a>
+</div>
 
 							</div>
 						</div>

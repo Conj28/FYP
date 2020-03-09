@@ -605,7 +605,7 @@
 																			<div class="row no-gutters align-items-center">
 																				<div class="col mr-2">
 																					<div
-																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Worst Performing Event</div>
+																						class="text-xl font-weight-bold text-primary text-uppercase mb-1">Worst Performing Location</div>
 																					<div class="h3 mb-0 font-weight-bold text-gray-600">${leasetProfitableEvent}
 																						</div>
 																				</div>

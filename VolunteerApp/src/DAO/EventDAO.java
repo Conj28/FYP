@@ -746,8 +746,10 @@ public class EventDAO {
 				+ "' where Event_ID = " + id + " ";
 
 		try {
+			
+			System.out.println(query);
 			PreparedStatement stmt = conn.prepareStatement(query);
-			stmt.executeQuery();
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			// giving error but still works ??

@@ -59,43 +59,85 @@
 
 
 					<!-- Topbar Search -->
-<ul class="navbar-nav mr-auto">
-<h3><i class="fas fa-hands-helping 2x"></i>AlzInvolved</h3>
-</ul>
+					<ul class="navbar-nav mr-auto">
+						<a class = "hiddedRef" href = "getEventsServlet" style = "text-decoration:none;">
+						<h3 class  = "text-white hiddenRef">
+							<i class="fas fa-hands-helping 2x"></i>AlzInvolved
+						</h3>
+						</a>
+					</ul>
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
 
-					
+
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
 
 						<!-- Nav Item - User Information -->
+
+						<!-- check if the is a session 
+						Not logged in -->
+						<c:if test="${empty sessionScope.User}">
 						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-600 small"
-								style="color: white;">User Profile</span> <img
-								class="img-profile rounded-circle" src="img/headshot.png">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a>
-								<div class="dropdown-divider"></div>
-
-								<!-- https://stackoverflow.com/questions/10039968/submit-form-using-a-tag -->
-
-								<form id="logoutForm" action="LogoutServlet" method="POST">
-									<a href="javascript:{}" class="dropdown-item"
-										data-toggle="modal" data-target="#logoutModal"> <i
-										class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-										Logout
+								class="nav-link dropdown-toggle" href="#" id="userDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <span
+									class="mr-2 d-none d-lg-inline text-600 small"
+									style="color: white;">User Profile</span> <i class="fas fa-users-cog text-white fa-lg"></i>
+							</a> <!-- Dropdown - User Information -->
+								<div
+									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+									aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="login.jsp"> <i
+										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+										Login
 									</a>
-								</form>
-							</div></li>
+									
+								</div></li>
+						</c:if>
+						
+						<!-- Logged in -->
+						<c:if test="${not empty sessionScope.User}">
+							<li class="nav-item dropdown no-arrow"><a
+								class="nav-link dropdown-toggle" href="#" id="userDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <span
+									class="mr-2 d-none d-lg-inline text-600 small"
+									style="color: white;">User Profile</span> <i class="fas fa-users-cog text-white fa-lg"></i>
+							</a> <!-- Dropdown - User Information -->
+								<div
+									class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+									aria-labelledby="userDropdown">
+									<a class="dropdown-item" href="getUserEventsServlet?userID=${sessionScope.User.userID}"> <i
+										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+										Profile
+									</a>
+									
+									<c:if test="${sessionScope.User.role == '2'}">
+									<div class="dropdown-divider"></div>
+									
+									<a class="dropdown-item" href="AdminHome">
+									 <i
+										class="fas fa-home fa-sm fa-fw mr-2 text-danger"></i>
+										Admin Home
+									</a>
+									</c:if>
+									<div class="dropdown-divider"></div>
+
+									<!-- https://stackoverflow.com/questions/10039968/submit-form-using-a-tag -->
+
+									<form id="logoutForm" action="LogoutServlet" method="POST">
+										<a href="javascript:{}" class="dropdown-item"
+											data-toggle="modal" data-target="#logoutModal"> <i
+											class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+											Logout
+										</a>
+									</form>
+								</div></li>
+						</c:if>
+
+
+
 
 					</ul>
 
@@ -109,41 +151,49 @@
 
 
 
-							<div class="text shadow mb-4" >
+							<div class="text shadow mb-4">
 
 								<div class="row">
-								
-								
+
+
 									<div class="col-lg-4">
-									<div class="card o-hidden border shadow-lg text-white" style = "height:100%; background:#00659d">
-			
-						<div class="p-4">
-							<!-- Nested Row within Card Body -->
-							<h1 class = "p-4">Upcoming Events</h1>
-							<h3 class = "pl-4">See all upcoming volunteering opportunities</h3>
-							
-							
-							<hr>
-							<br/>
-							<!--Have and Account <a href="login.jsp">Login</a> -->
-							
-							<hr>
-							
-							<h2 class = "pl-4">Take Action</h2>
-							<h3 class = "p-4">There are currently 55,000 people living with dementia in Ireland, this figure is set to double in the next 30 years.
-							 Now is the time to take action and ensure there are adequate services for these people and their families</h3>
-							
-							<hr>
-							
-							<h4 class = "pl-4">Have an account <u><a class = "text-gray-400" href = "login.jsp">Login</a></u></h4>
-							
-							
-						</div>
-					</div>
+										<div class="card o-hidden border shadow-lg text-white"
+											style="height: 100%; background: #00659d">
+
+											<div class="p-4">
+												<!-- Nested Row within Card Body -->
+												<h1 class="p-4">Upcoming Events</h1>
+												<h3 class="pl-4">See all upcoming volunteering
+													opportunities</h3>
+
+
+												<hr>
+												<br />
+												<!--Have and Account <a href="login.jsp">Login</a> -->
+
+												<hr>
+
+												<h2 class="pl-4">Take Action</h2>
+												<h3 class="p-4">There are currently 55,000 people
+													living with dementia in Ireland, this figure is set to
+													double in the next 30 years. Now is the time to take action
+													and ensure there are adequate services for these people and
+													their families</h3>
+
+												<hr>
+
+												<h4 class="pl-4">
+													Have an account <u><a class="text-gray-400"
+														href="login.jsp">Login</a></u>
+												</h4>
+
+
+											</div>
+										</div>
 									</div>
-									
-									<div class = "col-lg-8" style="background:#00659d">
-										<img  class="img-fluid" src="img/Alz_info.png">
+
+									<div class="col-lg-8" style="background: #00659d">
+										<img class="img-fluid" src="img/Alz_info.png">
 									</div>
 								</div>
 							</div>
@@ -313,11 +363,10 @@
 						<!--  end of Row div -->
 					</div>
 
-					<!-- <form action="getUserEventsServlet" method="POST">
+				<!-- <form action="getUserEventsServlet?userID=${sessionScope.User.userID}" method="POST">
 
-							<button type="submit">User Settings</button>
-						</form> -->
-
+						<button type="submit">User Settings</button> -->
+					</form>
 				</div>
 			</div>
 

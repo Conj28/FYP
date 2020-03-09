@@ -51,8 +51,11 @@ public class updatUserDetailsServlet extends HttpServlet {
 		 
 		 request.getSession(true).setAttribute("User", user);
 		 
-		 RequestDispatcher rd = request.getRequestDispatcher("getUserEventsServlet");
-	     rd.forward(request, response);
+		 String SuserID = request.getParameter("userId");
+		 int userID = Integer.parseInt(SuserID);
+		 
+			RequestDispatcher rd = request.getRequestDispatcher("getUserEventsServlet?userID="+userID);
+	        rd.forward(request, response);
 		 
 	 }
 

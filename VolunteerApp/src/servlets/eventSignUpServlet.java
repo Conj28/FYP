@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,6 +63,9 @@ System.out.println(strUserId);
 		
 		Email email = new Email();
 		email.emailConfirmSignUp(userEmail, setLocation, startTime, endTime, firstName );
+		
+		 RequestDispatcher rd = request.getRequestDispatcher("getEventsServlet");
+	        rd.forward(request, response);
 		
 	}
 

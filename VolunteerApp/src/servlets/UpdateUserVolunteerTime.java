@@ -28,11 +28,13 @@ public class UpdateUserVolunteerTime extends HttpServlet {
 System.out.println(strUserId);
 
 		
-		String strEventDetId = request.getParameter("eventId");
-		int eventDetId = Integer.parseInt(strEventDetId);
+		//String strEventDetId = request.getParameter("eventId");
+		//int eventDetId = Integer.parseInt(strEventDetId);
 		
-		System.out.println("id is *********" + strEventDetId);
-		
+		//System.out.println("id is *********" + strEventDetId);
+		String SuserID  = request.getParameter("userId");
+		int userID = Integer.parseInt(SuserID);
+		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + userID);
 
 		
 		String startTime = request.getParameter("optionStartTime");
@@ -49,9 +51,13 @@ System.out.println(strUserId);
 		
 //		
 EventDAO eventDAO = new EventDAO();
-		eventDAO.updateUserVolunteerHours(eventID, startTime, endTime);
+		EventDAO.updateUserVolunteerHours(eventID, startTime, endTime);
 	
-		RequestDispatcher rd = request.getRequestDispatcher("getUserEventsServlet");
+		
+		
+		System.out.println("getUserEventsServlet?userID="+userID+"");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("getUserEventsServlet?userID="+userID);
         rd.forward(request, response);
 		
 	}
