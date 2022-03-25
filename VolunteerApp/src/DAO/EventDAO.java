@@ -35,7 +35,7 @@ public class EventDAO {
 		String query = "SELECT [Event_Det_ID]\r\n" + "      ,[Name]\r\n" + "      ,[Created_By]\r\n"
 				+ "      ,CONVERT(VARCHAR(10), [Event_Date], 103)\r\n" + "      ,LEFT([Start_Time],5)\r\n"
 				+ "      ,LEFT([End_Time],5)\r\n" + "      ,[Number_Days]\r\n" + "      ,[img]\r\n"
-				+ "      ,[Details]\r\n" + "  FROM [app].[dbo].[Event_Det] where Event_Date > getdate()";
+				+ "      ,[Details]\r\n" + "  FROM [app].[dbo].[Event_Det] where Event_Date > getdate() order by Event_Date asc";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -95,7 +95,7 @@ public class EventDAO {
 		// conveting date
 		// https://www.mssqltips.com/sqlservertip/1145/date-and-time-conversions-using-sql-server/
 		String query = "Select Distinct(E.Event_Det_ID), E.Name, E.Created_By, CONVERT(VARCHAR(10), E.Event_Date, 103), LEFT(E.Start_Time,5), LEFT(E.End_Time,5), E.Number_Days, E.img, E.Details From Event_Det E \r\n"
-				+ "Inner join Event_Loc L on E.Event_Det_ID = L.Event_Det_ID\r\n" + "where L.County = '" + loc + "' ";
+				+ "Inner join Event_Loc L on E.Event_Det_ID = L.Event_Det_ID\r\n" + "where L.County = '" + loc + "' AND E.Event_Date > getdate()";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -289,7 +289,7 @@ public class EventDAO {
 		String query = "Select d.Event_Det_ID, d.Name, d.Event_Date, d.Start_Time, d.End_Time, d.Img, d.Details, l.Location, l.County, e.Available_Start, e.Available_END, e.Event_ID, l.Event_Loc_ID"
 				+ " from Event e " + " inner join Event_Det d on e.Event_Det_ID = d.Event_Det_ID"
 				+ " inner join Event_Loc l on e.Event_Loc_ID = l.Event_Loc_ID where e.Users_ID = " + id
-				+ " order by d.Event_Date asc";
+				+ " and d.Event_Date > getdate() order by d.Event_Date asc";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(query);

@@ -229,10 +229,10 @@
 																				${tempUser.lastName}</td>
 																			<td>${tempUser.email}</td>
 																			<td>${tempUser.phone}</td>
-																			<td style="text-transform: capitalize">${tempUser.county}</td>
-
+																			
 																			<td>${tempUser.address}</td>
 																			<td>${tempUser.town}</td>
+																			<td style="text-transform: capitalize">${tempUser.county}</td>
 																			
 																			<c:if test="${tempUser.role eq 1}">
 																				<td>No <a href = "addAdmin?userID=${tempUser.userID}" class = "text-danger" >
